@@ -1,0 +1,548 @@
+/*
+Theme Name: Deliver
+Theme URI:
+Author: TemplatesJungle
+Author URI: https://templatesjungle.com/
+Description: Deliver is Bootstrap 5 HTML Template for Delivery Companies by TemplatesJungle.
+Version: 1.2
+*/
+
+/** Base Styles
+--------------------------------------------------------------*/
+:root {
+  --accent-color: #ebfdff;
+  --secondary-color: #3ac5ce;
+  --dark-color: #083c3e;
+  --grey-color: #f8f8f8;
+  --body-text-color: #083c3e;
+  --light-text-color: #7c7c7c;
+  --link-color: #ffffff;
+}
+
+/** Typography
+  --------------------------------------------------------------*/
+body {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 36px;
+  color: var(--light-text-color);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: "Jost";
+  font-weight: 400;
+  color: var(--body-text-color);
+  letter-spacing: 0.04em;
+}
+
+h1,
+.h1 {
+  font-size: 70px;
+}
+
+h3,
+.h3 {
+  font-size: 24px;
+}
+
+h4,
+.h4 {
+  font-size: 22px;
+}
+
+h5,
+.h5 {
+  margin-bottom: 0px;
+}
+
+p {
+  font-family: "Roboto";
+  color: var(--light-text-color);
+  font-size: 16px;
+  line-height: 30px;
+}
+
+a {
+  color: var(--body-text-color);
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.btn.btn-primary {
+  border-radius: 60px;
+  --bs-btn-color: var(--accent-color);
+  --bs-btn-bg: var(--body-text-color);
+  --bs-btn-border-color: var(--body-text-color);
+  --bs-btn-hover-color: var(--accent-color);
+  --bs-btn-hover-bg: var(--secondary-color);
+  --bs-btn-hover-border-color: var(--secondary-color);
+}
+
+.btn.btn-primary.first-button {
+  font-size: 19px;
+  padding: 20px 60px;
+  transition: all 0.3s ease-in;
+}
+
+.btn.btn-outline-primary {
+  border-radius: 35px;
+  --bs-btn-color: var(--secondary-color);
+  --bs-btn-border-color: var(--secondary-color);
+  --bs-btn-hover-color: var(--accent-color);
+  --bs-btn-hover-bg: var(--secondary-color);
+  --bs-btn-hover-border-color: var(--secondary-color);
+}
+
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+  color: var(--link-color);
+  background-color: var(--dark-color);
+  border-color: var(--dark-color);
+}
+
+.btn.btn-outline-primary.second-button {
+  font-size: 19px;
+  padding: 20px 50px;
+  transition: all 0.3s ease-in;
+}
+
+@media only screen and (max-width: 768px) {
+
+  h1,
+  .h1 {
+    font-size: 50px;
+  }
+}
+
+/* navigation bar  */
+
+section#navigation-bar {
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background: var(--accent-color);
+}
+
+.nav-link {
+  color: var(--body-text-color);
+}
+
+a.nav-link.active,
+.anav-link:focus,
+a.nav-link:hover {
+  color: var(--dark-color);
+}
+
+a.nav-link::after {
+  content: "";
+  text-align: center;
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--secondary-color);
+  transition: width 0.3s;
+}
+
+a.nav-link.active::after,
+a.nav-link:focus::after,
+a.nav-link:hover::after {
+  width: 100%;
+  transition: width 0.3s;
+}
+
+/* dropdown  */
+.dropdown-toggle::after {
+  border: none;
+  margin-left: 0em;
+  vertical-align: 0em;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: var(--body-text-color);
+  text-decoration: none;
+  background-color: var(--grey-color);
+}
+
+/* modal  */
+.modal-header {
+  border-bottom: none;
+}
+
+/* form-control  */
+.form-control:focus {
+  border-color: var(--light-text-color);
+  box-shadow: none;
+  color: var(--body-text-color);
+}
+
+.modal-backdrop {
+  --bs-backdrop-zindex: 999;
+  --bs-backdrop-bg: #000;
+  --bs-backdrop-opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bs-backdrop-bg);
+}
+
+@media only screen and (max-width: 768px) {
+  .nav {
+    display: grid;
+  }
+
+  /* .account {
+    justify-content: center !important;
+    margin: 70px 0px;
+  } */
+}
+
+@media only screen and (max-width: 1460px) and (min-width: 990px) {
+  a.login {
+    display: none;
+  }
+
+  button.signup {
+    display: none;
+  }
+
+  a.get-pro {
+    display: none;
+  }
+}
+
+/* hero section  */
+
+section#hero {
+  background: var(--accent-color);
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.hero.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+a.icon-link {
+  color: var(--body-text-color);
+  text-decoration: none;
+  display: inline-table;
+}
+
+a.icon-link:after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid var(--dark-color);
+  width: 100%;
+  transition: width 0.2s ease-out;
+}
+
+a.icon-link:hover:after {
+  width: 20%;
+}
+
+/* feature section  */
+
+.feature-paragraph {
+  font-size: 26px;
+  line-height: 60px;
+}
+
+.feature-post {
+  background: var(--grey-color);
+  border: 1px solid #e1e1e1;
+}
+
+@media only screen and (max-width: 768px) {
+  .feature-paragraph {
+    font-size: 19px;
+    line-height: 36px;
+  }
+}
+
+/* service section  */
+
+.service-post {
+  background: var(--grey-color);
+}
+
+.service-post:hover {
+  background: var(--accent-color);
+}
+
+/* artical-post section  */
+
+.artical-post {
+  background: var(--grey-color);
+}
+
+.artical-post:hover {
+  background: var(--accent-color);
+}
+
+/* client section  */
+
+.client-section {
+  background: var(--grey-color);
+  border: 1px solid #e1e1e1;
+}
+
+iconify-icon.client-quote-icon {
+  color: var(--secondary-color);
+  font-size: 31px;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--swiper-pagination-color, var(--secondary-color));
+}
+
+.swiper-pagination-bullet {
+  width: var(--swiper-pagination-bullet-width,
+      var(--swiper-pagination-bullet-size, 10px));
+  height: var(--swiper-pagination-bullet-height,
+      var(--swiper-pagination-bullet-size, 10px));
+}
+
+/* action section  */
+
+.action-column1 {
+  background: var(--grey-color);
+}
+
+.action-column2 {
+  background: var(--secondary-color);
+}
+
+h1.action-heading {
+  color: var(--accent-color);
+}
+
+p.action-paragraph {
+  color: var(--accent-color);
+  font-size: 30px;
+}
+
+button.btn.btn-primary.first-button.action-button {
+  --bs-btn-color: var(--secondary-color);
+  --bs-btn-bg: var(--accent-color);
+  --bs-btn-border-color: var(--accent-color);
+  --bs-btn-hover-color: var(--accent-color);
+  --bs-btn-hover-bg: var(--secondary-color);
+  --bs-btn-hover-border-color: var(--accent-color);
+}
+
+/* footer section  */
+
+section#footer {
+  background: var(--grey-color);
+}
+
+a.nav-link.footer-1-link:hover {
+  color: var(--secondary-color);
+}
+
+a.nav-link.footer-1-link:focus::after,
+a.nav-link.footer-1-link:hover::after {
+  width: 0;
+  transition: width 0.3s;
+}
+
+/* footer2 section  */
+
+.footer-2 {
+  background-color: #1093a1;
+}
+
+.footer2-paragraph {
+  margin: 0px;
+  color: var(--accent-color);
+}
+
+footer.footer-2-container {
+  padding: 30px 0px;
+}
+
+iconify-icon.footer-2-icon {
+  color: var(--accent-color);
+  font-size: 18px;
+}
+
+a.nav-link.footer-1-link.templatesjungle {
+  color: #ffffff;
+}
+
+a.nav-link.footer-1-link.templatesjungle:hover {
+  color: var(--body-text-color);
+}
+
+@media only screen and (max-width: 768px) {
+  .footer-2-container {
+    display: block !important;
+  }
+}
+
+/*--------------------------------------------------------------
+  Styles page style
+  --------------------------------------------------------------*/
+.chocolat-wrapper {
+  z-index: 1000;
+}
+
+.accordion-button {
+  font-size: 1.3rem;
+}
+
+.accordion-button:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--grey-color);
+}
+
+.accordion-body {
+  color: var(--body-text-color);
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+  color: var(--body-text-color);
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 2px solid var(--body-text-color);
+}
+
+.border-primary {
+  border-color: var(--body-text-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--body-text-color) !important;
+}
+
+
+
+/*--------------------------------------------------------------
+  Blog page style
+  --------------------------------------------------------------*/
+.pagination {
+  --bs-pagination-color: var(--body-text-color);
+  --bs-pagination-bg: var(--bs-body-bg);
+  --bs-pagination-border-width: var(--bs-border-width);
+  --bs-pagination-border-color: var(--bs-border-color);
+  --bs-pagination-border-radius: var(--bs-border-radius);
+  --bs-pagination-hover-color: var(--body-text-color);
+  --bs-pagination-hover-bg: var(--bs-tertiary-bg);
+  --bs-pagination-hover-border-color: var(--bs-border-color);
+  --bs-pagination-focus-color: var(--bs-link-hover-color);
+  --bs-pagination-focus-bg: var(--bs-secondary-bg);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  --bs-pagination-active-color: var(--body-text-color);
+  --bs-pagination-active-bg: var(--accent-color);
+  --bs-pagination-active-border-color: var(--bs-border-color);
+}
+
+
+
+/*--------------------------------------------------------------
+reviews section style start
+--------------------------------------------------------------*/
+.reviews-components {
+  border: 2px solid #FAFAFA;
+  box-shadow: 0px 12px 90px rgba(12, 12, 12, 0.06);
+  border-radius: 9px;
+}
+
+iconify-icon.quote {
+  font-size: 60px;
+  color: var(--body-text-color);
+}
+
+.rate {
+  color: var(--body-text-color);
+}
+
+
+
+/*--------------------------------------------------------------
+Single-services section style start
+--------------------------------------------------------------*/
+span.price-tick {
+  color: var(--secondary-color);
+}
+
+
+
+/*--------------------------------------------------------------
+  Price page style
+  --------------------------------------------------------------*/
+.plan-post {
+  border: 1px solid var(--body-text-color);
+}
+
+span.price-tick {
+  color: var(--body-text-color);
+}
+
+.price-option {
+  height: 320px;
+}
+
+.recommend-price {
+  background: var(--body-text-color);
+}
+
+
+/*--------------------------------------------------------------
+  Gallery page style
+  --------------------------------------------------------------*/
+button.filter-button.gallery-btn {
+  letter-spacing: 0.075rem;
+  border: 1px solid var(--bs-border-color);
+  background: transparent;
+  color: var(--bs-black);
+  text-transform: uppercase;
+  font-size: 1rem;
+  transition: all 0.3s ease-in;
+}
+
+button.filter-button.gallery-btn.active {
+  color: var(--bs-light);
+  background: var(--body-text-color);
+}
+
+button.filter-button.gallery-btn:hover {
+  color: var(--bs-light);
+  background: var(--body-text-color);
+}
+
+.brand-logo h1, .brand-logo span {font-size: 2.5rem;font-weight: bold;font-family: "Jost";color: var(--body-text-color);}
+.xcblog-blog-list .item {margin-bottom: 1.5rem;}
+.breadcrumb h1 {font-size: 3rem;}
