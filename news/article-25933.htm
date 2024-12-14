@@ -2,13 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://vlessnode.github.io" />
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-25933.htm" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2024-10归档 - Vless Node机场订阅官网</title>
-        <meta name="keywords" content="2024-10归档" />
-        <meta name="description" content="2024-10归档" />
+    <title>ASP.NET WebAPI导入CSV_实用技巧</title>
+        <meta name="description" content="一、前端代码  &lt;button type="button" class="btn btn-primary" onclick="InportTicket()"&gt;导入&lt;/button&g" />
         <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
@@ -34,7 +33,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="category">
+<body data-page="detail">
         <!-- Navigation Section Starts -->
     <section id="navigation-bar" class="navigation position-fixed">
         <nav id="navbar-example2" class="navbar navbar-expand-lg ">
@@ -96,19 +95,26 @@
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
                 </div>
-                <div class="col-lg-6 py-5 my-5">
+                <div class="col-lg-6">
                     <div class="breadcrumb ">
                         <span class="item">
                             <a href="/">
                                 <h5> <u>首页</u> </h5>
                             </a>
                         </span>
-                        &nbsp;
-                        <h5>/</h5> &nbsp; <span class="item">
-                            <h5>2024-10 归档</h5>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
                         </span>
                     </div>
-                    <h1 class=" lh-1 mb-3">2024-10 归档</h1>
+                    <h1 class=" lh-1 mb-3">ASP.NET WebAPI导入CSV_实用技巧</h1>
                 </div>
             </div>
         </div>
@@ -118,22 +124,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="xcblog-blog-list">
-                                                <div class="row item xcblog-blog-item" data-date="2024-10-01">
-                            <div class="col-md-3">
-                                <a href="/free-nodes/2024-10-1-node-share.htm" class="xcblog-blog-url">
-                                    <img src="/uploads/20240826/4867ec00f515a2200ef3234723a06ba1.webp" alt="「10月1日」最高速度22.8M/S，2024年Vless每天更新免费机场订阅节点链接" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="col-md-9">
-                                <a href="/free-nodes/2024-10-1-node-share.htm" class="xcblog-blog-url">
-                                    <h3 class="xcblog-blog-title">「10月1日」最高速度22.8M/S，2024年Vless每天更新免费机场订阅节点链接</h3>
-                                </a>
-                                <p>这一次的节点更新覆盖了新加坡、加拿大、美国、欧洲、韩国、香港、日本等地区,最高速度可达22.8 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。</p>
-                            </div>
-                        </div>
-                                                <ul class="pagination"><li><a href="/date/2024-10/page-3.htm">&laquo;</a></li> <li><a href="/date/2024-10/">1</a></li><li><a href="/date/2024-10/page-2.htm">2</a></li><li><a href="/date/2024-10/page-3.htm">3</a></li><li class="active"><span>4</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
-                </div>
+                                      				  				  				<h2>一、前端代码</h2> <div class="ay1code"> <pre class="brush:xhtml;">&lt;button type="button" class="btn btn-primary" onclick="InportTicket()"&gt;导入&lt;/button&gt;  &lt;input id="fileToUpload" type="file" name="upfile" style="display:none;"&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">/// JS脚本    $("#fileToUpload").click();    $("#fileToUpload").change(function () {  　　var formData = new FormData();  　　formData.append("myfile", document.getElementById("fileToUpload").files[0]);    　　$.ajax({  　　　　url: "../Ticket/TicketFileToUpload",  　　　　type: 'POST',  　　　　cache: false,  　　　　processData: false,  　　　　contentType: false,  　　　　data: formData,  　　　　success: function (res) {  　　　　　　alert(res.Message);  　　　　},  　　　　error: function (data, status, e) {  　　　　　　alert("操作失败!");  　　　　}  　　})  });</pre> </div> <h2>二、后台实现代码</h2> <div class="ay1code"> <pre class="brush:csharp;">[HttpPost]  public ActionResult TicketFileToUpload()  {  　　try  　　{  　　　　if (Request.Files.Count &gt; 0)  　　　　{  　　　　　　HttpPostedFileBase TicketFile = Request.Files[0];  　　　　　　List&lt;string[]&gt; lstData = Helper.ImportExport.InportData(TicketFile.InputStream);  　　　　　　TicketModel ticketope = new TicketModel();    　　　　　　for (int i = 1; i &lt; lstData.Count; i++)  　　　　　　{  　　　　　　　　string[] itemData = lstData[i];  　　　　　　　　Ticket entity = ticketope.GetByCode(itemData[0]);  　　　　　　　　if (entity == null)  　　　　　　　　{  　　　　　　　　　　entity = new Ticket();  　　　　　　　　　　entity.Label = itemData[1];  　　　　　　　　　　entity.SiteId = int.Parse(itemData[2]);  　　　　　　　　　　entity.Owner = itemData[4];  　　　　　　　　　　entity.CardId = itemData[5];  　　　　　　　　　　entity.StartDate = DateTime.Parse(itemData[6]);  　　　　　　　　　　entity.EndDate = DateTime.Parse(itemData[7]);  　　　　　　　　　　entity.IsValid = bool.Parse(itemData[8]);  　　　　　　　　　　entity.IsUsed = bool.Parse(itemData[9]);  　　　　　　　　　　ticketope.Insert(entity);  　　　　　　　　}  　　　　　　}  　　　　　　return Json(new JsonResultData() { Success = true, Message = "导入数据成功！" });  　　　　}  　　　　else  　　　　{  　　　　　　return Json(new JsonResultData() { Success = false, Message = "找不到导入文件数据！" });  　　　　}  　　}  　　catch (Exception ex)  　　{  　　　　return Json(new JsonResultData() { Success = false, Message = "导入数据失败！" });  　　}  }    public static List&lt;string[]&gt; InportData(Stream filestream)  {  　　lock (RunningInport)  　　{  　　　　List&lt;string[]&gt; lstData = new List&lt;string[]&gt;();  　　　　string strLine = "";  　　　　bool IsFirst = true;    　　　　StreamReader sr = new StreamReader(filestream, Encoding.UTF8);  　　　　while ((strLine = sr.ReadLine()) != null)  　　　　{  　　　　　　if (IsFirst)  　　　　　　{  　　　　　　　　string[] strTitles = strLine.Split(',');  　　　　　　　　lstData.Add(strTitles);  　　　　　　}  　　　　　　else  　　　　　　{  　　　　　　　　string[] strData = strLine.Split(',');  　　　　　　　　lstData.Add(strData);  　　　　　　}  　　　　}  　　　　return lstData;  　　}  }</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-25472.htm">开一家宠物食品加工厂需要多少钱 开一家宠物食品加工厂需要多少钱呢</a></p>
+                                        <p>下一个：<a href="/news/article-25936.htm">猫粮狗粮生产加工（猫粮狗粮生产加工工艺）</a></p>
+                                    </div>
+                                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -141,16 +137,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-latest-vless-node.htm" title="「11月26日」最高速度22.1M/S，2024年Vless每天更新免费机场订阅节点链接">「11月26日」最高速度22.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-12-free-high-speed-nodes.htm" title="「9月12日」最高速度22M/S，2024年Vless每天更新免费机场订阅节点链接">「9月12日」最高速度22M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-23618.htm" title="优瑞派狗粮批发（优瑞派狗粮怎么样山茶）">优瑞派狗粮批发（优瑞派狗粮怎么样山茶）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share.htm" title="「12月3日」最高速度19.5M/S，2024年Vless每天更新免费机场订阅节点链接">「12月3日」最高速度19.5M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-8-node-share-links.htm" title="「9月8日」最高速度23M/S，2024年Vless每天更新免费机场订阅节点链接">「9月8日」最高速度23M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19491.htm" title="宠物疫苗可以自己打吗现在多少钱（宠物疫苗可以自己打嘛）">宠物疫苗可以自己打吗现在多少钱（宠物疫苗可以自己打嘛）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-6-node-share.htm" title="「9月6日」最高速度22M/S，2024年Vless每天更新免费机场订阅节点链接">「9月6日」最高速度22M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-1-node-share.htm" title="「10月1日」最高速度22.8M/S，2024年Vless每天更新免费机场订阅节点链接">「10月1日」最高速度22.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-10-vless-github.htm" title="「10月10日」最高速度19.6M/S，2024年Vless每天更新免费机场订阅节点链接">「10月10日」最高速度19.6M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-20409.htm" title="SpringSecurity核心功能详解">SpringSecurity核心功能详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-6-free-high-speed-nodes.htm" title="「10月6日」最高速度19.7M/S，2024年Vless每天更新免费机场订阅节点链接">「10月6日」最高速度19.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-vless-node-share.htm" title="「11月19日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接">「11月19日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-19-vless-github.htm" title="「9月19日」最高速度19.8M/S，2024年Vless每天更新免费机场订阅节点链接">「9月19日」最高速度19.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-29-free-high-speed-nodes.htm" title="「10月29日」最高速度18.2M/S，2024年Vless每天更新免费机场订阅节点链接">「10月29日」最高速度18.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25009.htm" title="两个月的猫抓了出了一点血横（两个月的猫抓了一下）">两个月的猫抓了出了一点血横（两个月的猫抓了一下）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-30-vless-windows.htm" title="「10月30日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接">「10月30日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22696.htm" title="动物疫苗的保存温度是多少度合适（动物疫苗运输与储存规范）">动物疫苗的保存温度是多少度合适（动物疫苗运输与储存规范）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-21-free-vless-node.htm" title="「9月21日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接">「9月21日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-17-node-share-links.htm" title="「9月17日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接">「9月17日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-vless-windows.htm" title="「10月28日」最高速度18.8M/S，2024年Vless每天更新免费机场订阅节点链接">「10月28日」最高速度18.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
