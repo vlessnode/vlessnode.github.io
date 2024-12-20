@@ -124,7 +124,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				<div id="content_views" class="htmledit_views"> <h2>在<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://so.csdn.net/so/search?q=%E5%A4%A7%E6%95%B0%E6%8D%AE&amp;spm=1001.2101.3001.7020"  title="大数据" rel="nofollow">大数据</a>工作中经常碰到需要将hive查询数据导入到mysql的需求，常见的方法主要有两种，一是impala，另一种则是pyhive。</h2> <h2>一、pyhive方式连接hive数据库</h2> <p>首先是配置相关的环境及使用的库。sasl、thrift、thrift_sasl、pyhive。</p> <p>&nbsp;其中sasl安装较为麻烦一点，在Linux下直接安装可能会出现sasl.h头文件丢失问题，原因是sasl的源码已经许久没有维护了，代码结构与现有的代码结构不一样，下面分别给出win及Linux下的安装方法。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl"  title="https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl" rel="nofollow">https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl</a></p> <p><strong>windows下：</strong></p> <p>1.下载sasl安装文件，进行离线安装sasl,下载网址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl"  title="https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl" rel="nofollow">https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl</a>，版本选择适合自己的即可。</p> <p>2.安装:</p> <p>pip install sasl-0.2.1-cp36-cp36m-win_amd64.whl<br /> pip install thrift -i https://pypi.tuna.tsinghua.edu.cn/simple<br /> pip install thrift_sasl==0.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple<br /> pip install pyhive -i https://pypi.tuna.tsinghua.edu.cn/simple</p> <p><strong>Linux下：</strong></p> <p>如果存在sasl.h头文件问题，可以通过pip安装libsasl2-dev包，再安装sasl</p> <p>apt-get install libsasl2-dev<br /> pip install sasl<br /> pip install thrift&nbsp;<br /> pip install thrift-sasl<br /> pip install PyHive</p> <p>注意不要漏装，否则报错。</p> <h2><strong>二、impala方式连接hive数据库</strong></h2> <p>直接 pip install impala 即可</p> <p>下载好相关库后，我们直接上代码。</p> <pre><code class="language-python">from impala.dbapi import connect from impala.util import as_pandas import pandas as pd from pyhive import hive  class LinkHive(object):     def __init__(self,host,port,database):         self.host = host         self.port = port         # self.username = username         # self.password = password         self.database = database      def __link(self):         # 1、pyhive连接         self.conn = hive.Connection(host=self.host,port=self.port,database=self.database)                  #2、impla连接         # self.conn = connect(host=self.host, port=self.port, database=self.database)         self.cur = self.conn.cursor()         # CUSTOM  LDAP     def selectdata(self,sql):         try:             self.__link()         except Exception as e:              print('link error:')             print(e)         try:             #c = self.cur.fetchall()             pd.read_sql(sql,self.conn) //pihive读取数据             # self.cur.execute(sql) //impala读取数据             # result = as_pandas(self.cur) //impala读取数据后转为pandas的DataFrame         except Exception as e:              print('query error:')             print(e)         # 关闭连接 释放资源         self.cur.close()         self.conn.close()         return result</code></pre> </p></div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h2>在<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://so.csdn.net/so/search?q=%E5%A4%A7%E6%95%B0%E6%8D%AE&amp;spm=1001.2101.3001.7020"  title="大数据" rel="nofollow">大数据</a>工作中经常碰到需要将hive查询数据导入到mysql的需求，常见的方法主要有两种，一是impala，另一种则是pyhive。</h2> <h2>一、pyhive方式连接hive数据库</h2> <p>首先是配置相关的环境及使用的库。sasl、thrift、thrift_sasl、pyhive。</p> <p>&nbsp;其中sasl安装较为麻烦一点，在Linux下直接安装可能会出现sasl.h头文件丢失问题，原因是sasl的源码已经许久没有维护了，代码结构与现有的代码结构不一样，下面分别给出win及Linux下的安装方法。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl"  title="https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl" rel="nofollow">https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl</a></p> <p><strong>windows下：</strong></p> <p>1.下载sasl安装文件，进行离线安装sasl,下载网址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl"  title="https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl" rel="nofollow">https://www.lfd.uci.edu/~gohlke/pythonlibs/#sasl</a>，版本选择适合自己的即可。</p> <p>2.安装:</p> <p>pip install sasl-0.2.1-cp36-cp36m-win_amd64.whl<br /> pip install thrift -i https://pypi.tuna.tsinghua.edu.cn/simple<br /> pip install thrift_sasl==0.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple<br /> pip install pyhive -i https://pypi.tuna.tsinghua.edu.cn/simple</p> <p><strong>Linux下：</strong></p> <p>如果存在sasl.h头文件问题，可以通过pip安装libsasl2-dev包，再安装sasl</p> <p>apt-get install libsasl2-dev<br /> pip install sasl<br /> pip install thrift&nbsp;<br /> pip install thrift-sasl<br /> pip install PyHive</p> <p>注意不要漏装，否则报错。</p> <h2><strong>二、impala方式连接hive数据库</strong></h2> <p>直接 pip install impala 即可</p> <p>下载好相关库后，我们直接上代码。</p> <pre><code class="language-python">from impala.dbapi import connect from impala.util import as_pandas import pandas as pd from pyhive import hive  class LinkHive(object):     def __init__(self,host,port,database):         self.host = host         self.port = port         # self.username = username         # self.password = password         self.database = database      def __link(self):         # 1、pyhive连接         self.conn = hive.Connection(host=self.host,port=self.port,database=self.database)                  #2、impla连接         # self.conn = connect(host=self.host, port=self.port, database=self.database)         self.cur = self.conn.cursor()         # CUSTOM  LDAP     def selectdata(self,sql):         try:             self.__link()         except Exception as e:              print('link error:')             print(e)         try:             #c = self.cur.fetchall()             pd.read_sql(sql,self.conn) //pihive读取数据             # self.cur.execute(sql) //impala读取数据             # result = as_pandas(self.cur) //impala读取数据后转为pandas的DataFrame         except Exception as e:              print('query error:')             print(e)         # 关闭连接 释放资源         self.cur.close()         self.conn.close()         return result</code></pre> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-23157.htm">动物医院诊疗范围猫科犬科牙科内科（动物医院连锁）</a></p>
                                         <p>下一个：<a href="/news/article-23618.htm">优瑞派狗粮批发（优瑞派狗粮怎么样山茶）</a></p>
@@ -137,16 +138,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-14-node-share-links.htm" title="「10月14日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接">「10月14日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-27-free-node-subscribe-links.htm" title="「9月27日」最高速度18.8M/S，2024年Vless每天更新免费机场订阅节点链接">「9月27日」最高速度18.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-29-free-high-speed-nodes.htm" title="「10月29日」最高速度18.2M/S，2024年Vless每天更新免费机场订阅节点链接">「10月29日」最高速度18.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-9-node-share.htm" title="「11月9日」最高速度20.7M/S，2024年Vless每天更新免费机场订阅节点链接">「11月9日」最高速度20.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-vless-node.htm" title="「11月16日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接">「11月16日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-13-free-high-speed-nodes.htm" title="「9月13日」最高速度21.5M/S，2024年Vless每天更新免费机场订阅节点链接">「9月13日」最高速度21.5M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-latest-vless-node.htm" title="「12月2日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「12月2日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23618.htm" title="优瑞派狗粮批发（优瑞派狗粮怎么样山茶）">优瑞派狗粮批发（优瑞派狗粮怎么样山茶）</a></li>
+                        <li class="py-2"><a href="/news/article-19951.htm" title="深圳领养猫咪的地方（深圳那里可以领养猫）">深圳领养猫咪的地方（深圳那里可以领养猫）</a></li>
+                        <li class="py-2"><a href="/news/article-25471.htm" title="宠物领养网官网电话（宠物领养网官网电话）">宠物领养网官网电话（宠物领养网官网电话）</a></li>
+                        <li class="py-2"><a href="/news/article-27796.htm" title="AsyncLocal&lt;T&gt;在链路追踪中的应用_在线工具">AsyncLocal&lt;T&gt;在链路追踪中的应用_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-16-node-share.htm" title="「9月16日」最高速度20.6M/S，2024年Vless每天更新免费机场订阅节点链接">「9月16日」最高速度20.6M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-9-3-node-share.htm" title="「9月3日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接">「9月3日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-subscribe-node.htm" title="「11月17日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接">「11月17日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-30-today-vless-node.htm" title="「9月30日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接">「9月30日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-high-speed-nodes.htm" title="「12月9日」最高速度18.6M/S，2024年Vless每天更新免费机场订阅节点链接">「12月9日」最高速度18.6M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-10-vless-github.htm" title="「10月10日」最高速度19.6M/S，2024年Vless每天更新免费机场订阅节点链接">「10月10日」最高速度19.6M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-22-vless-windows.htm" title="「9月22日」最高速度22.4M/S，2024年Vless每天更新免费机场订阅节点链接">「9月22日」最高速度22.4M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26383.htm" title="穷人养什么猫合适（穷人养什么宠物好）">穷人养什么猫合适（穷人养什么宠物好）</a></li>
                     </ul>
     </div>
 </div>
@@ -158,7 +159,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -198,6 +199,15 @@
             </div>
             <div class="col-md-4">
                 <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                     Vless Node机场订阅官网 版权所有 Powered by WordPress
                 </p>
             </div>

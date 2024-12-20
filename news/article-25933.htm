@@ -124,7 +124,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				<h2>一、前端代码</h2> <div class="ay1code"> <pre class="brush:xhtml;">&lt;button type="button" class="btn btn-primary" onclick="InportTicket()"&gt;导入&lt;/button&gt;  &lt;input id="fileToUpload" type="file" name="upfile" style="display:none;"&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">/// JS脚本    $("#fileToUpload").click();    $("#fileToUpload").change(function () {  　　var formData = new FormData();  　　formData.append("myfile", document.getElementById("fileToUpload").files[0]);    　　$.ajax({  　　　　url: "../Ticket/TicketFileToUpload",  　　　　type: 'POST',  　　　　cache: false,  　　　　processData: false,  　　　　contentType: false,  　　　　data: formData,  　　　　success: function (res) {  　　　　　　alert(res.Message);  　　　　},  　　　　error: function (data, status, e) {  　　　　　　alert("操作失败!");  　　　　}  　　})  });</pre> </div> <h2>二、后台实现代码</h2> <div class="ay1code"> <pre class="brush:csharp;">[HttpPost]  public ActionResult TicketFileToUpload()  {  　　try  　　{  　　　　if (Request.Files.Count &gt; 0)  　　　　{  　　　　　　HttpPostedFileBase TicketFile = Request.Files[0];  　　　　　　List&lt;string[]&gt; lstData = Helper.ImportExport.InportData(TicketFile.InputStream);  　　　　　　TicketModel ticketope = new TicketModel();    　　　　　　for (int i = 1; i &lt; lstData.Count; i++)  　　　　　　{  　　　　　　　　string[] itemData = lstData[i];  　　　　　　　　Ticket entity = ticketope.GetByCode(itemData[0]);  　　　　　　　　if (entity == null)  　　　　　　　　{  　　　　　　　　　　entity = new Ticket();  　　　　　　　　　　entity.Label = itemData[1];  　　　　　　　　　　entity.SiteId = int.Parse(itemData[2]);  　　　　　　　　　　entity.Owner = itemData[4];  　　　　　　　　　　entity.CardId = itemData[5];  　　　　　　　　　　entity.StartDate = DateTime.Parse(itemData[6]);  　　　　　　　　　　entity.EndDate = DateTime.Parse(itemData[7]);  　　　　　　　　　　entity.IsValid = bool.Parse(itemData[8]);  　　　　　　　　　　entity.IsUsed = bool.Parse(itemData[9]);  　　　　　　　　　　ticketope.Insert(entity);  　　　　　　　　}  　　　　　　}  　　　　　　return Json(new JsonResultData() { Success = true, Message = "导入数据成功！" });  　　　　}  　　　　else  　　　　{  　　　　　　return Json(new JsonResultData() { Success = false, Message = "找不到导入文件数据！" });  　　　　}  　　}  　　catch (Exception ex)  　　{  　　　　return Json(new JsonResultData() { Success = false, Message = "导入数据失败！" });  　　}  }    public static List&lt;string[]&gt; InportData(Stream filestream)  {  　　lock (RunningInport)  　　{  　　　　List&lt;string[]&gt; lstData = new List&lt;string[]&gt;();  　　　　string strLine = "";  　　　　bool IsFirst = true;    　　　　StreamReader sr = new StreamReader(filestream, Encoding.UTF8);  　　　　while ((strLine = sr.ReadLine()) != null)  　　　　{  　　　　　　if (IsFirst)  　　　　　　{  　　　　　　　　string[] strTitles = strLine.Split(',');  　　　　　　　　lstData.Add(strTitles);  　　　　　　}  　　　　　　else  　　　　　　{  　　　　　　　　string[] strData = strLine.Split(',');  　　　　　　　　lstData.Add(strData);  　　　　　　}  　　　　}  　　　　return lstData;  　　}  }</pre> </div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>一、前端代码</h2> <div class="ay1code"> <pre class="brush:xhtml;">&lt;button type="button" class="btn btn-primary" onclick="InportTicket()"&gt;导入&lt;/button&gt;  &lt;input id="fileToUpload" type="file" name="upfile" style="display:none;"&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">/// JS脚本    $("#fileToUpload").click();    $("#fileToUpload").change(function () {  　　var formData = new FormData();  　　formData.append("myfile", document.getElementById("fileToUpload").files[0]);    　　$.ajax({  　　　　url: "../Ticket/TicketFileToUpload",  　　　　type: 'POST',  　　　　cache: false,  　　　　processData: false,  　　　　contentType: false,  　　　　data: formData,  　　　　success: function (res) {  　　　　　　alert(res.Message);  　　　　},  　　　　error: function (data, status, e) {  　　　　　　alert("操作失败!");  　　　　}  　　})  });</pre> </div> <h2>二、后台实现代码</h2> <div class="ay1code"> <pre class="brush:csharp;">[HttpPost]  public ActionResult TicketFileToUpload()  {  　　try  　　{  　　　　if (Request.Files.Count &gt; 0)  　　　　{  　　　　　　HttpPostedFileBase TicketFile = Request.Files[0];  　　　　　　List&lt;string[]&gt; lstData = Helper.ImportExport.InportData(TicketFile.InputStream);  　　　　　　TicketModel ticketope = new TicketModel();    　　　　　　for (int i = 1; i &lt; lstData.Count; i++)  　　　　　　{  　　　　　　　　string[] itemData = lstData[i];  　　　　　　　　Ticket entity = ticketope.GetByCode(itemData[0]);  　　　　　　　　if (entity == null)  　　　　　　　　{  　　　　　　　　　　entity = new Ticket();  　　　　　　　　　　entity.Label = itemData[1];  　　　　　　　　　　entity.SiteId = int.Parse(itemData[2]);  　　　　　　　　　　entity.Owner = itemData[4];  　　　　　　　　　　entity.CardId = itemData[5];  　　　　　　　　　　entity.StartDate = DateTime.Parse(itemData[6]);  　　　　　　　　　　entity.EndDate = DateTime.Parse(itemData[7]);  　　　　　　　　　　entity.IsValid = bool.Parse(itemData[8]);  　　　　　　　　　　entity.IsUsed = bool.Parse(itemData[9]);  　　　　　　　　　　ticketope.Insert(entity);  　　　　　　　　}  　　　　　　}  　　　　　　return Json(new JsonResultData() { Success = true, Message = "导入数据成功！" });  　　　　}  　　　　else  　　　　{  　　　　　　return Json(new JsonResultData() { Success = false, Message = "找不到导入文件数据！" });  　　　　}  　　}  　　catch (Exception ex)  　　{  　　　　return Json(new JsonResultData() { Success = false, Message = "导入数据失败！" });  　　}  }    public static List&lt;string[]&gt; InportData(Stream filestream)  {  　　lock (RunningInport)  　　{  　　　　List&lt;string[]&gt; lstData = new List&lt;string[]&gt;();  　　　　string strLine = "";  　　　　bool IsFirst = true;    　　　　StreamReader sr = new StreamReader(filestream, Encoding.UTF8);  　　　　while ((strLine = sr.ReadLine()) != null)  　　　　{  　　　　　　if (IsFirst)  　　　　　　{  　　　　　　　　string[] strTitles = strLine.Split(',');  　　　　　　　　lstData.Add(strTitles);  　　　　　　}  　　　　　　else  　　　　　　{  　　　　　　　　string[] strData = strLine.Split(',');  　　　　　　　　lstData.Add(strData);  　　　　　　}  　　　　}  　　　　return lstData;  　　}  }</pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-25472.htm">开一家宠物食品加工厂需要多少钱 开一家宠物食品加工厂需要多少钱呢</a></p>
                                         <p>下一个：<a href="/news/article-25936.htm">猫粮狗粮生产加工（猫粮狗粮生产加工工艺）</a></p>
@@ -137,16 +138,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-node-subscribe-links.htm" title="「11月30日」最高速度18.3M/S，2024年Vless每天更新免费机场订阅节点链接">「11月30日」最高速度18.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-21326.htm" title="动物疫苗的种类和研发过程（动物疫苗研发生产流程）">动物疫苗的种类和研发过程（动物疫苗研发生产流程）</a></li>
-                        <li class="py-2"><a href="/news/article-19950.htm" title="springboot整合微信二维码支付">springboot整合微信二维码支付</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-10-vless-windows.htm" title="「12月10日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接">「12月10日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-12-free-node-subscribe-links.htm" title="「11月12日」最高速度19.5M/S，2024年Vless每天更新免费机场订阅节点链接">「11月12日」最高速度19.5M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-25472.htm" title="开一家宠物食品加工厂需要多少钱 开一家宠物食品加工厂需要多少钱呢">开一家宠物食品加工厂需要多少钱 开一家宠物食品加工厂需要多少钱呢</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="「11月10日」最高速度18.3M/S，2024年Vless每天更新免费机场订阅节点链接">「11月10日」最高速度18.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-1-free-subscribe-node.htm" title="「9月1日」最高速度20.8M/S，2024年Vless每天更新免费机场订阅节点链接">「9月1日」最高速度20.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-13-free-high-speed-nodes.htm" title="「10月13日」最高速度23M/S，2024年Vless每天更新免费机场订阅节点链接">「10月13日」最高速度23M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-24459.htm" title="怀孕让猫抓破了会影响孩子吗猫打过疫苗（怀孕让猫抓破了会影响孩子吗猫打过疫苗怎么办）">怀孕让猫抓破了会影响孩子吗猫打过疫苗（怀孕让猫抓破了会影响孩子吗猫打过疫苗怎么办）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-26-vless-node.htm" title="「9月26日」最高速度18.9M/S，2024年Vless每天更新免费机场订阅节点链接">「9月26日」最高速度18.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-vless-windows.htm" title="「10月23日」最高速度21.7M/S，2024年Vless每天更新免费机场订阅节点链接">「10月23日」最高速度21.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26858.htm" title="国产猫粮排名前十品牌（国产猫粮哪个牌子好又安全）">国产猫粮排名前十品牌（国产猫粮哪个牌子好又安全）</a></li>
+                        <li class="py-2"><a href="/news/article-27323.htm" title="数据库事务的四大特性和四个隔离级别">数据库事务的四大特性和四个隔离级别</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share.htm" title="「12月3日」最高速度19.5M/S，2024年Vless每天更新免费机场订阅节点链接">「12月3日」最高速度19.5M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-14-free-node-subscribe.htm" title="「9月14日」最高速度22.5M/S，2024年Vless每天更新免费机场订阅节点链接">「9月14日」最高速度22.5M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-4-latest-vless-node.htm" title="「9月4日」最高速度18M/S，2024年Vless每天更新免费机场订阅节点链接">「9月4日」最高速度18M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-17-node-share-links.htm" title="「9月17日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接">「9月17日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21728.htm" title="小型饲料颗粒机多少钱一套（小型颗粒饲料机报价）">小型饲料颗粒机多少钱一套（小型颗粒饲料机报价）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-9-latest-vless-node.htm" title="「9月9日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接">「9月9日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -158,7 +159,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -198,6 +199,15 @@
             </div>
             <div class="col-md-4">
                 <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                     Vless Node机场订阅官网 版权所有 Powered by WordPress
                 </p>
             </div>

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoLang搭建gin项目</title>
         <meta name="description" content="1.在目录中创建以下三个文件  2.配置环境 &nbsp;   GOPROXY=https://goproxy.io,direct  3.下载gin go get -u github.com/gin-" />
-        <link rel="icon" href="__ADDON__/img/vlessnode/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
@@ -124,7 +124,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				<div id="content_views" class="htmledit_views"> <p><img decoding="async" alt="" height="120" src="http://img.555519.xyz/uploads/20221230/d3eaa547c0682b33ac76145a76ce0054.jpg"></p> <p>1.在目录中创建以下三个文件</p> <p><img fetchpriority="high" decoding="async" alt="" height="284" src="http://img.555519.xyz/uploads/20221230/93cdaa888983ed7485c1555056008111.jpg"></p> <p>2.配置环境</p> <p>&nbsp;</p> <p><img decoding="async" alt="" height="537" src="http://img.555519.xyz/uploads/20221230/3bd88eb8483ae4ee7e953df766c19c71.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="820" src="http://img.555519.xyz/uploads/20221230/141eaa01ddfea523699f49fc37cc22a4.jpg"></p> <pre><code class="cc_cursor">GOPROXY=https://goproxy.io,direct</code></pre> <p><img loading="lazy" decoding="async" alt="" height="867" src="http://img.555519.xyz/uploads/20221230/a5425ff0acb942bd724b71978aff1a97.jpg"></p> <p>3.下载gin</p> <pre><code class="language-bash cc_cursor">go get -u github.com/gin-gonic/gin </code></pre> <p>4.初始化mod</p> <pre><code class="language-bash">go mod init example.com/m</code></pre> <p>5.创建main.go</p> <pre><code class="language-Go cc_cursor">package main  import ( 	"github.com/gin-gonic/gin" 	"net/http" )  func main() { 	// 1.创建路由 	r := gin.Default() 	// 2.绑定路由规则，执行的函数 	// gin.Context，封装了request和response 	r.GET("/", func(c *gin.Context) { 		c.String(http.StatusOK, "hello World!") 	}) 	// 3.监听端口，默认在8080 	// Run("里面不指定端口号默认为8080") 	r.Run(":8000") }</code></pre> <p>6.当前目录结构</p> <p><img loading="lazy" decoding="async" alt="" height="906" src="http://img.555519.xyz/uploads/20221230/7a2c9745a1e8af7f031b88ce880a3d0e.jpg"></p> <p>7.运行</p> <pre><code class="language-bash">go run main.go</code></pre> <p>8.打开浏览器访问</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8080/"  rel="nofollow">http://localhost:8080/</a></p> <p><img loading="lazy" decoding="async" alt="" height="404" src="http://img.555519.xyz/uploads/20221230/5874de3fe3be17361030a69807ec4418.jpg"></p> <p><strong>大功告成</strong></p> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><img decoding="async" alt="" height="120" src="http://img.555519.xyz/uploads/20221230/d3eaa547c0682b33ac76145a76ce0054.jpg"></p> <p>1.在目录中创建以下三个文件</p> <p><img fetchpriority="high" decoding="async" alt="" height="284" src="http://img.555519.xyz/uploads/20221230/93cdaa888983ed7485c1555056008111.jpg"></p> <p>2.配置环境</p> <p>&nbsp;</p> <p><img decoding="async" alt="" height="537" src="http://img.555519.xyz/uploads/20221230/3bd88eb8483ae4ee7e953df766c19c71.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="820" src="http://img.555519.xyz/uploads/20221230/141eaa01ddfea523699f49fc37cc22a4.jpg"></p> <pre><code class="cc_cursor">GOPROXY=https://goproxy.io,direct</code></pre> <p><img loading="lazy" decoding="async" alt="" height="867" src="http://img.555519.xyz/uploads/20221230/a5425ff0acb942bd724b71978aff1a97.jpg"></p> <p>3.下载gin</p> <pre><code class="language-bash cc_cursor">go get -u github.com/gin-gonic/gin </code></pre> <p>4.初始化mod</p> <pre><code class="language-bash">go mod init example.com/m</code></pre> <p>5.创建main.go</p> <pre><code class="language-Go cc_cursor">package main  import ( 	"github.com/gin-gonic/gin" 	"net/http" )  func main() { 	// 1.创建路由 	r := gin.Default() 	// 2.绑定路由规则，执行的函数 	// gin.Context，封装了request和response 	r.GET("/", func(c *gin.Context) { 		c.String(http.StatusOK, "hello World!") 	}) 	// 3.监听端口，默认在8080 	// Run("里面不指定端口号默认为8080") 	r.Run(":8000") }</code></pre> <p>6.当前目录结构</p> <p><img loading="lazy" decoding="async" alt="" height="906" src="http://img.555519.xyz/uploads/20221230/7a2c9745a1e8af7f031b88ce880a3d0e.jpg"></p> <p>7.运行</p> <pre><code class="language-bash">go run main.go</code></pre> <p>8.打开浏览器访问</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8080/"  rel="nofollow">http://localhost:8080/</a></p> <p><img loading="lazy" decoding="async" alt="" height="404" src="http://img.555519.xyz/uploads/20221230/5874de3fe3be17361030a69807ec4418.jpg"></p> <p><strong>大功告成</strong></p> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-22242.htm">小型颗粒饲料机多少钱一台?（小型颗粒饲料机器多少钱一台）</a></p>
                                         <p>下一个：<a href="/news/article-22696.htm">动物疫苗的保存温度是多少度合适（动物疫苗运输与储存规范）</a></p>
@@ -137,16 +138,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-28-vless-github.htm" title="「9月28日」最高速度20.8M/S，2024年Vless每天更新免费机场订阅节点链接">「9月28日」最高速度20.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-13-free-high-speed-nodes.htm" title="「10月13日」最高速度23M/S，2024年Vless每天更新免费机场订阅节点链接">「10月13日」最高速度23M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-1-free-subscribe-node.htm" title="「9月1日」最高速度20.8M/S，2024年Vless每天更新免费机场订阅节点链接">「9月1日」最高速度20.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-21326.htm" title="动物疫苗的种类和研发过程（动物疫苗研发生产流程）">动物疫苗的种类和研发过程（动物疫苗研发生产流程）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-2-latest-vless-node.htm" title="「12月2日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「12月2日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-16-free-subscribe-node.htm" title="「10月16日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接">「10月16日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-13-free-high-speed-nodes.htm" title="「9月13日」最高速度21.5M/S，2024年Vless每天更新免费机场订阅节点链接">「9月13日」最高速度21.5M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-18-free-subscribe-node.htm" title="「9月18日」最高速度18.1M/S，2024年Vless每天更新免费机场订阅节点链接">「9月18日」最高速度18.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="「11月3日」最高速度22.2M/S，2024年Vless每天更新免费机场订阅节点链接">「11月3日」最高速度22.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-5-node-share-links.htm" title="「12月5日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接">「12月5日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="「11月10日」最高速度18.3M/S，2024年Vless每天更新免费机场订阅节点链接">「11月10日」最高速度18.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-vless-windows.htm" title="「10月23日」最高速度21.7M/S，2024年Vless每天更新免费机场订阅节点链接">「10月23日」最高速度21.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-latest-vless-node.htm" title="「10月24日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「10月24日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-19-vless-github.htm" title="「9月19日」最高速度19.8M/S，2024年Vless每天更新免费机场订阅节点链接">「9月19日」最高速度19.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-25-latest-vless-node.htm" title="「10月25日」最高速度19.8M/S，2024年Vless每天更新免费机场订阅节点链接">「10月25日」最高速度19.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21729.htm" title="宠物粮食品牌起名大全图片及价格 宠物粮食品牌起名大全图片及价格表">宠物粮食品牌起名大全图片及价格 宠物粮食品牌起名大全图片及价格表</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-vless-node-github.htm" title="「12月11日」最高速度21.6M/S，2024年Vless每天更新免费机场订阅节点链接">「12月11日」最高速度21.6M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-6-node-share.htm" title="「9月6日」最高速度22M/S，2024年Vless每天更新免费机场订阅节点链接">「9月6日」最高速度22M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-free-high-speed-nodes.htm" title="「10月26日」最高速度19.4M/S，2024年Vless每天更新免费机场订阅节点链接">「10月26日」最高速度19.4M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-vless-windows.htm" title="「10月18日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「10月18日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -158,7 +159,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -198,6 +199,15 @@
             </div>
             <div class="col-md-4">
                 <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                     Vless Node机场订阅官网 版权所有 Powered by WordPress
                 </p>
             </div>
