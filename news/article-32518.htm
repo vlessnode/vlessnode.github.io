@@ -128,6 +128,7 @@
                   				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>我现在用feign来实现内部系统的方法调用，但有一个问题，使用国际化的时候语言传递不了，因为在header上。<br /> 下面贴一下解决方案：</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-annotation">@Bean</span><span class="hljs-keyword">public</span> RequestInterceptor<span class="hljs-title">headerInterceptor</span>() {<span class="hljs-keyword">return</span><span class="hljs-keyword">new</span> RequestInterceptor() {<span class="hljs-annotation">@Override</span><span class="hljs-keyword">public</span><span class="hljs-keyword">void</span><span class="hljs-title">apply</span>(RequestTemplate requestTemplate) {                 ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder                         .getRequestAttributes();                 HttpServletRequest request = attributes.getRequest();                 Enumeration&lt;String&gt; headerNames = request.getHeaderNames();<span class="hljs-keyword">if</span> (headerNames !=<span class="hljs-keyword">null</span>) {<span class="hljs-keyword">while</span> (headerNames.hasMoreElements()) {                         String name = headerNames.nextElement();                         String values = request.getHeader(name);                         requestTemplate.header(name, values);                     }                 }             }         };     }</code></pre> <pre class="prettyprint"><code class="hljs haskell"><span class="hljs-title">hystrix</span>:   command:<span class="hljs-default"><span class="hljs-keyword">default</span>:</span>       execution:         isolation:           strategy:<span class="hljs-type">Semaphore</span></code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-32517.htm">nohup: ignoring input and redirecting stderr to stdout报错</a></p>
+                                        <p>下一个：<a href="/news/article-32993.htm">动物医院实训总结怎么写（动物医院实训总结怎么写范文）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -137,16 +138,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-24-free-high-speed-nodes.htm" title="「9月24日」最高速度19.6M/S，2024年Vless每天更新免费机场订阅节点链接">「9月24日」最高速度19.6M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-25933.htm" title="ASP.NET WebAPI导入CSV_实用技巧">ASP.NET WebAPI导入CSV_实用技巧</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-15-node-share.htm" title="「11月15日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「11月15日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-16-node-share.htm" title="「9月16日」最高速度20.6M/S，2024年Vless每天更新免费机场订阅节点链接">「9月16日」最高速度20.6M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-latest-vless-node.htm" title="「12月2日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「12月2日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-vless-windows.htm" title="「12月8日」最高速度20.1M/S，2024年Vless每天更新免费机场订阅节点链接">「12月8日」最高速度20.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-vless-node.htm" title="「11月7日」最高速度18.1M/S，2024年Vless每天更新免费机场订阅节点链接">「11月7日」最高速度18.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/news/article-32042.htm" title="中国兽药采购网下载安装app（中国兽药商城）">中国兽药采购网下载安装app（中国兽药商城）</a></li>
-                        <li class="py-2"><a href="/news/article-31461.htm" title="狗粮品牌大全图片 狗粮品牌大全图片及价格">狗粮品牌大全图片 狗粮品牌大全图片及价格</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-24-vless-node-github.htm" title="「12月24日」最高速度18.9M/S，2024年Vless每天更新免费机场订阅节点链接">「12月24日」最高速度18.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-28-node-share-links.htm" title="「8月28日」最高速度22.1M/S，2024年Vless每天更新免费机场订阅节点链接">「8月28日」最高速度22.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-20867.htm" title="延吉兽医站（延吉动物医院）">延吉兽医站（延吉动物医院）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-latest-vless-node.htm" title="「11月26日」最高速度22.1M/S，2024年Vless每天更新免费机场订阅节点链接">「11月26日」最高速度22.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe-links.htm" title="「11月11日」最高速度21.1M/S，2024年Vless每天更新免费机场订阅节点链接">「11月11日」最高速度21.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19491.htm" title="宠物疫苗可以自己打吗现在多少钱（宠物疫苗可以自己打嘛）">宠物疫苗可以自己打吗现在多少钱（宠物疫苗可以自己打嘛）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-5-vless-node-share.htm" title="「10月5日」最高速度21.9M/S，2024年Vless每天更新免费机场订阅节点链接">「10月5日」最高速度21.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="「11月3日」最高速度22.2M/S，2024年Vless每天更新免费机场订阅节点链接">「11月3日」最高速度22.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-12-today-vless-node.htm" title="「10月12日」最高速度20.7M/S，2024年Vless每天更新免费机场订阅节点链接">「10月12日」最高速度20.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-node-share-links.htm" title="「12月14日」最高速度19.4M/S，2024年Vless每天更新免费机场订阅节点链接">「12月14日」最高速度19.4M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -158,7 +159,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
