@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-37794.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpringBoot项目处理emoji表情到mysql</title>
+        <meta name="description" content="Mysql设置字符集编码，程序设置连接客户端编码来解决emoji表情  emoji表情现在是日常生活中必不可少的存在了，首先我们先了解一下为什么emoji表情不能像普通的字符处理？emoji 其实是表" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                                        <a href="/" class="d-inline-flex link-body-emphasis">
+                        <span>Vless Node</span>
+                    </a>
+                                    </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="#" class="nav-link px-2">
+                                    <h5> 关于 </h5>
+                                </a>
+                            </li>
+                            <li class="nav-list mx-3">
+                                <a href="#" class="nav-link px-2">
+                                    <h5> 联系 </h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">SpringBoot项目处理emoji表情到mysql</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h4><a id="Mysqlemoji_0" rel="nofollow"></a>Mysql设置字符集编码，程序设置连接客户端编码来解决emoji表情</h4> <p> emoji表情现在是日常生活中必不可少的存在了，首先我们先了解一下为什么emoji表情不能像普通的字符处理？emoji 其实是表情符号，来自日语词汇“絵文字”（假名为“えもじ”，读音即 emoji）。</p> <p> 最早由栗田穰崇（Shigetaka Kurita）创作，并在日本网络及手机用户中流行。 自苹果公司发布的 iOS 5 输入法中加入了emoji 后，这种表情符号开始席卷全球。<br /> 目前 emoji 已被大多数现代计算机系统所兼容的 Unicode 编码采纳，普遍应用于各种手机短信和社交网络中。</p> <p>主要是因为MySQL 默认使用的是UTF8 编码，UTF8 编码只支持 1-3 个字节。<br /> 而 emoji 占有 4 个字节的存储空间，所以自然保存不了。但是从 MYSQL5.5 开始，可支持 4 个字节 UTF 编码，只要将编码标记成 utf8mb4 即可。并且utf8mb4 是兼容 UTF8 的。</p> <p>接下来就是处理这个问题的一些方法：从数据库和程序出发解决问题！</p> <h4><a id="1utf8mb4_10" rel="nofollow"></a>1.设置数据库，表，字段编码为utf8mb4</h4> <p> 根据自己的需求选择设置字符集编码，可以手动设置（直接选中某个字段设置编码方式。数据库只能创建的时候设置，但是不推荐手动创建方式），也可以通过sql语句设置，但是用这两种方式都有可能造成锁表！前提是数据量特别大，所以请慎重！</p> <ul> <li> <p>设置某个字段字符集编码</p> <pre><code class="prism language-sql"><span class="token keyword">alter</span><span class="token keyword">table</span><span class="token punctuation">`</span>tableName<span class="token punctuation">`</span> change 字段名 字段名<span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token keyword">character</span><span class="token keyword">set</span> 字符集编码<span class="token punctuation">;</span></code></pre> </li> <li> <p>设置数据库表的字符集编码</p> <pre><code class="prism language-sql"><span class="token comment"># 默认的字符排序规则</span><span class="token keyword">ALTER</span><span class="token keyword">TABLE</span> offline_hana_ztbasic<span class="token keyword">CONVERT</span><span class="token keyword">TO</span><span class="token keyword">CHARACTER</span><span class="token keyword">SET</span> utf8mb4<span class="token punctuation">;</span><span class="token comment"># 可以设置字符排序规则</span><span class="token keyword">ALTER</span><span class="token keyword">TABLE</span> offline_hana_ztbasic9<span class="token keyword">CONVERT</span><span class="token keyword">TO</span><span class="token keyword">CHARACTER</span><span class="token keyword">SET</span> utf8mb4<span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span></code></pre> </li> <li> <p>修改某个数据库的字符集编码</p> <pre><code class="prism language-sql"><span class="token keyword">alter</span><span class="token keyword">database</span><span class="token punctuation">`</span>databaseName<span class="token punctuation">`</span><span class="token keyword">default</span><span class="token keyword">character</span><span class="token keyword">set</span> 字符集编码<span class="token punctuation">;</span></code></pre> </li> <li> <p>修改数据库默认的字符集编码</p> <p> 打开 MySQL 配置文件（Windows 下是 my.ini，Linux 下是 my.cnf）修改配置，将编码改成 utf8mb4</p> <pre><code class="prism language-ini">[client] default-character-set=utf8mb4[mysql] default-character-set=utf8mb4[mysqld] init-connect=’SET NAMES utf8mb4′ character-set-server=utf8mb4</code></pre> <p>修改之后必须重启mysql服务。</p> </li> </ul> <h4><a id="2_40" rel="nofollow"></a>2.设置客户端连接数据库编码</h4> <p> 可能有些人跟我一样，设置完数据库里面的字符编码集后，程序还是报错，问题还是没解决。可能每个人的编码软件不一样或者设置不一样。反正经过上面的设置，已经可以在数据库手动插入emoji表情，并且可以保存。</p> <p>那么问题来了，怎么解决呢？</p> <p>根据数据源的不同，设置的也不同。</p> <pre><code class="prism language-properties"># 以下是最常用的数据源   # druid的方式 spring.datasource.druid.connection-init-sqls=set names utf8mb4; # hikari spring.datasource.hikari.connection-init-sql=set names utf8mb4;</code></pre> <p>设置完成之后，就大功告成啦！</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-37793.htm">Python清理PC端微信产生的超大数据</a></p>
+                                        <p>下一个：<a href="/news/article-38277.htm">win11系统怎么查看指定端口信息</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-33946.htm" title="宠物店猫粮一般都在哪进货（宠物店里的猫粮是哪里批发的）">宠物店猫粮一般都在哪进货（宠物店里的猫粮是哪里批发的）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-vless-windows.htm" title="「12月22日」最高速度19.7M/S，2024年Vless每天更新免费机场订阅节点链接">「12月22日」最高速度19.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24458.htm" title="宠物领养网免费平台有哪些公司的地址的简单介绍">宠物领养网免费平台有哪些公司的地址的简单介绍</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-latest-vless-node.htm" title="「12月23日」最高速度20.9M/S，2024年Vless每天更新免费机场订阅节点链接">「12月23日」最高速度20.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21728.htm" title="小型饲料颗粒机多少钱一套（小型颗粒饲料机报价）">小型饲料颗粒机多少钱一套（小型颗粒饲料机报价）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-subscribe-node.htm" title="「11月17日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接">「11月17日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27796.htm" title="AsyncLocal&lt;T&gt;在链路追踪中的应用_在线工具">AsyncLocal&lt;T&gt;在链路追踪中的应用_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-12-today-vless-node.htm" title="「10月12日」最高速度20.7M/S，2024年Vless每天更新免费机场订阅节点链接">「10月12日」最高速度20.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20410.htm" title="动物防疫站打针多少钱一针（动物防疫站打针多少钱一针啊）">动物防疫站打针多少钱一针（动物防疫站打针多少钱一针啊）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share.htm" title="「12月3日」最高速度19.5M/S，2024年Vless每天更新免费机场订阅节点链接">「12月3日」最高速度19.5M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
