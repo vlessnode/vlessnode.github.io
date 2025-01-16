@@ -1,4 +1,4 @@
-# 「1月15日」每天更新|20M/S，2025年Vless免费机场订阅节点链接  更新时间 2025-01-15 10:01:26
+# 「1月16日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接  更新时间 2025-01-16 09:25:18
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://vlessnode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://vlessnode.github.io/uploads/2025/01/0-20250115.yaml
-- https://vlessnode.github.io/uploads/2025/01/1-20250115.yaml
-- https://vlessnode.github.io/uploads/2025/01/2-20250115.yaml
-- https://vlessnode.github.io/uploads/2025/01/3-20250115.yaml
-- https://vlessnode.github.io/uploads/2025/01/4-20250115.yaml
+- https://vlessnode.github.io/uploads/2025/01/0-20250116.yaml
+- https://vlessnode.github.io/uploads/2025/01/1-20250116.yaml
+- https://vlessnode.github.io/uploads/2025/01/2-20250116.yaml
+- https://vlessnode.github.io/uploads/2025/01/3-20250116.yaml
+- https://vlessnode.github.io/uploads/2025/01/4-20250116.yaml
 
 ### V2ray订阅链接
 
-- https://vlessnode.github.io/uploads/2025/01/0-20250115.txt
-- https://vlessnode.github.io/uploads/2025/01/1-20250115.txt
-- https://vlessnode.github.io/uploads/2025/01/2-20250115.txt
-- https://vlessnode.github.io/uploads/2025/01/3-20250115.txt
-- https://vlessnode.github.io/uploads/2025/01/4-20250115.txt
+- https://vlessnode.github.io/uploads/2025/01/0-20250116.txt
+- https://vlessnode.github.io/uploads/2025/01/1-20250116.txt
+- https://vlessnode.github.io/uploads/2025/01/2-20250116.txt
+- https://vlessnode.github.io/uploads/2025/01/3-20250116.txt
+- https://vlessnode.github.io/uploads/2025/01/4-20250116.txt
 
 ### Sing-box订阅链接
 
-- https://vlessnode.github.io/uploads/2025/01/20250115.json
+- https://vlessnode.github.io/uploads/2025/01/20250116.json
 
 ## 更多clash节点订阅 ：
 
