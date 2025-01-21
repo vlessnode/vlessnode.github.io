@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://vlessnode.github.io/news/article-43236.htm" />
@@ -20,6 +20,22 @@
     <meta property="og:updated_time" content="2025-01-19T07:11:28" />
         <meta property="og:description" content="线程安全是指某个方法或某段代码，在多线程中能够正确的执行，不会出现数据不一致或数据污染的情况，我们把这样的程序称之为线程安全的，反之则为非线程安全的。在 Java 中，解决线程安全问题有以下 3 种手" />
         
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="线程安全问题的解决方案有哪些？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
@@ -139,6 +155,7 @@
                   				  				  				<p>线程安全是指某个方法或某段代码，在多线程中能够正确的执行，不会出现数据不一致或数据污染的情况，我们把这样的程序称之为线程安全的，反之则为非线程安全的。在 Java 中，解决线程安全问题有以下 3 种手段：</p> <ol> <li>使用线程安全类，比如 AtomicInteger。</li> <li>加锁排队执行 <ol> <li>使用 synchronized 加锁。</li> <li>使用 ReentrantLock 加锁。</li> </ol> </li> <li>使用线程本地变量 ThreadLocal。</li> </ol> <p>接下来我们逐个来看它们的实现。</p> <h2 id="线程安全问题演示">线程安全问题演示</h2> <p>我们创建一个变量 number 等于 0，之后创建线程 1，执行 100 万次 ++ 操作，同时再创建线程 2 执行 100 万次 -- 操作，等线程 1 和线程 2 都执行完之后，打印 number 变量的值，如果打印的结果为 0，则说明是线程安全的，否则则为非线程安全的，示例代码如下：</p> <pre><code class="language-java">public class ThreadSafeTest {     // 全局变量     private static int number = 0;     // 循环次数(100W)     private static final int COUNT = 1_000_000;      public static void main(String[] args) throws InterruptedException {         // 线程1：执行 100W 次 ++ 操作         Thread t1 = new Thread(() -&gt; {             for (int i = 0; i &lt; COUNT; i++) {                 number++;             }         });         t1.start();          // 线程2：执行 100W 次 -- 操作         Thread t2 = new Thread(() -&gt; {             for (int i = 0; i &lt; COUNT; i++) {                 number--;             }         });         t2.start();          // 等待线程 1 和线程 2，执行完，打印 number 最终的结果         t1.join();         t2.join();         System.out.println("number 最终结果：" + number);     } }</code></pre> <p> 从上述执行结果可以看出，number 变量最终的结果并不是 0，和预期的正确结果不相符，这就是多线程中的线程安全问题。</p> <h2 id="解决线程安全问题">解决线程安全问题</h2> <h3 id="1原子类atomicinteger">1.原子类AtomicInteger</h3> <p>AtomicInteger 是线程安全的类，使用它可以将 ++ 操作和 -- 操作，变成一个原子性操作，这样就能解决非线程安全的问题了，如下代码所示：</p> <pre><code class="language-java">import java.util.concurrent.atomic.AtomicInteger;  public class AtomicIntegerExample {     // 创建 AtomicInteger     private static AtomicInteger number = new AtomicInteger(0);     // 循环次数     private static final int COUNT = 1_000_000;      public static void main(String[] args) throws InterruptedException {         // 线程1：执行 100W 次 ++ 操作         Thread t1 = new Thread(() -&gt; {             for (int i = 0; i &lt; COUNT; i++) {                 // ++ 操作                 number.incrementAndGet();             }         });         t1.start();          // 线程2：执行 100W 次 -- 操作         Thread t2 = new Thread(() -&gt; {             for (int i = 0; i &lt; COUNT; i++) {                 // -- 操作                 number.decrementAndGet();             }         });         t2.start();          // 等待线程 1 和线程 2，执行完，打印 number 最终的结果         t1.join();         t2.join();         System.out.println("最终结果：" + number.get());     } }</code></pre> <p></p> <h3 id="2加锁排队执行">2.加锁排队执行</h3> <p>Java 中有两种锁：synchronized 同步锁和 ReentrantLock 可重入锁。</p> <h4 id="21-同步锁synchronized">2.1 同步锁synchronized</h4> <p>synchronized 是 JVM 层面实现的自动加锁和自动释放锁的同步锁，它的实现代码如下：</p> <pre><code class="language-java">public class SynchronizedExample {     // 全局变量     private static int number = 0;     // 循环次数(100W)     private static final int COUNT = 1_000_000;      public static void main(String[] args) throws InterruptedException {         // 线程1：执行 100W 次 ++ 操作         Thread t1 = new Thread(() -&gt; {             for (int i = 0; i &lt; COUNT; i++) {                 // 加锁排队执行                 synchronized (SynchronizedExample.class) {                     number++;                 }             }         });         t1.start();          // 线程2：执行 100W 次 -- 操作         Thread t2 = new Thread(() -&gt; {             for (int i = 0; i &lt; COUNT; i++) {                 // 加锁排队执行                 synchronized (SynchronizedExample.class) {                     number--;                 }             }         });         t2.start();          // 等待线程 1 和线程 2，执行完，打印 number 最终的结果         t1.join();         t2.join();         System.out.println("number 最终结果：" + number);     } }</code></pre> <p></p> <h4 id="22-可重入锁reentrantlock">2.2 可重入锁ReentrantLock</h4> <p>ReentrantLock 可重入锁需要程序员自己加锁和释放锁，它的实现代码如下：</p> <pre><code class="language-java">import java.util.concurrent.locks.ReentrantLock;  /**  * 使用 ReentrantLock 解决非线程安全问题  */ public class ReentrantLockExample {     // 全局变量     private static int number = 0;     // 循环次数(100W)     private static final int COUNT = 1_000_000;     // 创建 ReentrantLock     private static ReentrantLock lock = new ReentrantLock();      public static void main(String[] args) throws InterruptedException {         // 线程1：执行 100W 次 ++ 操作         Thread t1 = new Thread(() -&gt; {             for (int i = 0; i &lt; COUNT; i++) {                 lock.lock();    // 手动加锁                 number++;       // ++ 操作                 lock.unlock();  // 手动释放锁             }         });         t1.start();          // 线程2：执行 100W 次 -- 操作         Thread t2 = new Thread(() -&gt; {             for (int i = 0; i &lt; COUNT; i++) {                 lock.lock();    // 手动加锁                 number--;       // -- 操作                 lock.unlock();  // 手动释放锁             }         });         t2.start();          // 等待线程 1 和线程 2，执行完，打印 number 最终的结果         t1.join();         t2.join();         System.out.println("number 最终结果：" + number);     } }</code></pre> <p></p> <h3 id="3线程本地变量threadlocal">3.线程本地变量ThreadLocal</h3> <p>使用 ThreadLocal 线程本地变量也可以解决线程安全问题，它是给每个线程独自创建了一份属于自己的私有变量，不同的线程操作的是不同的变量，所以也不会存在非线程安全的问题，它的实现代码如下：</p> <pre><code class="language-java">public class ThreadSafeExample {     // 创建 ThreadLocal（设置每个线程中的初始值为 0）     private static ThreadLocal&lt;Integer&gt; threadLocal = ThreadLocal.withInitial(() -&gt; 0);     // 全局变量     private static int number = 0;     // 循环次数(100W)     private static final int COUNT = 1_000_000;      public static void main(String[] args) throws InterruptedException {         // 线程1：执行 100W 次 ++ 操作         Thread t1 = new Thread(() -&gt; {             try {                 for (int i = 0; i &lt; COUNT; i++) {                     // ++ 操作                     threadLocal.set(threadLocal.get() + 1);                 }                 // 将 ThreadLocal 中的值进行累加                 number += threadLocal.get();             } finally {                 threadLocal.remove(); // 清除资源，防止内存溢出             }         });         t1.start();          // 线程2：执行 100W 次 -- 操作         Thread t2 = new Thread(() -&gt; {             try {                 for (int i = 0; i &lt; COUNT; i++) {                     // -- 操作                     threadLocal.set(threadLocal.get() - 1);                 }                 // 将 ThreadLocal 中的值进行累加                 number += threadLocal.get();             } finally {                 threadLocal.remove(); // 清除资源，防止内存溢出             }         });         t2.start();          // 等待线程 1 和线程 2，执行完，打印 number 最终的结果         t1.join();         t2.join();         System.out.println("最终结果：" + number);     } }</code></pre> <p></p> <h2 id="总结">总结</h2> <p>在 Java 中，解决线程安全问题的手段有 3 种：1.使用线程安全的类，如 AtomicInteger 类；2.使用锁 synchronized 或 ReentrantLock 加锁排队执行；3.使用线程本地变量 ThreadLocal 来处理。</p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-43235.htm">Django项目引入NPM和gulp管理前端资源</a></p>
+                                        <p>下一个：<a href="/news/article-43732.htm">宠物猫疫苗是什么疫苗类型（宠物猫疫苗是什么疫苗类型的）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -148,16 +165,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-37794.htm" title="SpringBoot项目处理emoji表情到mysql">SpringBoot项目处理emoji表情到mysql</a></li>
-                        <li class="py-2"><a href="/news/article-40756.htm" title="成都宠物领养平台领养可靠吗现在还有吗（成都宠物领养平台领养可靠吗现在还有吗）">成都宠物领养平台领养可靠吗现在还有吗（成都宠物领养平台领养可靠吗现在还有吗）</a></li>
-                        <li class="py-2"><a href="/news/article-39268.htm" title="宠物粮食品牌排名榜前十名有哪些牌子（宠物粮食品牌排行榜）">宠物粮食品牌排名榜前十名有哪些牌子（宠物粮食品牌排行榜）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share-links.htm" title="「11月22日」最高速度18M/S，2024年Vless每天更新免费机场订阅节点链接">「11月22日」最高速度18M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-16-today-vless-node.htm" title="「12月16日」最高速度22.4M/S，2024年Vless每天更新免费机场订阅节点链接">「12月16日」最高速度22.4M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="「11月3日」最高速度22.2M/S，2024年Vless每天更新免费机场订阅节点链接">「11月3日」最高速度22.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19491.htm" title="宠物疫苗可以自己打吗现在多少钱（宠物疫苗可以自己打嘛）">宠物疫苗可以自己打吗现在多少钱（宠物疫苗可以自己打嘛）</a></li>
-                        <li class="py-2"><a href="/news/article-28258.htm" title="被猫抓伤了需要打几针（被猫抓伤了需要打几针免疫球蛋白）">被猫抓伤了需要打几针（被猫抓伤了需要打几针免疫球蛋白）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-8-vless-windows.htm" title="「12月8日」最高速度20.1M/S，2024年Vless每天更新免费机场订阅节点链接">「12月8日」最高速度20.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-28259.htm" title="亿迪猫粮怎么样（亿迪猫粮怎么样好吃吗）">亿迪猫粮怎么样（亿迪猫粮怎么样好吃吗）</a></li>
+                        <li class="py-2"><a href="/news/article-36811.htm" title="宠物领养电子合同模板图片高清（宠物领养电子合同模板图片高清下载）">宠物领养电子合同模板图片高清（宠物领养电子合同模板图片高清下载）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-vless-node.htm" title="「1月14日」每天更新|22.4M/S，2025年Vless免费机场订阅节点链接">「1月14日」每天更新|22.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-39768.htm" title="动物医院工作怎么样啊（动物医院职位）">动物医院工作怎么样啊（动物医院职位）</a></li>
+                        <li class="py-2"><a href="/news/article-23617.htm" title="python读取hive数据库">python读取hive数据库</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-vless-windows.htm" title="「12月10日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接">「12月10日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26858.htm" title="国产猫粮排名前十品牌（国产猫粮哪个牌子好又安全）">国产猫粮排名前十品牌（国产猫粮哪个牌子好又安全）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-subscribe-node.htm" title="「12月13日」最高速度18.5M/S，2024年Vless每天更新免费机场订阅节点链接">「12月13日」最高速度18.5M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share.htm" title="「11月29日」最高速度22.4M/S，2024年Vless每天更新免费机场订阅节点链接">「11月29日」最高速度22.4M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="「12月1日」最高速度21.1M/S，2024年Vless每天更新免费机场订阅节点链接">「12月1日」最高速度21.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21326.htm" title="动物疫苗的种类和研发过程（动物疫苗研发生产流程）">动物疫苗的种类和研发过程（动物疫苗研发生产流程）</a></li>
                     </ul>
     </div>
 </div>
@@ -169,7 +186,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">56</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
