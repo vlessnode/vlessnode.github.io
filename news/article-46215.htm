@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-46215.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numpy 高效的运算工具</title>
+        <meta name="description" content="numpy 高效的运算工具 numpy优势 numpy属性 基本操作 ndarray.方法（） numpy.函数名（） ndarray运算 逻辑运算 统计运算 数组间运算 合并 分割 IO操作 数据处" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-46215.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="Numpy 高效的运算工具" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/88a6af3290bd4d16873de1a84e743c6e.webp" />
+        <meta property="og:release_date" content="2025-01-25T09:54:05" />
+    <meta property="og:updated_time" content="2025-01-25T09:54:05" />
+        <meta property="og:description" content="numpy 高效的运算工具 numpy优势 numpy属性 基本操作 ndarray.方法（） numpy.函数名（） ndarray运算 逻辑运算 统计运算 数组间运算 合并 分割 IO操作 数据处" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Numpy 高效的运算工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                                        <a href="/" class="d-inline-flex link-body-emphasis">
+                        <span>Vless Node</span>
+                    </a>
+                                    </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="#" class="nav-link px-2">
+                                    <h5> 关于 </h5>
+                                </a>
+                            </li>
+                            <li class="nav-list mx-3">
+                                <a href="#" class="nav-link px-2">
+                                    <h5> 联系 </h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">Numpy 高效的运算工具</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>numpy 高效的运算工具<br /> numpy优势<br /> numpy属性</p> <p>基本操作<br /> ndarray.方法（）<br /> numpy.函数名（）</p> <p>ndarray运算<br /> 逻辑运算<br /> 统计运算<br /> 数组间运算</p> <p>合并 分割 IO操作 数据处理</p> </h1> <p><strong>numpy</strong><br /> num numerical 数值化<br /> py python</p> <p><strong>ndarray</strong><br /> n 任意个<br /> d dimension 维度<br /> array 数组</p> <p>n维 相同数组类型的集合</p> <p>将数据组 转化为 ndarray类型</p> <p>data = np.array(数组)</p> <pre><code class="prism language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> data <span class="token builtin">type</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> </code></pre> <p>通过 ndarray的形式进行存储<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/c4ea66b995b8f7539f559997c8d040f3.jpg" alt="Numpy 高效的运算工具"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/b83b4b4732da78dfb9464a6a9b80e8c9.jpg" alt="Numpy 高效的运算工具"></p> <h2> <a id="_51" rel="nofollow"></a>优势</h2> <p><strong>存储风格</strong><br /> ndarray 相同类型 通用性差<br /> list 不同类型 通用性强</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/e4639df74ec05adfeeec59999888292b.jpg" alt="Numpy 高效的运算工具"><br /><strong>并行化运算</strong><br /> nd.array 支持并行化/向量化运算</p> <p><strong>底层语言</strong></p> <p>多任务处理： 多线程 多进程<br /> python受到GIL锁限制，拖累限制。<br /> numpy底层用C语言实现，接触GIL锁限制。不受python解释器限制。</p> </h1> <p>形状 shape 维度 元素个数<br /> 类型 dtype （根据数据类型得知）所占内存的大小<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/351fdba9e596074c0066f7ee9f5f3f69.jpg" alt="Numpy 高效的运算工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/db1af1bf5d042a7a4620952c9c90c35d.jpg" alt="Numpy 高效的运算工具"></p> <h3> <a id="ndarray_74" rel="nofollow"></a>ndarray形状</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/9cbd634256488eccdabd161a5d143a0a.jpg" alt="Numpy 高效的运算工具"></p> <h2> <a id="_77" rel="nofollow"></a>二维数组</h2> <p>下图（3，3） 三行 三列<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/b113d1dc61b0fc1ed24dce88a21ea161.jpg" alt="Numpy 高效的运算工具"></p> <p>三个 二维数组<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/c189299ee0e4c483f67bd0dc0e79707c.jpg" alt="Numpy 高效的运算工具"></p> <h3> <a id="ndarray_85" rel="nofollow"></a>ndarray类型</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/dafd9bcbc490aba9df41ed4f5bda5606.jpg" alt="Numpy 高效的运算工具"></p> <h3> <a id="ndarray_88" rel="nofollow"></a>创建ndarray时，指定其类型</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/798051ba2a0ad85149dce1beb1e27aa2.jpg" alt="Numpy 高效的运算工具"></p> <pre><code class="prism language-python">data3 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1.1</span><span class="token punctuation">,</span><span class="token number">2.2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>dtype <span class="token operator">=</span> <span class="token string">'float32'</span><span class="token punctuation">)</span> data3 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1.1</span><span class="token punctuation">,</span><span class="token number">2.2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>dtype <span class="token operator">=</span> np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span> </code></pre> <p>不指定的话，整数默认int64，，小数float64。</p> <h2> <a id="_99" rel="nofollow"></a>基本操作</h2> <p>生成数据方法adarrat</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-45717.htm">1970年4月5日出生是什么命（1970年4月5日出生的人）</a></p>
+                                        <p>下一个：<a href="/news/article-46216.htm">上海宠物领养吧贴吧（上海地区宠物领养）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-44726.htm" title="沈阳哪里卖宠物猫便宜（沈阳哪里买猫）">沈阳哪里卖宠物猫便宜（沈阳哪里买猫）</a></li>
+                        <li class="py-2"><a href="/news/article-40262.htm" title="动物打疫苗有什么用 动物打疫苗有什么用处">动物打疫苗有什么用 动物打疫苗有什么用处</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-vless-windows.htm" title="「12月10日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接">「12月10日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-46696.htm" title="vue中给buttion按钮添加键盘回车（enter）事件">vue中给buttion按钮添加键盘回车（enter）事件</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-node-subscribe.htm" title="「10月9日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接">「10月9日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-42735.htm" title="以动物医院写一篇童话作文（动物医院看图作文）">以动物医院写一篇童话作文（动物医院看图作文）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="「11月3日」最高速度22.2M/S，2024年Vless每天更新免费机场订阅节点链接">「11月3日」最高速度22.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-42245.htm" title="动物诊所英语 动物诊所英语怎么说">动物诊所英语 动物诊所英语怎么说</a></li>
+                        <li class="py-2"><a href="/news/article-21326.htm" title="动物疫苗的种类和研发过程（动物疫苗研发生产流程）">动物疫苗的种类和研发过程（动物疫苗研发生产流程）</a></li>
+                        <li class="py-2"><a href="/news/article-29184.htm" title="饲料厂加盟多少钱（饲料厂加盟多少钱）">饲料厂加盟多少钱（饲料厂加盟多少钱）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">80</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
