@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-48169.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL时间戳类型详解</title>
+        <meta name="description" content="日期类型是我们在数据库操作中一个较为常见的数据类型，TIMESTAMP 类型相信使用的朋友也不少，但是你真的了解它吗？ 本文介绍在 MySQL 中使用 TIMESTAMP 类型遇到的一些潜在问题，最大" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-48169.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="MySQL时间戳类型详解" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/7bb69e729fbd8744e62bddb27e16d6da.webp" />
+        <meta property="og:release_date" content="2025-01-29T10:30:10" />
+    <meta property="og:updated_time" content="2025-01-29T10:30:10" />
+        <meta property="og:description" content="日期类型是我们在数据库操作中一个较为常见的数据类型，TIMESTAMP 类型相信使用的朋友也不少，但是你真的了解它吗？ 本文介绍在 MySQL 中使用 TIMESTAMP 类型遇到的一些潜在问题，最大" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL时间戳类型详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                                        <a href="/" class="d-inline-flex link-body-emphasis">
+                        <span>Vless Node</span>
+                    </a>
+                                    </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="#" class="nav-link px-2">
+                                    <h5> 关于 </h5>
+                                </a>
+                            </li>
+                            <li class="nav-list mx-3">
+                                <a href="#" class="nav-link px-2">
+                                    <h5> 联系 </h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">MySQL时间戳类型详解</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>日期类型是我们在数据库操作中一个较为常见的数据类型，TIMESTAMP 类型相信使用的朋友也不少，但是你真的了解它吗？</p> <p>本文介绍在 MySQL 中使用 TIMESTAMP 类型遇到的一些潜在问题，最大时间限制相当于埋在未来的坑、因为系统的一些默认规则触发日期自动更新、默认系统时区的性能问题，发现问题的同时，后面也推荐了一些在日期上个人认为不错的方案，供参考。</p> <h2>安装 MySQL</h2> <p>推荐 Docker 的方式本机安装一个 MySQL，步骤也很简单，如下所示，对于学习还是很方便的，已安装的可忽略。</p> <pre><code>$ docker pull mysql $ docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql $ docker exec -it mysql-test /bin/sh $ mysql -h localhost -u root -p</code></pre> <h2>一个埋在未来的坑</h2> <p>假设，未来 2038 年某天的你，执行了一条 SQL 更新了一个时间，第一次值为<code>'2038-01-19 03:14:07'</code> 成功了，第二次值为<code>'2038-01-19 03:14:08'</code> 报错了说传的值是无效的，中间仅差了一秒，看着挺正常的一个 SQL 啊！Why？</p> <pre><code># 第 1 次更新 $ UPDATE user SET birthday = '2038-01-19 03:14:07'  WHERE id = 1; Query OK, 0 rows affected (0.01 sec) Rows matched: 1  Changed: 0  Warnings: 0  # 第 2 次更新 $ UPDATE user SET birthday = '2038-01-19 03:14:08'  WHERE id = 1;  ERROR 1292 (22007): Incorrect datetime value: '2038-01-19 03:14:08' for column 'birthday' at row 1</code></pre> <p>在 MySQL 中，由于 TIMESTAMP 类型占用的空间为 4 个字节，理论上其能够存储最大的日期为 “2038-01-19 03:14:07”，而在 MySQL 5.6 之后占用的内存空间为 7 个字节，可以精确到毫秒、微秒，但是这个最大日期并没有被改变。</p> <p>所以我们上面多设置了一秒，就报错了，对于系统而言，哪怕多一点也是不行的，超了就是超了。</p> <p>这个限制在 MySQL 官方 &nbsp;也有描述：</p> <pre><code>The TIMESTAMP data type is used for values that contain both date and time parts. TIMESTAMP has a range of '1970-01-01 00:00:01' UTC to '2038-01-19 03:14:07' UTC.</code></pre> <h2>小心 TIMESTAMP 的自动更新</h2> <p>假设一张表有 name、birthday 这些字段，这里的自动更新是指当你修改了表中 name 这个字段，但是最后发现 birthday 这个字段被更新为了系统的当前时间。</p> <p>并且这种情况并不总是会出现，它和 MySQL 系统里的一个规则<code>**explicit_defaults_for_timestamp**</code> 有关,默认情况下该参数的值为 OFF。</p> <p>通过以下命令查看。</p> <pre><code>$ show variables like '%explicit_defaults_for_timestamp%'; +---------------------------------+-------+ | Variable_name                   | Value | +---------------------------------+-------+ | explicit_defaults_for_timestamp | OFF   | +---------------------------------+-------+</code></pre> <p>但是，<strong>这里容易潜在的埋一些坑，有些 MySQL 镜像直接将这个值改为了<code>ON</code> 就是禁用了功能</strong>。例如，通过上面 Docker 方式安装的就已经禁用了该功能。</p> <h3>问题复现</h3> <p>为了复现和讲解这个问题，现在我需要将这个功能给放开，使用如下命令。</p> <pre><code>$ SET @@SESSION.explicit_defaults_for_timestamp = 'ON';</code></pre> <p>首先，让我们先创建一个数据库，和一个 user 表，注意下目前对生日字段的定义为<code>birthday TIMESTAMP NOT NULL</code>。</p> <pre><code>$ CREATE DATABASE test; $ CREATE TABLE user(   id BIGINT NOT NULL AUTO_INCREMENT,   name VARCHAR(20) NOT NULL,   birthday TIMESTAMP NOT NULL,   PRIMARY KEY (id) );</code></pre> <p>执行<code>DESC user;</code> 命令，查看当前的表结构，发现 birthday 字段 Extra 这一列多了一些定义，Why？</p> <pre><code>DESC user; +----------+-------------+------+-----+-------------------+-----------------------------------------------+ | Field    | Type        | Null | Key | Default           | Extra                                         | +----------+-------------+------+-----+-------------------+-----------------------------------------------+ | id       | bigint      | NO   | PRI | NULL              | auto_increment                                | | name     | varchar(20) | NO   |     | NULL              |                                               | | birthday | timestamp   | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP | +----------+-------------+------+-----+-------------------+-----------------------------------------------+</code></pre> <p>这一块有个默认的规则，当<code>explicit_defaults_for_timestamp</code> 这个规则开启时，创建表指定的 TIMESTAMP 类型的第一列，如果没有显示的使用 NULL 或 DEFAULT 或 ON UPDATE 声明，表创建成功之后，会自动为我们带上<code>**DEFAULT_GENERATED on update CURRENT_TIMESTAMP**</code> 属性声明。对应我们的示例就是上面定义的<code>birthday TIMESTAMP NOT NULL</code>。</p> <p>如果设置为这样子，意思是修改数据，会把该类型对应的字段变为数据库当前的系统日期。</p> <p>改规则下，并且一张表中仅有一个字段可以拥有该特性，如果设置两个会报错。</p> <pre><code>$ CREATE TABLE user(   birthday TIMESTAMP NOT NULL,   utime TIMESTAMP NOT NULL, );  // 运行之后会得到一个 show variables like '%explicit_defaults_for_timestamp%'; 错误。</code></pre> <p>往 user 表中插入一条数据。</p> <pre><code>$ INSERT INTO user(name, birthday) VALUES('Tom', NOW(6));</code></pre> <p>假设，目前时间点为 T1（当前 T1 的时间为 2021-01-01 06:10:27），查看当前 user 表中的数据。</p> <pre><code>$ SELECT * FROM user; +----+------+---------------------+ | id | name | birthday            | +----+------+---------------------+ |  1 | Tom  | 2021-06-06 06:10:27 | +----+------+---------------------+</code></pre> <p>假设，目前时间点为 T2（当前 T2 的时间为 2021-01-01 06:13:06） 更新 user 表中的 name 为 Tom2，看返回结果<code>Changed: 1</code> 更新是成功的。</p> <pre><code>$ UPDATE user SET name = 'Tom2' WHERE id = 1; Query OK, 1 row affected (0.02 sec) Rows matched: 1  Changed: 1  Warnings: 0</code></pre> <p>再次查询，发现 birthday 字段的值被改变为了 T2 这个时间点，但是明明上面的 SQL 语句没有写更新 birthday 这个字段啊！Why？</p> <pre><code>$ SELECT * FROM user; +----+------+---------------------+ | id | name | birthday            | +----+------+---------------------+ |  1 | Tom2 | 2021-06-06 06:13:06 | +----+------+---------------------+</code></pre> <h3>解决方案</h3> <p>当<strong><code>explicit_defaults_for_timestamp</code> 这个规则开启时（其值为 OFF），如果我们没有对 TIMESTAMP 类型的字段显性赋值，更新时系统会为我们默认设置为系统当前时间。</strong></p> <p>如果不清楚这个问题，查找起来简直让人崩溃，明明 SQL 语句没有，还是被更新了。</p> <p>大多数情况下，这并非我们想要的情况，怎么禁用？</p> <p>方法一：修改系统参数</p> <p>将 explicit_defaults_for_timestamp 的值修改为 'ON' 禁用掉该属性。</p> <p>正在运行的，可以使用<code>SET @@SESSION.explicit_defaults_for_timestamp = 'ON';</code> 修改。这里又一个坑，经测试验证一旦表已创建，在设置是无效的。如果是在禁用该规则后创建的表，是可以的。</p> <p>方法二：修改表结构</p> <p>对于那些线上正在运行的无法修改的，总不能直接把表删了再改吧。</p> <p>当 explicit_defaults_for_timestamp 属性为 OFF 的情况下也有两种方法可以禁用，需要修改表结构。</p> <pre><code>// 指定该列为 NULL，例如 $ ALTER TABLE user MODIFY birthday TIMESTAMP NULL。  // 使用 DEFAULT 为该列指定一个默认值，例如 $ ALTER TABLE user MODIFY birthday TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP</code></pre> <p>最后，根据 MYSQL 官网文档<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_explicit_defaults_for_timestamp"  rel="nofollow">sysvar_explicit_defaults_for_timestamp</a> 的描述，<strong>这个非标准行为已被弃用，希望它们在未来的 MYSQL 版本中被删除</strong>。确实挺坑的一个行为，如果不熟读文档，很容易踩坑。</p> <h2>TIMESTAMP 性能问题</h2> <p>TIMESTAMP 类型支持时区转换，这个有利也有弊，当默认为操作系统时区时（time_zone=SYSTEM），查询系统 TIMESTAMP 类型的字段会调用系统时区做时区转换。而这个系统时区需要加锁来保证此时的操作系统时区没有被修改。</p> <p>当出现并发访问时，势必会出现资源竞争，多线程的上下文切换消耗，性能也会出现下降，下文我们做个性能测试。</p> <p>查看当前的时区信息，time_zone=SYSTEM 表示此时是操作系统的时区。</p> <pre><code>$ show variables like "%time_zone%"; +------------------+--------+ | Variable_name    | Value  | +------------------+--------+ | system_time_zone | UTC    | | time_zone        | SYSTEM | +------------------+--------+</code></pre> <h3>时区修改</h3> <p>MySQL 默认使用系统时区，修改方法大致分为两种：使用 SQL 命令临时修改，修改配置文件这种是永久修改。</p> <pre><code># SQL 命令修改 $ SET time_zone = 'Asia/Shanghai';  # 配置文件 $ vim /etc/mysql/my.cnf default-time_zone = 'Asia/Shanghai'</code></pre> <p>如果使用 Docker 的可以在 docker run 时修改。<strong>通过<code>-e TZ='Asia/Shanghai'</code> 指定时区</strong>，但是这样发现<strong>虽然 SELECT NOW() 没问题，但是执行<code>show variables like "%time_zone%"</code> 命令 time_zone 还是显示的 SYSTEM</strong>。</p> <pre><code>$ docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e TZ='Asia/Shanghai' mysql</code></pre> <p>推荐修改文件，首先进入容器内执行<code>cat /etc/mysql/conf.d/mysql.cnf</code> 命令查看默认配置，拷贝一份到自己的本机电脑，在执行 docker run 时挂载到容器内，这种方式好处是当你有多个配置需要修改时，都可以在配置文件里改。</p> <p>配置文件也许是这样的：</p> <pre><code>[mysqld] pid-file        = /var/run/mysqld/mysqld.pid socket          = /var/run/mysqld/mysqld.sock datadir         = /var/lib/mysql secure-file-priv= NULL default-time_zone = 'Asia/Shanghai'  # Custom config should go here !includedir /etc/mysql/conf.d/</code></pre> <p>最终 docker run 命令如下：</p> <pre><code># 注意 /${root}/mysql.cnf 这个是你本机的配置地址 $ docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /${root}/mysql.cnf:/etc/mysql/my.cnf mysql</code></pre> <h3>性能测试</h3> <p>MySQL 自带了一个压力测试工具 mysqlslap，可以模拟多个并发客户端来对 MySQL 做压力测试，还是挺不错的，写一些功能，想测试下基本的性能时还是可以用用的。</p> <p>以下这个语句的意思是模拟 100 个客户端并发，共执行 100,0000 万次查询。</p> <pre><code># --number-of-queries 总的测试查询次数 # -c 并发量，模拟多个客户端执行，下例模拟多个客户端执行 “SELECT NOW()” # --create-schema 代表自定义的测试库名称，就是 MySQL 中的数据库名称 $ mysqlslap -u root -p --number-of-queries=1000000 --create-schema=test -c 100 --query='SELECT NOW()'</code></pre> <p>下面是基于 mysqlslap 做的性能测试结果，在不同的时区下，分别所耗时间，单位（秒），很明显系统时区耗时更长些，两者直接的相差为 25%。这只是耗时上的差异，CPU 信息我没有去看。还有不同的电脑，测试出来的性能差距也会有差异。</p> <table> <thead> <tr> <th>------</th> <th>System</th> <th>Asia/Shanghai</th> <th>difference</th> </tr> </thead> <tbody> <tr> <td>Average number of seconds to run all queries</td> <td>35.55s</td> <td>28.42s</td> <td>25%</td> </tr> </tbody> </table> <h2>日期该怎么选择？</h2> <p>MySQL 中日期类型存储通常有 3 中方案，使用 INT、TIMESTAMP、DATETIME 下面分别简单总结下。</p> <h3>INT 类型</h3> <p>INT 类型来存储日期类型，存储的就是时间戳类型，例如 2021-01-01 06:10:27 的时间戳为 1609452627000。</p> <p>数据库实际存储的是一串数字，这种好处是没有时间上下范围限制，性能也比 TIMESTAMP 好，但是这种性能是收效甚微的，一个不友好的问题是，当我们想查看数据做一些问题排查或数据分析时，通常不是很直观的。</p> <h3>TIMESTAMP 类型</h3> <p>TIMESTAMP 类型在存储时会先将本地时区时间转换为 UTC 的时区时间，再讲 UTC 时区时间转为 4 字节 INT 类型存储，本质是和 INT 一样的，都是存储为毫秒数。读取时再次反向的转换为时间戳 TIMESTAMP 类型，会做一些时间的格式化，看起来更直观些。</p> <p>TIMESTAMP 类型比较大的一个问题是有最大的时间限制，能够有效存储的时间范围为<code>“'1970-01-01 00:00:01.000000' to '2038-01-19 03:14:07.999999'”</code>，2038 年这个时间说远也是很快的，这个是需要考虑的，别为将来埋坑。</p> <p>TIMESTAMP 类型尽管 5.6 版本之后支持精确到微笑，毫秒后面 6 为，但是 2038 最大时间限制这个问题并没有解决。</p> <p>它还有一个笔者个人认为隐藏很的问题是，当你把一个字段的定义为<code>birthday DATETIME NOT NULL</code> 且触发了它的自动更新规则时，很容易掉坑里。可怕的是开发和生产环境配置不一致，这种问题前期就发现不了，除非踩过这个坑。</p> <h3>DATETIME 类型</h3> <p><strong>DATETIME 这个类型是笔者比较推荐的，它占用 8 个字节，能存储的精确度为微妙，声明类型时通过 DATETIME(6) 指定</strong>。</p> <p>它的时间范围为<code>'1000-01-01 00:00:00' to '9999-12-31 23:59:59'.</code> 这个时间目前是够我们用的了。当然，你要说我要存储 “三国时期张飞” 什么时候出生，那这 160 年生日也是存储不了的。</p> <p>DATETIME 类型它不会存储时区信息，当然这个问题，也不一定义非要在数据层解决不可，也不是什么大不了的问题，想做这种国际化的跨时区的，由中间层服务（Node.js 就很适合）统一解决也可。我认为这个日期类型它能解决上面我们使用 TIMESTAMP 遇到的那些问题。</p> <p>修改上面 user 表结构，将日期类型统一声明为 DATETIME 类型。</p> <ul> <li>birthday 字段由用户自定义传入，指定为非空，DATETIME 这样声明精确为秒。</li> <li>ctime 字段默认当前时间，仅在创建时指定，时间精确到微秒。</li> <li>utime 字段记录每一次的更新时间，这个不受 explicit_defaults_for_timestamp 参数影响并且也是在我们显示的定义了 ON UPDATE... 之后才触发自动更新。</li> </ul> <pre><code>CREATE TABLE user(   id BIGINT NOT NULL AUTO_INCREMENT,   name VARCHAR(20) NOT NULL,   birthday DATETIME NOT NULL,   ctime DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),   utime DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),   PRIMARY KEY (id) );</code></pre> <p>假设，我们插入一条数据，birthday 传入 2039 年使用 DATETIME 是没问题的，同时也可以看下 ctime、utime 时间，这个精确度也是我们定义的。</p> <pre><code>+----+------+---------------------+----------------------------+----------------------------+ | id | name | birthday            | ctime                      | utime                      | +----+------+---------------------+----------------------------+----------------------------+ |  1 | Tom  | 2039-01-01 22:00:28 | 2021-01-01 22:00:28.112048 | 2021-01-01 22:00:28.112048 | +----+------+---------------------+----------------------------+----------------------------+</code></pre> <p><em>最后小编在学习过程中整理了一些学习资料，可以分享给做java的工程师朋友们，相互交流学习，需要的可以加入我的学习交流群<strong>&nbsp;716055499</strong>即可<strong>免费获取</strong>Java架构学习资料（里面有高可用、高并发、高性能及分布式、Jvm性能调优、Spring源码，MyBatis，Netty,Redis,Kafka,Mysql,Zookeeper,Tomcat,Docker,Dubbo,Nginx等多个知识点的架构资料）</em></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-47678.htm">动物医院许可证办理流程（动物医院诊疗许可证办理）</a></p>
+                                        <p>下一个：<a href="/news/article-48170.htm">猫咪对主人的喜欢程度及表现（猫咪认主的5大征兆）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-47196.htm" title="动物疫苗经销商资格要求（动物疫苗经销商资格要求是什么）">动物疫苗经销商资格要求（动物疫苗经销商资格要求是什么）</a></li>
+                        <li class="py-2"><a href="/news/article-43732.htm" title="宠物猫疫苗是什么疫苗类型（宠物猫疫苗是什么疫苗类型的）">宠物猫疫苗是什么疫苗类型（宠物猫疫苗是什么疫苗类型的）</a></li>
+                        <li class="py-2"><a href="/news/article-27323.htm" title="数据库事务的四大特性和四个隔离级别">数据库事务的四大特性和四个隔离级别</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-node-subscribe-links.htm" title="「1月21日」每天更新|20.6M/S，2025年Vless免费机场订阅节点链接">「1月21日」每天更新|20.6M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-45717.htm" title="1970年4月5日出生是什么命（1970年4月5日出生的人）">1970年4月5日出生是什么命（1970年4月5日出生的人）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-28-latest-vless-node.htm" title="「12月28日」最高速度22.6M/S，2024年Vless每天更新免费机场订阅节点链接">「12月28日」最高速度22.6M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-40261.htm" title="深圳在哪领养狗（深圳在哪领养狗狗）">深圳在哪领养狗（深圳在哪领养狗狗）</a></li>
+                        <li class="py-2"><a href="/news/article-30066.htm" title="想学宠物医生应该报考什么大学呢（学宠物医生需要学历吗）">想学宠物医生应该报考什么大学呢（学宠物医生需要学历吗）</a></li>
+                        <li class="py-2"><a href="/news/article-41250.htm" title="开一家宠物食品加工厂成本和利润多少（开一家宠物食品加工厂成本和利润多少钱）">开一家宠物食品加工厂成本和利润多少（开一家宠物食品加工厂成本和利润多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-free-vless-node.htm" title="「10月31日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「10月31日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
