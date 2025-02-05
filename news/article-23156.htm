@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://vlessnode.github.io/news/article-23156.htm" />
@@ -9,6 +9,33 @@
     <title>k8s入门之Ingress</title>
         <meta name="description" content="Ingress 的功能其实很容易理解：所谓 Ingress，就是 Service 的“Service”，代理不同后端 Service 而设置的负载均衡服务。  一、安装ingress 1.查找ingr" />
         <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-23156.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="k8s入门之Ingress" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/bdcd175889e39fc04561ead7dee68cb6.webp" />
+        <meta property="og:release_date" content="2024-12-08T07:15:33" />
+    <meta property="og:updated_time" content="2024-12-08T07:15:33" />
+        <meta property="og:description" content="Ingress 的功能其实很容易理解：所谓 Ingress，就是 Service 的“Service”，代理不同后端 Service 而设置的负载均衡服务。  一、安装ingress 1.查找ingr" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="k8s入门之Ingress">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
@@ -138,16 +165,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-2-latest-vless-node.htm" title="「12月2日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「12月2日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-43732.htm" title="宠物猫疫苗是什么疫苗类型（宠物猫疫苗是什么疫苗类型的）">宠物猫疫苗是什么疫苗类型（宠物猫疫苗是什么疫苗类型的）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-latest-vless-node.htm" title="「11月25日」最高速度21.4M/S，2024年Vless每天更新免费机场订阅节点链接">「11月25日」最高速度21.4M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-32517.htm" title="nohup: ignoring input and redirecting stderr to stdout报错">nohup: ignoring input and redirecting stderr to stdout报错</a></li>
+                        <li class="py-2"><a href="/news/article-26382.htm" title="网上的无货源网店是真的吗可信吗（网上无货源开网店是真的吗）">网上的无货源网店是真的吗可信吗（网上无货源开网店是真的吗）</a></li>
+                        <li class="py-2"><a href="/news/article-19020.htm" title="VUE3开发问题总结(数据更新和页面显示问题)">VUE3开发问题总结(数据更新和页面显示问题)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-vless-windows.htm" title="「12月10日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接">「12月10日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-node-share-links.htm" title="「11月22日」最高速度18M/S，2024年Vless每天更新免费机场订阅节点链接">「11月22日」最高速度18M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-48503.htm" title="maven项目打包成war包并部署到tomcat上">maven项目打包成war包并部署到tomcat上</a></li>
+                        <li class="py-2"><a href="/news/article-19950.htm" title="springboot整合微信二维码支付">springboot整合微信二维码支付</a></li>
                         <li class="py-2"><a href="/news/article-30614.htm" title="可以考宠物医生执照吗（想考宠物执业医师资格证）">可以考宠物医生执照吗（想考宠物执业医师资格证）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-30-vless-windows.htm" title="「10月30日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接">「10月30日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-23-latest-vless-node.htm" title="「12月23日」最高速度20.9M/S，2024年Vless每天更新免费机场订阅节点链接">「12月23日」最高速度20.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-18-vless-windows.htm" title="「10月18日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「10月18日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-15-free-high-speed-nodes.htm" title="「9月15日」最高速度20.3M/S，2024年Vless每天更新免费机场订阅节点链接">「9月15日」最高速度20.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-23-vless-windows.htm" title="「10月23日」最高速度21.7M/S，2024年Vless每天更新免费机场订阅节点链接">「10月23日」最高速度21.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-subscribe-node.htm" title="「11月6日」最高速度21.8M/S，2024年Vless每天更新免费机场订阅节点链接">「11月6日」最高速度21.8M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-23157.htm" title="动物医院诊疗范围猫科犬科牙科内科（动物医院连锁）">动物医院诊疗范围猫科犬科牙科内科（动物医院连锁）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-30-vless-github.htm" title="「12月30日」最高速度21.2M/S，2024年Vless每天更新免费机场订阅节点链接">「12月30日」最高速度21.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -159,22 +186,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

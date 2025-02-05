@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://vlessnode.github.io/news/article-20409.htm" />
@@ -9,6 +9,33 @@
     <title>SpringSecurity核心功能详解</title>
         <meta name="description" content="前言 最近在潜心研究一下安全框架，并在此进行一下记录，如有不对还请不吝赐教。  对于一个安全管理管理框架而言，无论是Shiro还是SpringSecurity，最核心的功能，无非就是两个  认证：你是" />
         <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-20409.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="SpringSecurity核心功能详解" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/2c4a24270d62d274eb7498c3f4164853.webp" />
+        <meta property="og:release_date" content="2024-12-02T07:58:40" />
+    <meta property="og:updated_time" content="2024-12-02T07:58:40" />
+        <meta property="og:description" content="前言 最近在潜心研究一下安全框架，并在此进行一下记录，如有不对还请不吝赐教。  对于一个安全管理管理框架而言，无论是Shiro还是SpringSecurity，最核心的功能，无非就是两个  认证：你是" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpringSecurity核心功能详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
@@ -138,16 +165,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-vless-node-share.htm" title="「11月19日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接">「11月19日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19021.htm" title="宠物店买的狗粮好吗（宠物店的狗粮都是从哪里来的）">宠物店买的狗粮好吗（宠物店的狗粮都是从哪里来的）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-20-node-share-links.htm" title="「11月20日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接">「11月20日」最高速度22.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-32042.htm" title="中国兽药采购网下载安装app（中国兽药商城）">中国兽药采购网下载安装app（中国兽药商城）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe-links.htm" title="「11月11日」最高速度21.1M/S，2024年Vless每天更新免费机场订阅节点链接">「11月11日」最高速度21.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-29650.htm" title="麦富迪猫粮怎么样 麦富迪猫粮属于什么档次">麦富迪猫粮怎么样 麦富迪猫粮属于什么档次</a></li>
-                        <li class="py-2"><a href="/news/article-28259.htm" title="亿迪猫粮怎么样（亿迪猫粮怎么样好吃吗）">亿迪猫粮怎么样（亿迪猫粮怎么样好吃吗）</a></li>
+                        <li class="py-2"><a href="/news/article-47195.htm" title="销售兽用疫苗需要什么资质和证书呢（售卖兽用疫苗需要什么资质）">销售兽用疫苗需要什么资质和证书呢（售卖兽用疫苗需要什么资质）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-node-share.htm" title="「1月19日」每天更新|21.2M/S，2025年Vless免费机场订阅节点链接">「1月19日」每天更新|21.2M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/news/article-26858.htm" title="国产猫粮排名前十品牌（国产猫粮哪个牌子好又安全）">国产猫粮排名前十品牌（国产猫粮哪个牌子好又安全）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-vless-node.htm" title="「11月16日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接">「11月16日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-9-node-share.htm" title="「11月9日」最高速度20.7M/S，2024年Vless每天更新免费机场订阅节点链接">「11月9日」最高速度20.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-free-vless-node.htm" title="「1月31日」每天更新|20.3M/S，2025年Vless免费机场订阅节点链接">「1月31日」每天更新|20.3M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-31084.htm" title="宠物粮生产流程视频 宠物粮生产流程视频教程">宠物粮生产流程视频 宠物粮生产流程视频教程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-18-vless-node-github.htm" title="「1月18日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接">「1月18日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22696.htm" title="动物疫苗的保存温度是多少度合适（动物疫苗运输与储存规范）">动物疫苗的保存温度是多少度合适（动物疫苗运输与储存规范）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-subscribe-node.htm" title="「11月17日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接">「11月17日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24458.htm" title="宠物领养网免费平台有哪些公司的地址的简单介绍">宠物领养网免费平台有哪些公司的地址的简单介绍</a></li>
+                        <li class="py-2"><a href="/news/article-37794.htm" title="SpringBoot项目处理emoji表情到mysql">SpringBoot项目处理emoji表情到mysql</a></li>
                     </ul>
     </div>
 </div>
@@ -159,22 +186,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

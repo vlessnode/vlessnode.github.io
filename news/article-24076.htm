@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://vlessnode.github.io/news/article-24076.htm" />
@@ -9,6 +9,33 @@
     <title>数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库</title>
         <meta name="description" content="1、MySQL中的索引 在MySQL，索引是由B+树实现的，B+是一种与B树十分类似的数据结构。 形如下面这种： 其结构特点： （1）有n课子树的结点中含有n个关键码。 （2）非根节点子节点数：cei" />
         <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-24076.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/4867ec00f515a2200ef3234723a06ba1.webp" />
+        <meta property="og:release_date" content="2024-12-10T10:00:35" />
+    <meta property="og:updated_time" content="2024-12-10T10:00:35" />
+        <meta property="og:description" content="1、MySQL中的索引 在MySQL，索引是由B+树实现的，B+是一种与B树十分类似的数据结构。 形如下面这种： 其结构特点： （1）有n课子树的结点中含有n个关键码。 （2）非根节点子节点数：cei" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
@@ -138,16 +165,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-latest-vless-node.htm" title="「11月26日」最高速度22.1M/S，2024年Vless每天更新免费机场订阅节点链接">「11月26日」最高速度22.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="「12月1日」最高速度21.1M/S，2024年Vless每天更新免费机场订阅节点链接">「12月1日」最高速度21.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-25-vless-windows.htm" title="「9月25日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接">「9月25日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-32993.htm" title="动物医院实训总结怎么写（动物医院实训总结怎么写范文）">动物医院实训总结怎么写（动物医院实训总结怎么写范文）</a></li>
-                        <li class="py-2"><a href="/news/article-34423.htm" title="穷人家养什么狗（人穷养什么宠物好呢）">穷人家养什么狗（人穷养什么宠物好呢）</a></li>
-                        <li class="py-2"><a href="/news/article-31460.htm" title="Docker 安装 Confluence">Docker 安装 Confluence</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-29-free-high-speed-nodes.htm" title="「8月29日」最高速度20.3M/S，2024年Vless每天更新免费机场订阅节点链接">「8月29日」最高速度20.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-23-latest-vless-node.htm" title="「12月23日」最高速度20.9M/S，2024年Vless每天更新免费机场订阅节点链接">「12月23日」最高速度20.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-26382.htm" title="网上的无货源网店是真的吗可信吗（网上无货源开网店是真的吗）">网上的无货源网店是真的吗可信吗（网上无货源开网店是真的吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-21-free-vless-node.htm" title="「9月21日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接">「9月21日」最高速度19.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-30065.htm" title="SpringMvc注解@PathVariable">SpringMvc注解@PathVariable</a></li>
+                        <li class="py-2"><a href="/news/article-40262.htm" title="动物打疫苗有什么用 动物打疫苗有什么用处">动物打疫苗有什么用 动物打疫苗有什么用处</a></li>
+                        <li class="py-2"><a href="/news/article-41744.htm" title="宠物店一年收入多少钱（宠物店一个月利润怎么样）">宠物店一年收入多少钱（宠物店一个月利润怎么样）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="「11月10日」最高速度18.3M/S，2024年Vless每天更新免费机场订阅节点链接">「11月10日」最高速度18.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-28258.htm" title="被猫抓伤了需要打几针（被猫抓伤了需要打几针免疫球蛋白）">被猫抓伤了需要打几针（被猫抓伤了需要打几针免疫球蛋白）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-vless-github.htm" title="「1月10日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接">「1月10日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-38278.htm" title="动物防疫站打疫苗多少钱一次北京（北京动物疫苗生产厂家）">动物防疫站打疫苗多少钱一次北京（北京动物疫苗生产厂家）</a></li>
+                        <li class="py-2"><a href="/news/article-34899.htm" title="Windows下如何优雅的管理多个python版本以及简易安装相关库（包括机器学习和PyQt）">Windows下如何优雅的管理多个python版本以及简易安装相关库（包括机器学习和PyQt）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-node-share.htm" title="「11月15日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接">「11月15日」最高速度19.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-38771.htm" title="动物医院牌子图片（动物医院牌匾设计）">动物医院牌子图片（动物医院牌匾设计）</a></li>
                     </ul>
     </div>
 </div>
@@ -159,22 +186,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
