@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-54453.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用注解使用总结系列: @Order 注解</title>
+        <meta name="description" content="@Order 注解 @Order注解主要用来控制配置类的加载顺序 示例代码: package com.runlion.tms.admin.constant;publicclass AService {" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-54453.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="常用注解使用总结系列: @Order 注解" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/e930fd191b72b37c11904855b4802131.webp" />
+        <meta property="og:release_date" content="2025-02-10T07:39:33" />
+    <meta property="og:updated_time" content="2025-02-10T07:39:33" />
+        <meta property="og:description" content="@Order 注解 @Order注解主要用来控制配置类的加载顺序 示例代码: package com.runlion.tms.admin.constant;publicclass AService {" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="常用注解使用总结系列: @Order 注解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">常用注解使用总结系列: @Order 注解</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2 id="order-注解">@Order 注解</h2> <p>@Order注解主要用来控制配置类的加载顺序<br /> 示例代码:</p> <pre class="prettyprint"><code class="hljs cs">package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> AService {  } package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> BService {  }</code></pre> <pre class="prettyprint"><code class="hljs avrasm">package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">2</span>) public class AConfig {   @Bean   public AService AService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"AService 加载了"</span>)<span class="hljs-comment">;</span>     return new AService()<span class="hljs-comment">;</span>   }  } package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">1</span>) public class BConfig {   @Bean   public BService bService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"BService 加载了"</span>)<span class="hljs-comment">;</span>     return new BService()<span class="hljs-comment">;</span>   } }</code></pre> <p>测试类:</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-keyword">package</span> com.runlion.tms.admin.constant;<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;<span class="hljs-keyword">public</span><span class="hljs-class"><span class="hljs-keyword">class</span><span class="hljs-title">OrderMain</span> {<!-- --></span><span class="hljs-keyword">public</span><span class="hljs-keyword">static</span><span class="hljs-keyword">void</span><span class="hljs-title">main</span>(String[] args) {     AnnotationConfigApplicationContext context =<span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(<span class="hljs-string">"com.runlion.tms.admin.constant"</span>);   } }</code></pre> <p>输出结果:<br /> BService 加载了<br /> AService 加载了</p> <p>因为BService 的@Order(1),所以先打印出来</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-53905.htm">合肥哪里领养宠物狗的 合肥哪里领养宠物狗的多</a></p>
+                                        <p>下一个：<a href="/news/article-54454.htm">动物疫苗归哪个部门管（动物疫苗监管部门）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-20867.htm" title="延吉兽医站（延吉动物医院）">延吉兽医站（延吉动物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-33441.htm" title="狗粮生产机器设备哪个品牌好（专业狗粮机生产厂家）">狗粮生产机器设备哪个品牌好（专业狗粮机生产厂家）</a></li>
+                        <li class="py-2"><a href="/news/article-44231.htm" title="SpringMvc注解@PathVariable">SpringMvc注解@PathVariable</a></li>
+                        <li class="py-2"><a href="/news/article-42735.htm" title="以动物医院写一篇童话作文（动物医院看图作文）">以动物医院写一篇童话作文（动物医院看图作文）</a></li>
+                        <li class="py-2"><a href="/news/article-36810.htm" title="PHP对象迭代">PHP对象迭代</a></li>
+                        <li class="py-2"><a href="/news/article-55013.htm" title="MKL库矩阵乘法(cblas_dgemm)">MKL库矩阵乘法(cblas_dgemm)</a></li>
+                        <li class="py-2"><a href="/news/article-46216.htm" title="上海宠物领养吧贴吧（上海地区宠物领养）">上海宠物领养吧贴吧（上海地区宠物领养）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-node-subscribe.htm" title="「12月26日」最高速度19.3M/S，2024年Vless每天更新免费机场订阅节点链接">「12月26日」最高速度19.3M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23618.htm" title="优瑞派狗粮批发（优瑞派狗粮怎么样山茶）">优瑞派狗粮批发（优瑞派狗粮怎么样山茶）</a></li>
+                        <li class="py-2"><a href="/news/article-19020.htm" title="VUE3开发问题总结(数据更新和页面显示问题)">VUE3开发问题总结(数据更新和页面显示问题)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
