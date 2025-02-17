@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-57817.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用指针低三位存放额外信息的优化方法 &#8211; 程鑫 _在线工具</title>
+        <meta name="description" content="在8字节对齐的情况下指针的低三位都是0，在某些情况下我们需要维持跟指针对应的额外信息，例如标志位，但是又不想为此创建一个结构体，那就可以利用指针的低三位来存储额外信息。 比如说我们希望原子操作的类型是" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-57817.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="用指针低三位存放额外信息的优化方法 &#8211; 程鑫 _在线工具" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/88a6af3290bd4d16873de1a84e743c6e.webp" />
+        <meta property="og:release_date" content="2025-02-16T07:22:55" />
+    <meta property="og:updated_time" content="2025-02-16T07:22:55" />
+        <meta property="og:description" content="在8字节对齐的情况下指针的低三位都是0，在某些情况下我们需要维持跟指针对应的额外信息，例如标志位，但是又不想为此创建一个结构体，那就可以利用指针的低三位来存储额外信息。 比如说我们希望原子操作的类型是" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="用指针低三位存放额外信息的优化方法 &#8211; 程鑫 _在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">用指针低三位存放额外信息的优化方法 &#8211; 程鑫 _在线工具</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <p>在8字节对齐的情况下指针的低三位都是0，在某些情况下我们需要维持跟指针对应的额外信息，例如标志位，但是又不想为此创建一个结构体，那就可以利用指针的低三位来存储额外信息。</p> <p>比如说我们希望原子操作的类型是64位的数据，这样可以利用CMPXCHG机器指令实现CAS操作，即我们希望定义<code>std::atomic&lt;T *&gt;</code>的变量实现原子操作，而不希望定义<code>std::atomic&lt;S&gt;</code>，S为某个结构体。这时候就可以应用上述技巧。</p> <p>具体实现方式如下所示：</p> <p><code>std::uintptr_t</code>是定义一个可以表示地址值（指针值即地址值）的无符号整型。将指针转换成<code>std::uintptr_t</code>然后进行位运算。以下代码作为示例：</p> <pre><code class="language-c++">#include &lt;iostream&gt; #include &lt;stdint.h&gt;  struct Data {     // 定义一些数据成员     long int a;     long int b;     long int c; };  // 定义三个标志位，不用细究三个标志位的具体含义，这个在这里不重要。 static constexpr std::uintptr_t HAS_DATA = 1; static constexpr std::uintptr_t NEED_DATA = 2; static constexpr std::uintptr_t CLOSED = 4; static constexpr std::uintptr_t FLAGS_MASK = HAS_DATA | NEED_DATA | CLOSED; static constexpr std::uintptr_t PTR_MASK = ~FLAGS_MASK;  int main() {     Data * dp = new Data();     dp-&gt;a = 88;     dp-&gt;b = 99;     dp-&gt;c = 77;      std::cout &lt;&lt; "指针值为 " &lt;&lt; std::hex &lt;&lt; reinterpret_cast&lt;int64_t&gt;(dp) &lt;&lt; std::endl;     // 在指针上附加上标志位     std::uintptr_t ptr_int = reinterpret_cast&lt;std::uintptr_t&gt;(dp) | HAS_DATA;     std::cout &lt;&lt; "加过标记位后 " &lt;&lt; std::hex &lt;&lt; ptr_int &lt;&lt; std::endl;      // 取标志位     std::uintptr_t flags = ptr_int &amp; FLAGS_MASK;     std::cout &lt;&lt; "标记位 " &lt;&lt; flags &lt;&lt; std::endl;      // 需要用指针的时候，清零低三位，恢复指针值原来的值     dp = reinterpret_cast&lt;Data*&gt;(ptr_int &amp; PTR_MASK);     std::cout &lt;&lt; "使用恢复后的指针" &lt;&lt; std::dec &lt;&lt; dp-&gt;a &lt;&lt; ", " &lt;&lt; dp-&gt;b &lt;&lt; ", " &lt;&lt; dp-&gt;c &lt;&lt; std::endl;     return 0; } </code></pre> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-57816.htm">Java基础知识 29（同步代码块，同步方法，静态同步方法，Lock锁，死锁问题）</a></p>
+                                        <p>下一个：<a href="/news/article-58386.htm">动物疫苗接种时间表最新消息查询（动物疫苗法最新消息2019）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-38277.htm" title="win11系统怎么查看指定端口信息">win11系统怎么查看指定端口信息</a></li>
+                        <li class="py-2"><a href="/news/article-52299.htm" title="动物防疫站电话咨询电话号码（动物防疫站电话咨询电话号码）">动物防疫站电话咨询电话号码（动物防疫站电话咨询电话号码）</a></li>
+                        <li class="py-2"><a href="/news/article-32995.htm" title="宠物领养app的设计与实现论文怎么写（领养宠物app的项目策划书）">宠物领养app的设计与实现论文怎么写（领养宠物app的项目策划书）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-vless-github.htm" title="「12月17日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接">「12月17日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-node-share.htm" title="「11月29日」最高速度22.4M/S，2024年Vless每天更新免费机场订阅节点链接">「11月29日」最高速度22.4M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-13-today-vless-node.htm" title="「2月13日」每天更新|21.3M/S，2025年Vless免费机场订阅节点链接">「2月13日」每天更新|21.3M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-29650.htm" title="麦富迪猫粮怎么样 麦富迪猫粮属于什么档次">麦富迪猫粮怎么样 麦富迪猫粮属于什么档次</a></li>
+                        <li class="py-2"><a href="/news/article-37300.htm" title="宠物领养协议有法律效力吗知乎怎么写 宠物领养协议有法律效力吗知乎怎么写的">宠物领养协议有法律效力吗知乎怎么写 宠物领养协议有法律效力吗知乎怎么写的</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-vless-github.htm" title="「11月28日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接">「11月28日」最高速度19M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-node-share-links.htm" title="「12月5日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接">「12月5日」最高速度19.9M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

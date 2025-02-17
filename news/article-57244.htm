@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-57244.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js(JavaScript)代码实现的TAB标签切换效果</title>
+        <meta name="description" content="一个可以js（JavaScript）的tab标签切换代码，可以自动适应宽度，可以自己添加删除标签块，傻瓜式操作便能完成！     &lt;!DOCTYPE HTML PUBLIC "-//W3C//D" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-57244.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="js(JavaScript)代码实现的TAB标签切换效果" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/db9b2a82891766b290aa704e893699bd.webp" />
+        <meta property="og:release_date" content="2025-02-15T05:24:05" />
+    <meta property="og:updated_time" content="2025-02-15T05:24:05" />
+        <meta property="og:description" content="一个可以js（JavaScript）的tab标签切换代码，可以自动适应宽度，可以自己添加删除标签块，傻瓜式操作便能完成！     &lt;!DOCTYPE HTML PUBLIC "-//W3C//D" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="js(JavaScript)代码实现的TAB标签切换效果">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">js(JavaScript)代码实现的TAB标签切换效果</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>一个可以js（JavaScript）的tab标签切换代码，可以自动适应宽度，可以自己添加删除标签块，傻瓜式操作便能完成！</p> <p></p> <p><img decoding="async" src="0" alt=""/></p> <p></p> <pre><code class="language-html"> &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-  19991224/loose.dtd"&gt; &lt;HTML xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;HEAD&gt; &lt;meta name="keywords" content="JS代码,TAB标签,JS广告代码,JS特效代码,阅微草堂" /&gt; &lt;title&gt;自适应宽度的标签导航&lt;/title&gt; &lt;META http-equiv=Content-Type content="text/html; charset=gb2312"&gt;   &lt;STYLE type=text/css&gt; BODY {FONT-SIZE: 14px; FONT-FAMILY: "宋体"} OL LI { MARGIN: 8px} #con { FONT-SIZE: 12px; MARGIN: 0px auto; WIDTH: 600px} #tags { PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 10px; WIDTH: 400px; PADDING-  TOP: 0px; HEIGHT: 23px} #tags LI {BACKGROUND: url(images/tagleft.gif) no-repeat left bottom; FLOAT: left; MARGIN-RIGHT: 1px; LIST-STYLE-TYPE:  none; HEIGHT: 23px} #tags LI A {PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: url(images/tagright.gif) no-repeat right bottom;  FLOAT: left; PADDING-BOTTOM: 0px; COLOR: #999; LINE-HEIGHT: 23px; PADDING-TOP: 0px; HEIGHT: 23px; TEXT-DECORATION:  none} #tags LI.emptyTag {BACKGROUND: none transparent scroll repeat 0% 0%; WIDTH: 4px} #tags LI.selectTag {BACKGROUND-POSITION: left top; MARGIN-BOTTOM: -2px; POSITION: relative; HEIGHT: 25px} #tags LI.selectTag A {BACKGROUND-POSITION: right top; COLOR: #000; LINE-HEIGHT: 25px; HEIGHT: 25px} #tagContent { PADDING-RIGHT: 1px; BORDER: #aecbd4 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px;  PADDING-TOP:  1px;  BACKGROUND-COLOR: #fff} .tagContent {PADDING-RIGHT: 10px; DISPLAY: none; PADDING-LEFT: 10px; BACKGROUND: url(images/bg.gif) repeat-x;  PADDING-BOTTOM: 10px; WIDTH: 576px; COLOR: #474747; PADDING-TOP: 10px; HEIGHT: 250px} #tagContent DIV.selectTag {DISPLAY: block} &lt;/STYLE&gt;  &lt;META content="MSHTML 6.00.2800.1589" name=GENERATOR&gt;&lt;/HEAD&gt; &lt;BODY&gt; &lt;DIV id=con&gt; &lt;UL id=tags&gt;   &lt;LI class=selectTag&gt;&lt;A onMouseover="selectTag('tagContent0',this)" href="javascript:void(0)"&gt;标签一&lt;/A&gt; &lt;/LI&gt;   &lt;LI&gt;&lt;A onMouseover="selectTag('tagContent1',this)" href="javascript:void(0)"&gt;标签二&lt;/A&gt; &lt;/LI&gt;   &lt;LI&gt;&lt;A onMouseover="selectTag('tagContent2',this)" href="javascript:void(0)"&gt;自适应宽度的标签&lt;/A&gt; &lt;/LI&gt;   &lt;LI&gt;&lt;A onMouseover="selectTag('tagContent3',this)" href="javascript:void(0)"&gt;自适应宽度&lt;/A&gt; &lt;/LI&gt; &lt;/UL&gt; &lt;DIV id=tagContent&gt; &lt;DIV class=tagContent id=tagContent0&gt;第一个标签的内容&lt;/DIV&gt; &lt;DIV class="tagContent selectTag" id=tagContent1&gt;第二个标签的内容&lt;/DIV&gt; &lt;DIV class=tagContent id=tagContent2&gt;第三个标签的内容&lt;/DIV&gt; &lt;DIV class=tagContent id=tagContent3&gt;第四个标签的内容&lt;/DIV&gt; &lt;/DIV&gt; &lt;/DIV&gt;    &lt;SCRIPT type=text/javascript&gt; function selectTag(showContent,selfObj){  // 操作标签  var tag = document.getElementById("tags").getElementsByTagName("li");  var taglength = tag.length;  for(i=0; i&lt;taglength; i++){   tag[i].className = "";  }  selfObj.parentNode.className = "selectTag";  // 操作内容  for(i=0; j=document.getElementById("tagContent"+i); i++){   j.style.display = "none";  }  document.getElementById(showContent).style.display = "block";     } &lt;/SCRIPT&gt;  &lt;/BODY&gt;&lt;/HTML&gt;</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-56679.htm">同安宠物领养中心地址在哪里 同安宠物领养中心地址在哪里啊</a></p>
+                                        <p>下一个：<a href="/news/article-57245.htm">宠物食品加工厂的前景 宠物食品加工厂的前景如何</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-32993.htm" title="动物医院实训总结怎么写（动物医院实训总结怎么写范文）">动物医院实训总结怎么写（动物医院实训总结怎么写范文）</a></li>
+                        <li class="py-2"><a href="/news/article-56118.htm" title="windows 平台下编译openssl 最新版本-3.0.5">windows 平台下编译openssl 最新版本-3.0.5</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-vless-windows.htm" title="「12月4日」最高速度19.7M/S，2024年Vless每天更新免费机场订阅节点链接">「12月4日」最高速度19.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-41250.htm" title="开一家宠物食品加工厂成本和利润多少（开一家宠物食品加工厂成本和利润多少钱）">开一家宠物食品加工厂成本和利润多少（开一家宠物食品加工厂成本和利润多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-53370.htm" title="宠物粮品牌排行前十（宠物粮食品牌排名）">宠物粮品牌排行前十（宠物粮食品牌排名）</a></li>
+                        <li class="py-2"><a href="/news/article-51762.htm" title="孕妇被猫抓伤出一丝丝血要***吗（孕妇被猫抓伤出一丝丝血要***吗有影响吗）">孕妇被猫抓伤出一丝丝血要***吗（孕妇被猫抓伤出一丝丝血要***吗有影响吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-vless-github.htm" title="「12月30日」最高速度21.2M/S，2024年Vless每天更新免费机场订阅节点链接">「12月30日」最高速度21.2M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23618.htm" title="优瑞派狗粮批发（优瑞派狗粮怎么样山茶）">优瑞派狗粮批发（优瑞派狗粮怎么样山茶）</a></li>
+                        <li class="py-2"><a href="/news/article-44726.htm" title="沈阳哪里卖宠物猫便宜（沈阳哪里买猫）">沈阳哪里卖宠物猫便宜（沈阳哪里买猫）</a></li>
+                        <li class="py-2"><a href="/news/article-25472.htm" title="开一家宠物食品加工厂需要多少钱 开一家宠物食品加工厂需要多少钱呢">开一家宠物食品加工厂需要多少钱 开一家宠物食品加工厂需要多少钱呢</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
