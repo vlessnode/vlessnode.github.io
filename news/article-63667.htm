@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-63667.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具</title>
+        <meta name="description" content="关于net use和psexec无法使用本地管理员组用户建立连接的问题  测试环境: win7系统，存在域环境 域名：de1ay 普通域用户: de1ay\de1ay 域管理员用户：de1ay\Adm" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-63667.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/db9b2a82891766b290aa704e893699bd.webp" />
+        <meta property="og:release_date" content="2025-02-26T08:36:53" />
+    <meta property="og:updated_time" content="2025-02-26T08:36:53" />
+        <meta property="og:description" content="关于net use和psexec无法使用本地管理员组用户建立连接的问题  测试环境: win7系统，存在域环境 域名：de1ay 普通域用户: de1ay\de1ay 域管理员用户：de1ay\Adm" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <blockquote> <p><strong>关于net use和psexec无法使用本地管理员组用户建立连接的问题</strong></p> </blockquote> <p><strong>测试环境:</strong></p> <pre><code>win7系统，存在域环境 域名：de1ay 普通域用户: de1ay\de1ay 域管理员用户：de1ay\Administrator 本地管理员用户: de1ay </code></pre> <p>当我尝试使用域用户de1ay\de1ay和本地管理员组的用户de1ay使用psexec连接目标Windows服务器执行命令时返回了拒绝访问，并且在使用net use建立IPC连接的时候返回了Access Denied<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/e5001f5c9fb6d0a906c51a6c5ec1d4d9.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/b29491d5fe9969b06c0197cc54b1f829.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /> 唯一成功的是使用域管用户de1ay\Administrator成功获取到cmd</p> <ol> <li>net localgroup Administrators 查看本地管理员组，存在本地用户de1ay</li> <li>net user de1ay /domain 查看域用户de1ay</li> <li>net share 确定ADMIN$开启了共享</li> </ol> <p>并且确定ADMIN$目录开启了共享<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/d1a193f0b63f70ee1abaa671e322d381.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /> 了解到Psexec是借助的IPC连接执行命令，那么尝试使用上面两组用户名进行IPC连接<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/ccd28483aba0c9501a32e40e609718de.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /> 只有域管用户成功建立了IPC连接，de1ay/de1ay全局组成员显示为Domain Users 普通的域成员，并非管理员，猜测是因为de1ay\de1ay是普通用户权限不足，所以无法建立连接。尝试将de1ay\de1ay加入到Domain Admins域管理员组。</p> <ul> <li>net group "Domain Admins" de1ay /add /domain 在域控中执行，添加域管理员</li> </ul> <p>再次尝试使用de1ay\de1ay用户连接，果然这次成功建立了对admin$目录的IPC连接<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/c98c324d906fe69ad3302f435898985c.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /> 可成功使用Psexec弹回cmd<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/fce03b131d7426b1ab9c29f54ccc265b.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /> 此时回到本地用户，在我修改了域控的密码复杂度等组策略并且在目标机器上启用了Administrator用户后发现使用目标机器本地的Administrator用户可以建立对admin$目录的IPC连接，而同为管理员组下的de1ay又是失败的。</p> <h4 id="既然域用户加入到管理员组后便可以成功建立ipc连接为什么本地用户却又不行">既然域用户加入到管理员组后便可以成功建立IPC连接，为什么本地用户却又不行？</h4> <p>联想到微软 KB2871997 补丁使攻击者无法将哈希传递给非内置RID为500(Administrator)的管理用用户，猜测是否与补丁有关</p> <p>但是通过查询补丁发现并没有安装KB2871997<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/eaa865311174d7cc5281ddacc98376f7.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /> 而且网上也有一些<strong>即使未安装补丁也无法使用本地管理员组非RID500的用户进行哈希传递</strong> 和 <strong>安装了补丁也可以使用RID非500的用户完成哈希传递的案例</strong>，那么除了补丁外，还有什么会对这些行为造成影响？</p> <p>这些问题的罪魁祸首是远程访问上下文中的用户帐户控制(UAC)令牌过滤</p> </h1> <p>微软的 WindowsVistaUACDevReqs 文档中有如下描述：</p> <ul> <li> <p>User Account Control and Remote Scenarios：<br /> When an administrator logs on to a Windows Vista computer remotely, through Remote Desktop for instance, the user is logged on to the computer as a standard user by default. Remote administration has been modified to be restrictive over a network. This restriction helps prevent malicious software from performing application “loopbacks” if a user is running with an administrator access token.</p> </li> <li> <p>Local User Accounts：<br /> When a user with an administrator account in a Windows Vista computer’s local Security Accounts Manager (SAM) database remotely connects to a Windows Vista computer, the user has no elevation potential on the remote computer and cannot perform administrative tasks. If the user wants to administer the workstation with a SAM account, the user must interactively logon to the computer that he/she wishes to administer.</p> </li> <li> <p>Domain User Accounts：<br /> When a user with a domain user account logs on to a Windows Vista computer remotely, and the user is a member of the Administrators group, the domain user will run with a full administrator access token on the remote computer and UAC is disabled for the user on the remote computer for that session.</p> </li> </ul> <p>还有另一份 Description of User Account Control and remote restrictions in Windows Vista 中的描述</p> <ul> <li> <p>Local user accounts (Security Account Manager user account):<br /> When a user who is a member of the local administrators group on the target remote computer establishes a remote administrative connection by using the net use * \remotecomputer\Share$ command, for example, they will not connect as a full administrator. The user has no elevation potential on the remote computer, and the user cannot perform administrative tasks. If the user wants to administer the workstation with a Security Account Manager (SAM) account, the user must interactively log on to the computer that is to be administered with Remote Assistance or Remote Desktop, if these services are available.</p> </li> <li> <p>Domain user accounts (Active Directory user account):<br /> A user who has a domain user account logs on remotely to a Windows Vista computer. And, the domain user is a member of the Administrators group. In this case, the domain user will run with a full administrator access token on the remote computer, and UAC will not be in effect.<br /> Note This behavior is not different from the behavior in Windows XP.</p> </li> </ul> <p><strong>对于本地用户：</strong></p> <ul> <li>当使用远程计算机上本地管理员组成员的用户通过net use \\remotecomputer\ 命令建立IPC连接的时候不会以完全管理权限的管理员身份连接，用户无法在远程计算机上提升自己的权限，并且无法执行管理任务，如果用户希望使用安全账户管理器(SAM)中的用户管理服务器，则必须通过远程桌面连接来登录</li> </ul> <p>即使已启用远程管理，内置管理员帐户之外的本地管理员帐户也可能不具有远程管理服务器的权限。 必须将远程用户帐户控制（UAC） LocalAccountTokenFilterPolicy注册表设置配置为<strong>允许除内置管理员帐户之外的管理员组的本地帐户</strong>远程管理服务器。</p> <p>如果目标服务器未加入域，请启用以下注册表设置：</p> <p>HKLM\SOFTWARE\Microsoft\Windows\Currentversion\system\LocalAccountTokenFilterPolicy\策略。</p> <p>在不对系统设置进行更改的情况下，除默认的本地管理员账户(Administrators)外无法使用其他本地管理员账户完成远程管理。</p> <p><strong>对于域用户（ACTIVE DIRECTORY 账户）：</strong></p> <ul> <li>大致是说：如果你的计算机是域中的一部分，使用管理员组中的用户连接远程计算机，此时UAC 访问令牌过滤器不会生效，不要使用本地的、非域内用户的账户连接远程计算机，即使该用户属于管理员组</li> <li>当使用域用户（并且该域用户属于管理员组）远程登录到计算机时，该用户会拥有完整的管理员权限，并且UAC会在该会话期间被禁用</li> </ul> <p>以上便解释了为什么本地管理账户在利用IPC远程访问时会失败，但是域管理员账户可以成功。</p> <p>Windows已经普遍默认禁用了Administrator用户，并且在域环境下，由于域控端设置的密码安全策略，会因为默认的空密码不满足域内密码安全策略中的密码最小长度导致无法在域机器中启用该账户，除非在域控机器上主动修改域内的密码安全策略,在官方文档中已经有了解决方法，通过修改注册表来解除对非默认管理员账户的限制.</p> <p>在注册表中新建如下项：</p> <pre><code>Key: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System Value: LocalAccountTokenFilterPolicy Data: 1 (to disable, 0 enables filtering) Type: REG_DWORD (32-bit) </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/58583ad7478007f9a82be1977b2c3bbd.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /> 建立完成后再次测试，本地管理员用户de1ay成功建立IPC连接，并且Psexec执行成功。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/1a1da40df66a43dc2296d32b21bd514f.jpg" alt="关于IPC和PTH用户权限问题,psexec拒绝访问(Access Denied)的原因_在线工具"><br /> 至此问题已经解决，总结如下：</p> <ul> <li>默认情况下，只有使用域管理员(归属于Domain Admins组)用户，可以直接进行连接，但本地管理员组中除Administrator用户外无法进行连接；</li> <li>添加HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy之后，rid非500的本地管理员账户可以进行连接（不影响本地和域的普通用户），并且可以进行哈希传递攻击，在此情况下KB2871997补丁将不会有实际作用</li> </ul> <table> <thead> <tr> <th>用户（组）</th> <th>添加注册表前</th> <th>添加注册表后</th> </tr> </thead> <tbody> <tr> <td>本地管理员(非Administrator)</td> <td>无权限</td> <td>有权限</td> </tr> <tr> <td>Administrator</td> <td>有权限</td> <td>有权限</td> </tr> <tr> <td>域管理员</td> <td>有权限</td> <td>有权限</td> </tr> <tr> <td>普通域用户</td> <td>无权限</td> <td>无权限</td> </tr> <tr> <td>普通用户</td> <td>无权限</td> <td>无权限</td> </tr> </tbody> </table> <blockquote> <p>参考文章：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://ares-x.com/2020/03/10/%E5%85%B3%E4%BA%8EIPC%E5%92%8CPTH%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/"  target="_blank"  rel="nofollow">https://ares-x.com/2020/03/10/关于IPC和PTH用户权限问题/</a></p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-63069.htm">打完动物疫苗注意事项有哪些（打动物疫苗不能吃什么）</a></p>
+                                        <p>下一个：<a href="/news/article-63668.htm">动物医院介绍资料 动物医院介绍资料大全</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-64891.htm" title="动物接种疫苗产生的免疫力为（动物接种疫苗产生的免疫力为什么低）">动物接种疫苗产生的免疫力为（动物接种疫苗产生的免疫力为什么低）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-vless-windows.htm" title="「12月8日」最高速度20.1M/S，2024年Vless每天更新免费机场订阅节点链接">「12月8日」最高速度20.1M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-3-free-node-subscribe.htm" title="「1月3日」最高速度20.3M/S，2025年Vless每天更新免费机场订阅节点链接">「1月3日」最高速度20.3M/S，2025年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33441.htm" title="狗粮生产机器设备哪个品牌好（专业狗粮机生产厂家）">狗粮生产机器设备哪个品牌好（专业狗粮机生产厂家）</a></li>
+                        <li class="py-2"><a href="/news/article-48170.htm" title="猫咪对主人的喜欢程度及表现（猫咪认主的5大征兆）">猫咪对主人的喜欢程度及表现（猫咪认主的5大征兆）</a></li>
+                        <li class="py-2"><a href="/news/article-43235.htm" title="Django项目引入NPM和gulp管理前端资源">Django项目引入NPM和gulp管理前端资源</a></li>
+                        <li class="py-2"><a href="/news/article-58960.htm" title="厦门宠物领养贴吧 厦门宠物领养贴吧论坛">厦门宠物领养贴吧 厦门宠物领养贴吧论坛</a></li>
+                        <li class="py-2"><a href="/news/article-34422.htm" title="妙三多猫疫苗的不良反应（妙三多猫疫苗失效什么样子）">妙三多猫疫苗的不良反应（妙三多猫疫苗失效什么样子）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-node-share-links.htm" title="「12月14日」最高速度19.4M/S，2024年Vless每天更新免费机场订阅节点链接">「12月14日」最高速度19.4M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-vless-github.htm" title="「12月17日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接">「12月17日」最高速度22.7M/S，2024年Vless每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
