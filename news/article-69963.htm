@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-69963.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java四舍五入保留两位小数</title>
+        <meta name="description" content="文章目录  Java四舍五入保留两位小数 一、前言   环境   二、正文   BigDecimal DecimalFormat Math commons-math3 String#format   " />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-69963.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="Java四舍五入保留两位小数" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/27d208690eaeb5d28d8b0cee121277cb.webp" />
+        <meta property="og:release_date" content="2025-03-08T05:07:25" />
+    <meta property="og:updated_time" content="2025-03-08T05:07:25" />
+        <meta property="og:description" content="文章目录  Java四舍五入保留两位小数 一、前言   环境   二、正文   BigDecimal DecimalFormat Math commons-math3 String#format   " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java四舍五入保留两位小数">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">Java四舍五入保留两位小数</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#Java_2" rel="nofollow">Java四舍五入保留两位小数</a></li> <li><a href="#_4" rel="nofollow">一、前言</a></li> <li> <ul> <li><a href="#_6" rel="nofollow">环境</a></li> </ul> </li> <li><a href="#_23" rel="nofollow">二、正文</a></li> <li> <ul> <li><a href="#BigDecimal_25" rel="nofollow">BigDecimal</a></li> <li><a href="#DecimalFormat_50" rel="nofollow">DecimalFormat</a></li> <li><a href="#Math_60" rel="nofollow">Math</a></li> <li><a href="#commonsmath3_69" rel="nofollow">commons-math3</a></li> <li><a href="#Stringformat_90" rel="nofollow">String#format</a></li> </ul> </li> </ul> </div> </h1> </h1> <h2> <a id="_6" rel="nofollow"></a>环境</h2> <ul> <li>开发工具：<strong>IntelliJ IDEA</strong> </li> <li>JDK：<strong>1.8</strong> </li> </ul> <blockquote> <p>BigDecimal：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html"  rel="nofollow">https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html</a></p> <p>DecimalFormat：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html"  rel="nofollow">https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html</a></p> <p>Math：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html"  rel="nofollow">https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html</a></p> <p>apache commons-math：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://commons.apache.org/proper/commons-math/"  rel="nofollow">https://commons.apache.org/proper/commons-math/</a></p> <p>maven repository：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mvnrepository.com/"  rel="nofollow">https://mvnrepository.com/</a></p> </blockquote> </h1> <h2> <a id="BigDecimal_25" rel="nofollow"></a>BigDecimal</h2> <ul> <li>RoundingMode</li> </ul> <table> <thead> <tr> <th>算法</th> <th>说明</th> </tr> </thead> <tbody> <tr> <td>ROUND_UP</td> <td>舍入模式从零舍入</td> </tr> <tr> <td>ROUND_DOWN</td> <td>舍入模式向零舍入</td> </tr> <tr> <td>ROUND_CEILING</td> <td>舍入模式向正无穷大舍入</td> </tr> <tr> <td>ROUND_FLOOR</td> <td>舍入模式向负无穷大舍入</td> </tr> <tr> <td>HALF_UP</td> <td>舍入模式向“最近的邻居”舍入，除非两个邻居是等距的，在这种情况下向上舍入</td> </tr> <tr> <td>HALF_DOWN</td> <td>舍入模式向“最近的邻居”舍入，除非两个邻居是等距的，在这种情况下向下舍入</td> </tr> <tr> <td>HAIL_EVEN</td> <td>舍入模式向“最近的邻居”舍入，除非两个邻居是等距的，在这种情况下，向偶数邻居舍入</td> </tr> <tr> <td>UNNECESSARY</td> <td>舍入模式断言所请求的操作具有精确的结果，因此不需要舍入</td> </tr> </tbody> </table> <ul> <li>代码</li> </ul> <pre><code class="prism language-java"><span class="token keyword">double</span> num <span class="token operator">=</span> <span class="token number">3333.445555</span><span class="token punctuation">;</span> <span class="token comment">// BigDecimal</span> BigDecimal bigDecimal <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> bigDecimal <span class="token operator">=</span> bigDecimal<span class="token punctuation">.</span><span class="token function">setScale</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> RoundingMode<span class="token punctuation">.</span>HALF_UP<span class="token punctuation">)</span><span class="token punctuation">;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"bigDecimal="</span><span class="token operator">+</span> bigDecimal<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> <h2> <a id="DecimalFormat_50" rel="nofollow"></a>DecimalFormat</h2> <pre><code class="prism language-java"><span class="token keyword">double</span> num <span class="token operator">=</span> <span class="token number">3333.445555</span><span class="token punctuation">;</span> <span class="token comment">// DecimalFormat</span> DecimalFormat decimalFormat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DecimalFormat</span><span class="token punctuation">(</span><span class="token string">"#.##"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> String numByDF <span class="token operator">=</span> decimalFormat<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"decimalFormat="</span><span class="token operator">+</span> numByDF<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> <h2> <a id="Math_60" rel="nofollow"></a>Math</h2> <pre><code class="prism language-java"><span class="token keyword">double</span> num <span class="token operator">=</span> <span class="token number">3333.445555</span><span class="token punctuation">;</span> <span class="token comment">// Math</span> <span class="token keyword">double</span> numByM <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span>num<span class="token operator">*</span><span class="token number">100.0</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">100.0</span><span class="token punctuation">;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"numByM="</span><span class="token operator">+</span> numByM<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> <h2> <a id="commonsmath3_69" rel="nofollow"></a>commons-math3</h2> <ul> <li>maven 依赖</li> </ul> <pre><code class="prism language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.commons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-math3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.6.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span> </code></pre> <ul> <li>代码</li> </ul> <pre><code class="prism language-java"><span class="token keyword">double</span> num <span class="token operator">=</span> <span class="token number">3333.445555</span><span class="token punctuation">;</span> <span class="token comment">// commons-math3</span> <span class="token keyword">double</span> numByM3 <span class="token operator">=</span> Precision<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"numByM3="</span><span class="token operator">+</span> numByM3<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> <h2> <a id="Stringformat_90" rel="nofollow"></a>String#format</h2> <pre><code class="prism language-java"><span class="token keyword">double</span> num <span class="token operator">=</span> <span class="token number">3333.445555</span><span class="token punctuation">;</span> <span class="token comment">// String#format</span> String numByStr <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%.2f"</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"String.format="</span><span class="token operator">+</span> numByStr<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69962.htm">C ++中具有最大金数的路径</a></p>
+                                        <p>下一个：<a href="/news/article-70602.htm">函数的返回值存储问题</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-60113.htm" title="宠物领养协议书电子版怎么弄的啊（宠物领养协议是否有法律效力）">宠物领养协议书电子版怎么弄的啊（宠物领养协议是否有法律效力）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-19-free-vless-node.htm" title="「2月19日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接">「2月19日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-69314.htm" title="2020年中牧股份中标动物疫苗（中牧股份动物新冠疫苗）">2020年中牧股份中标动物疫苗（中牧股份动物新冠疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-61880.htm" title="宠物粮食店铺名称怎么起 宠物粮食店铺名称怎么起好听">宠物粮食店铺名称怎么起 宠物粮食店铺名称怎么起好听</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-vless-node.htm" title="「1月14日」每天更新|22.4M/S，2025年Vless免费机场订阅节点链接">「1月14日」每天更新|22.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-subscribe-node.htm" title="「3月6日」每天更新|21.3M/S，2025年Vless免费机场订阅节点链接">「3月6日」每天更新|21.3M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-58386.htm" title="动物疫苗接种时间表最新消息查询（动物疫苗法最新消息2019）">动物疫苗接种时间表最新消息查询（动物疫苗法最新消息2019）</a></li>
+                        <li class="py-2"><a href="/news/article-39268.htm" title="宠物粮食品牌排名榜前十名有哪些牌子（宠物粮食品牌排行榜）">宠物粮食品牌排名榜前十名有哪些牌子（宠物粮食品牌排行榜）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-vless-github.htm" title="「1月9日」每天更新|20.2M/S，2025年Vless免费机场订阅节点链接">「1月9日」每天更新|20.2M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-60112.htm" title="广州领养狗狗的网站（广州领养宠物在哪里）">广州领养狗狗的网站（广州领养宠物在哪里）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
