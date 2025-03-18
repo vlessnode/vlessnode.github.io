@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-76634.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？</title>
+        <meta name="description" content="常用数据结构基本上是面试必问的问题，比如HashMap、LinkList、ConcurrentHashMap等。 关于HashMap，有个学员私信了我一个面试题说： “HashMap是怎么解决哈希冲突" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-76634.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/ce7807988d9530f44b90d23816a9729c.webp" />
+        <meta property="og:release_date" content="2025-03-18T06:14:34" />
+    <meta property="og:updated_time" content="2025-03-18T06:14:34" />
+        <meta property="og:description" content="常用数据结构基本上是面试必问的问题，比如HashMap、LinkList、ConcurrentHashMap等。 关于HashMap，有个学员私信了我一个面试题说： “HashMap是怎么解决哈希冲突" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<blockquote> <p>常用数据结构基本上是面试必问的问题，比如HashMap、LinkList、ConcurrentHashMap等。</p> <p>关于HashMap，有个学员私信了我一个面试题说： “HashMap是怎么解决哈希冲突的？”</p> <p>关于这个问题，我们来模拟一下普通人和高手对于这个问题的回答。</p> </blockquote> </h1> <p>嗯.... HashMap我好久之前看过它的源码，我记得好像是通过链表来解决的！</p> </h1> <p>嗯，这个问题我从四个方面来回答。</p> <p>1.要了解Hash冲突，那首先我们要先了解Hash算法和Hash表。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e5559b35dfc6fa79ddd937c6e0e8f74e.jpg" alt="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4ba69a2ac4e577edcb16357209fb47e3.jpg" alt="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？"></p> <p>（1）Hash算法，就是把任意长度的输入，通过散列算法，变成固定长度的输出，这个输出结果是散列值。</p> <p>（2）Hash表又叫做“散列表”，它是通过key直接访问在内存存储位置的数据结构，在具体实现上，我们通过hash函数把key映射到表中的某个位置，来获取这个位置的数据，从而加快查找速度。</p> <p>2.所谓hash冲突，是由于哈希算法被计算的数据是无限的，而计算后的结果范围有限，所以总会存在不同的数据经过计算后得到的值相同，这就是哈希冲突。</p> <p>3.通常解决hash冲突的方法有4种。</p> <p>（1）开放定址法，也称为线性探测法，就是从发生冲突的那个位置开始，按照一定的次序从hash表中找到一个空闲的位置，然后把发生冲突的元素存入到这个空闲位置中。ThreadLocal就用到了线性探测法来解决hash冲突的。</p> <p>向这样一种情况</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3f1de6251dd75a61676c3d3e779c34bd.jpg" alt="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4ba69a2ac4e577edcb16357209fb47e3.jpg" alt="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？"></p> <p>在hash表索引1的位置存了一个key=name，当再次添加key=hobby时，hash计算得到的索引也是1，这个就是hash冲突。而开放定址法，就是按顺序向前找到一个空闲的位置来存储冲突的key。</p> <p>（2）链式寻址法，这是一种非常常见的方法，简单理解就是把存在hash冲突的key，以单向链表的方式来存储，比如HashMap就是采用链式寻址法来实现的。</p> <p>向这样一种情况</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a132a3d4fdaf767ee958b83638910fc7.jpg" alt="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4ba69a2ac4e577edcb16357209fb47e3.jpg" alt="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？"></p> <p>存在冲突的key直接以单向链表的方式进行存储。</p> <p>（3）再hash法，就是当通过某个hash函数计算的key存在冲突时，再用另外一个hash函数对这个key做hash，一直运算直到不再产生冲突。这种方式会增加计算时间，性能影响较大。</p> <p>（4）建立公共溢出区， 就是把hash表分为基本表和溢出表两个部分，凡事存在冲突的元素，一律放入到溢出表中。</p> <p>4.HashMap在JDK1.8版本中，通过链式寻址法+红黑树的方式来解决hash冲突问题，其中红黑树是为了优化Hash表链表过长导致时间复杂度增加的问题。当链表长度大于8并且hash表的容量大于64的时候，再向链表中添加元素就会触发转化。</p> <p>以上就是我对这个问题的理解！</p> </h1> <p>这道面试题主要考察Java基础，面向的范围是工作1到5年甚至5年以上。</p> <p>因为集合类的对象在项目中使用频率较高，如果对集合理解不够深刻，容易在项目中制造隐藏的BUG。</p> <p>所以，再强调一下，面试的时候，基础是很重要的考核项！！</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-75940.htm">十大毒猫粮黑名单图片 十大毒猫粮排行榜</a></p>
+                                        <p>下一个：<a href="/news/article-76635.htm">疫苗瓶回收处理（疫苗空瓶回收登记表）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-45716.htm" title="领养宠物还可以要回来吗知乎（领养宠物还可以要回来吗知乎文章）">领养宠物还可以要回来吗知乎（领养宠物还可以要回来吗知乎文章）</a></li>
+                        <li class="py-2"><a href="/news/article-36144.htm" title="农大动物医院电话24小时营业吗多少钱啊（农大动物医院哪个医生好）">农大动物医院电话24小时营业吗多少钱啊（农大动物医院哪个医生好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-node-share.htm" title="「2月1日」每天更新|20M/S，2025年Vless免费机场订阅节点链接">「2月1日」每天更新|20M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-26-free-subscribe-node.htm" title="「2月26日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接">「2月26日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-vless-github.htm" title="「1月5日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接">「1月5日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-76634.htm" title="【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？">【面试普通人VS高手系列】HashMap是怎么解决哈希冲突的？</a></li>
+                        <li class="py-2"><a href="/news/article-39769.htm" title="宠物粮食怎么销售出去的（宠物粮食销售方法）">宠物粮食怎么销售出去的（宠物粮食销售方法）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-vless-node-share.htm" title="「3月2日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接">「3月2日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-55568.htm" title="开个小型宠物食品加工厂多少钱一个月工资（开宠物食品厂有利润吗）">开个小型宠物食品加工厂多少钱一个月工资（开宠物食品厂有利润吗）</a></li>
+                        <li class="py-2"><a href="/news/article-43733.htm" title="宠物领养合同有法律效应吗 宠物领养合同有法律效应吗知乎">宠物领养合同有法律效应吗 宠物领养合同有法律效应吗知乎</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
