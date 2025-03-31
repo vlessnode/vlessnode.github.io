@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-84284.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue中excel导入功能</title>
+        <meta name="description" content="批量导入信息的时候就需要excel导入功能,可以大大提高工作效率,但是这个功能应该如何实现呢. 1.excel导入思路 1.1前端为主导 &nbsp; &nbsp; &nbsp; &nbsp; 用户上" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-84284.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="vue中excel导入功能" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/fb7bcec0c034fe01b33aa6430009136e.webp" />
+        <meta property="og:release_date" content="2025-03-29T09:03:46" />
+    <meta property="og:updated_time" content="2025-03-29T09:03:46" />
+        <meta property="og:description" content="批量导入信息的时候就需要excel导入功能,可以大大提高工作效率,但是这个功能应该如何实现呢. 1.excel导入思路 1.1前端为主导 &nbsp; &nbsp; &nbsp; &nbsp; 用户上" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue中excel导入功能">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">vue中excel导入功能</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>批量导入信息的时候就需要excel导入功能,可以大大提高工作效率,但是这个功能应该如何实现呢.</p> <h2>1.excel导入思路</h2> <h3>1.1前端为主导</h3> <p>&nbsp; &nbsp; &nbsp; &nbsp; 用户上传excel文件,前端将excel文件读取,然后还原成最基本的行列样式,按照后端给出的接口上传给服务器.</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220604/5a3a1c2d6e53896b6f900f07d7587f5c.jpg"></p> <h3>&nbsp;1.2后端为主导</h3> <p>&nbsp; &nbsp; &nbsp; &nbsp; 前端只负责接收excel文件,将文件直接发给后端,后端处理数据.</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220604/c251e71ea329f3a221db4485f40d8ca2.jpg"></p> <h2>&nbsp;2.前端数据处理数据</h2> <p>&nbsp; &nbsp; &nbsp; &nbsp; 因为经常会有excel上传数据的功能,所有现在已经有成熟的解决方案,直接使用便可以.vue-admin-element中已经有了成熟的解决方案,寻找文件夹src/components/UploadExcel/index.vue,</p> <p>将其复制到自己vue项目中.</p> <pre><code class="language-javascript">&lt;template&gt;   .... &lt;/template&gt;  &lt;script&gt; import XLSX from 'xlsx'  export default {   props: {     beforeUpload: Function, // eslint-disable-line     onSuccess: Function// eslint-disable-line   } } &lt;/script&gt;</code></pre> <p>&nbsp; &nbsp; &nbsp; &nbsp; 这个组件使用了XLSX包,需要自行下载.命令为:npm install xlsx -S.</p> <p>将其定义为组件(全局或者局部随意),在项目中引用该组件并且传入两个属性</p> <pre><code class="language-javascript">&lt;upload-excel-component        :on-success="handleSuccess"        :before-upload="beforeUpload"      /&gt;</code></pre> <p>核心代码</p> <pre><code class="language-javascript">methods: {     beforeUpload(file) {       const isLt1M = file.size / 1024 / 1024 &lt; 1       if (isLt1M) {         return true       }       this.$message({         message: 'Please do not upload files larger than 1m in size.',         type: 'warning'       })       return false     },     handleSuccess({ results, header }) {       this.tableData = results       this.tableHeader = header     }   }</code></pre> <p>可以观察下handleSuccess的返回值 header返回值为excel中的标题, results的返回值为excel中的内容.</p> <p>思路</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220604/ad35bcb2517e4a4ff34f870437d1939e.jpg"></p> <p>&nbsp;调用接口进行excel上传的<strong>重点其实是数据的处理</strong>，我们需要按照接口的要求，把excel表格中经过插件处理好的数据处理成后端接口要求的格式</p> <pre><code class="language-javascript">/**      * results excel表格的内容       // [           {'姓名'：'小张'， '手机号': '13712345678'}         , {.....}         ]        // 目标       // [ {'username'：'小张'，'mobile': '13712345678'}, {.....} ]      */     // 把一个对象数组中的每个对象的属性名，从中文改成英文     // 思路：对于原数组每个对象来说     //    （1） 找出所有的中文key     //     (2)  得到对应的英文key     //     (3)  拼接一个新对象： 英文key:值     transExcel(results) {       const mapInfo = {         '入职日期': 'timeOfEntry',         '手机号': 'mobile',         '姓名': 'username',         '转正日期': 'correctionTime',         '工号': 'workNumber',         '部门': 'departmentName',         '聘用形式': 'formOfEmployment'       }       return results.map(zhObj =&gt; {         const enObj = {}         const zhKeys = Object.keys(zhObj) // ['姓名', '手机号']          zhKeys.forEach(zhKey =&gt; {           const enKey = mapInfo[zhKey]            enObj[enKey] = zhObj[zhKey]         })          return enObj       })     }</code></pre> <p>转换完成后发现问题从excel中读入的日期时间“<strong>变形</strong>”了</p> <p>原因:excel内部时间编码与其他文件中的不同</p> <h3>解决</h3> <p>需要借助公式来进行还原。在utils/index.js中定义如下</p> <pre><code class="language-javascript">// 把excel文件中的日期格式的内容转回成标准时间 // https://blog.csdn.net/qq_15054679/article/details/107712966 export function formatExcelDate(numb, format = '/') {   const time = new Date((numb - 25567) * 24 * 3600000 - 5 * 60 * 1000 - 43 * 1000 - 24 * 3600000 - 8 * 3600000)   time.setYear(time.getFullYear())   const year = time.getFullYear() + ''   const month = time.getMonth() + 1 + ''   const date = time.getDate() + ''   if (format &amp;&amp; format.length === 1) {     return year + format + month + format + date   }   return year + (month &lt; 10 ? '0' + month : month) + (date &lt; 10 ? '0' + date : date) }</code></pre> <p>所以上方整理格式代码需要更新</p> <pre><code class="language-javascript">import { formatExcelDate } from '@/utils/index.js'  // 更新格式转换函数 transExcel(results) {       const mapInfo = {         '入职日期': 'timeOfEntry',         '手机号': 'mobile',         '姓名': 'username',         '转正日期': 'correctionTime',         '工号': 'workNumber',         '部门': 'departmentName',         '聘用形式': 'formOfEmployment'       }       return results.map(zhObj =&gt; {         const enObj = {}         const zhKeys = Object.keys(zhObj) // ['姓名', '手机号']          zhKeys.forEach(zhKey =&gt; {           const enKey = mapInfo[zhKey] +          if (enKey === 'timeOfEntry' || enKey === 'correctionTime') {             // 后端需要的日期格式是标准时间 +            enObj[enKey] = new Date(formatExcelDate(zhObj[zhKey]))           } else {             enObj[enKey] = zhObj[zhKey]           }         })          return enObj       })     }</code></pre> <h2>3.数据上传</h2> <p>导入API</p> <p>封装doImport</p> <pre><code class="language-javascript">  async doImport(data) {       try {         const res = await importEmployee(data)         console.log('importEmployee', res)         this.$message.success('导入成功')          // 页面后退         this.$router.back()       } catch (err) {         console.log('importEmployee', err)         this.$message.error('导入失败')       }     },     //  1. 把数据从excel文件读入到浏览器内存     handleSuccess({ header, results }) {       console.log(header, results)        // 2. 按接口要求 组装数据       const data = this.transExcel(results)       console.log('按接口要求 组装数据', data)       // 3. 调用接口做上传       this.doImport(data)     },</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-84283.htm">Antd的Form.Item自定义类型输入框</a></p>
+                                        <p>下一个：<a href="/news/article-84987.htm">三国杀特殊牌（三国杀特殊牌制作软件）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-38772.htm" title="动物疫苗反应有哪些症状表现（动物打疫苗后的不良反应）">动物疫苗反应有哪些症状表现（动物打疫苗后的不良反应）</a></li>
+                        <li class="py-2"><a href="/news/article-59529.htm" title="开宠物店需要去哪里学（开宠物店去哪里学技术）">开宠物店需要去哪里学（开宠物店去哪里学技术）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-free-node-subscribe.htm" title="「1月8日」每天更新|20.8M/S，2025年Vless免费机场订阅节点链接">「1月8日」每天更新|20.8M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-25-free-high-speed-nodes.htm" title="「2月25日」每天更新|20.9M/S，2025年Vless免费机场订阅节点链接">「2月25日」每天更新|20.9M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-78684.htm" title="和田市宠物医院 和田市宠物医院在哪里">和田市宠物医院 和田市宠物医院在哪里</a></li>
+                        <li class="py-2"><a href="/news/article-37794.htm" title="SpringBoot项目处理emoji表情到mysql">SpringBoot项目处理emoji表情到mysql</a></li>
+                        <li class="py-2"><a href="/news/article-48504.htm" title="动物医院评价 好评 动物医院评价 好评语">动物医院评价 好评 动物医院评价 好评语</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-20-free-vless-node.htm" title="「2月20日」每天更新|18.7M/S，2025年Vless免费机场订阅节点链接">「2月20日」每天更新|18.7M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-84988.htm" title="宠物粮食品牌排名前十名是什么品种（宠物粮生产厂家排名）">宠物粮食品牌排名前十名是什么品种（宠物粮生产厂家排名）</a></li>
+                        <li class="py-2"><a href="/news/article-55013.htm" title="MKL库矩阵乘法(cblas_dgemm)">MKL库矩阵乘法(cblas_dgemm)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
