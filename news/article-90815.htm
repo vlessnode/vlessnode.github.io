@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-90815.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java 垃圾回收超详细讲解记忆集和卡表_java</title>
+        <meta name="description" content="目录  跨代引用 解决跨代引用 记忆集 卡表    跨代引用 在说记忆集和卡表之前，先给大家介绍一下跨代引用的问题。  假如要现在进行一次只局限于新生代区域内的收集(Minor GC)，但新生代的实例" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-90815.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="Java 垃圾回收超详细讲解记忆集和卡表_java" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/e63640c1d7e1c961b43f79af6ae68aab.webp" />
+        <meta property="og:release_date" content="2025-04-07T09:03:55" />
+    <meta property="og:updated_time" content="2025-04-07T09:03:55" />
+        <meta property="og:description" content="目录  跨代引用 解决跨代引用 记忆集 卡表    跨代引用 在说记忆集和卡表之前，先给大家介绍一下跨代引用的问题。  假如要现在进行一次只局限于新生代区域内的收集(Minor GC)，但新生代的实例" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java 垃圾回收超详细讲解记忆集和卡表_java">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">Java 垃圾回收超详细讲解记忆集和卡表_java</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">跨代引用</a></li> <li><a href="#_label1" rel="nofollow">解决跨代引用</a></li> <li><a href="#_label2" rel="nofollow">记忆集</a></li> <li><a href="#_label3" rel="nofollow">卡表</a></li> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>跨代引用</h2> <p>在说记忆集和卡表之前，先给大家介绍一下跨代引用的问题。</p> <p style="text-align:center"><img fetchpriority="high" decoding="async" alt="" height="345" src="http://img.555519.xyz/uploads3/20220427/54ea0d237356ebd06966ecf2347d4db4.jpg"></p> <p>假如要现在进行一次只局限于新生代区域内的收集(Minor GC)，但新生代的实例对象1在老年代中被引用，为了找出该区域(新生代)中所有的存活对象，不得不在固定的GC Roots之外，再额外遍历整个老年代中所有对象来确保可达性分析结果的正确性，反过来也是一样。遍历整个老年代所有对象的方案虽然理论上可行，但无疑会为内存回收带来很大的性能负担。</p> <p>事实上并不只是新生代、老年代之间才有跨代引用的问题，所有涉及部分区域收集（Partial GC)行为的垃圾收集器，典型的如G1、ZGC和Shenandoah收集器，都会面临相同的问题。</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>解决跨代引用</h2> <p>首先，跨代引用相对于同代引用来说仅占极少数。原因是跨代引用的对象应该倾向于同时生存或者同时死亡的（举个：如果某个新生代对象存在跨代引用，由于老年代对象难以消亡，该引用会使得新生代对象在收集时同样得以存活，进而在年龄增长之后晋升到老年代中，这时跨代引用也随即被消除了）。</p> <p>依据上面说所，就不应再为了少量的跨代引用去扫描整个老年代，也不必浪费空间专门记录每一个对象是否存在及存在哪些跨代引用，只需在新生代上建立一个全局的数据结构（该结构被称为“记忆集”，Remembered Set)，这个结构把老年代划分成若干小块，标识出老年代的哪一块内存会存在跨代引用。此后当发生Minor GC时，只有包含了跨代引用的小块内存里的对象才会被加入到GCRoots进行扫描。虽然这种方法需要在对象改变引用关系(如将自己或者某个属性赋值)时维护记录数据的正确性，会增加一些运行时的开销，但比起收集时扫描整个老年代来说仍然是划算的。</p> <p>下面就来介绍一下这个全局的数据结构记忆集。</p> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>记忆集</h2> <p>记忆集是一种用于记录从非收集区域指向收集区域的指针集合的抽象数据结构。如果我们不考虑效率和成本的话，最简单的实现可以用非收集区域中所有含跨代引用的对象数组来实现这个数据结构，如下面代码所示:</p> <div class="ay1code"> <pre class="brush:java;">  //以对象指针来实现记忆集的伪代码  Class RememberedSet {  	Object[] set[OBJECT_INTERGENERATIONAL_REFERENCE_SIZE];   }</pre> </div> <p>这种记录全部含跨代引用对象的实现方案，无论是空间占用还是维护成本都相当高昂。而在垃圾收集的场景中，收集器只需要通过记忆集判断出某一块非收集区域是否存在有指向了收集区域的指针就可以了，并不需要了解这些跨代指针的全部细节。那设计者在实现记忆集的时候，便可以选择更为粗犷的记录粒度来节省记忆集的存储和维护成本。下面列举了一些可供选择（当然也可以选择这个范围以外的）的记录精度：</p> <ul> <li>字长精度：每个记录精确到一个机器字长（就是处理器的寻址位数，如常见的32位或64位，这个 精度决定了机器访问物理内存地址的指针长度），该字包含跨代指针。</li> <li>对象精度：每个记录精确到一个对象，该对象里有字段含有跨代指针。</li> <li>卡精度：每个记录精确到一块内存区域，该区域内有对象含有跨代指针。</li> </ul> <p>上面的，第三种“卡精度”所指的是用一种称为“卡表”(Card Table)的方式去实现记忆集，这也是目前最常用的记忆集的实现形式。</p> <p>卡表和记忆集又有什么关系呢？</p> <p>前面介绍记忆集的时候提到 记忆集其实是一种"抽象”的数据结构，抽象的意思是只定义了记忆集的行为意图，并没有定义其行为的具体实现。卡表就是记忆集的一种具体实现，它定义了记忆集的记录精度、与堆内存的映射关系等。关于记忆集与卡表的关系，可以按照Java中Map与HashMap的关系来类比理解（即接口和实现类来的关系）。</p> <p>下面来详细说一下记忆集的具体实现卡表</p> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>卡表</h2> <p>卡表是使用一个字节数组CARD_TABLE[] 实现，每个元素对应其标识的内存区域一块特定大小的内存块，每个内存块称为卡页，hotspot使用的卡页是2^9大小 即512字节。如下图所示</p> <p style="text-align:center"><img decoding="async" alt="" height="531" src="http://img.555519.xyz/uploads3/20220427/d1ce84ff02c556c7f9b1ca721e9d3710.jpg"></p> <p>这样我们就可以把某个区域按照卡页进行划分，假如我们现在要对新生代区域进行垃圾回收，那么就可以把老年代区域看成是一个卡页一个卡页划分好的，如下图所示。</p> <p style="text-align:center"><img decoding="async" alt="" height="501" src="http://img.555519.xyz/uploads3/20220427/98b2b88023977dcf33f2df47f0d959b5.jpg"></p> <p>如图所示，因为cardpage1中存在指向新生代的跨代引用，所以对应卡表的第一个位置为1，表明该page区域存在跨代应用的对象。</p> <ul> <li>卡表角度：因为page1中存在跨代饮用的对象，所以卡表对应的第一个位置记为1，表明page1这个元素变脏。</li> <li>内存回收角度：因为卡表的第一个位置为1，表明该page区域存在跨代应用的对象，垃圾回收的时候需要扫描该区域。</li> </ul> <p>一个卡页的内存中通常包含不止一个对象，只要卡页内有一个(或更多）对象的字段存在着跨代指针，那就将对应卡表的数组元素的值标识为1，称为这个元素变脏（Dirty)，没有则标识为0。在垃圾收集发生时，只要筛选出卡表中变脏的元素，就能轻易得出哪些卡页内存块中包含跨代指针，把它们加入GC Roots中一并扫描。这样就不需要扫描整个老年代大大减少GC Roots的扫描范围。 </p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-90064.htm">宠物疫苗能带上火车吗现在（宠物疫苗可以托运吗）</a></p>
+                                        <p>下一个：<a href="/news/article-90816.htm">瑞鹏宠物医院在线咨询（瑞鹏宠物医院在线咨询免费）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-75274.htm" title="上海狗狗领养所（上海领养犬）">上海狗狗领养所（上海领养犬）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-vless-node.htm" title="「3月5日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接">「3月5日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-84988.htm" title="宠物粮食品牌排名前十名是什么品种（宠物粮生产厂家排名）">宠物粮食品牌排名前十名是什么品种（宠物粮生产厂家排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-26-free-node-subscribe.htm" title="「3月26日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接">「3月26日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-88606.htm" title="长春市宠物猫领养 长春市宠物猫领养中心">长春市宠物猫领养 长春市宠物猫领养中心</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-today-vless-node.htm" title="「3月16日」每天更新|20M/S，2025年Vless免费机场订阅节点链接">「3月16日」每天更新|20M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-node-share.htm" title="「4月6日」每天更新|22.3M/S，2025年Vless免费机场订阅节点链接">「4月6日」每天更新|22.3M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-node-share.htm" title="「3月10日」每天更新|18M/S，2025年Vless免费机场订阅节点链接">「3月10日」每天更新|18M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-86439.htm" title="三国杀替换装备算不算失去（三国杀换装备的武将）">三国杀替换装备算不算失去（三国杀换装备的武将）</a></li>
+                        <li class="py-2"><a href="/news/article-73921.htm" title="动物疫苗种类及类型有哪些名称 动物疫苗种类及类型有哪些名称图片">动物疫苗种类及类型有哪些名称 动物疫苗种类及类型有哪些名称图片</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
