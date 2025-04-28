@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-105130.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微服务架构介绍</title>
+        <meta name="description" content="文章目录  微服务架构介绍   一、技术架构演变     1.1 单体应用 1.2 垂直应用 1.3 RPC 分布应用 1.4 SOA 流动计算架构 1.5 微服务     二、微服务简介     2" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-105130.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="微服务架构介绍" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/e930fd191b72b37c11904855b4802131.webp" />
+        <meta property="og:release_date" content="2025-04-26T07:41:24" />
+    <meta property="og:updated_time" content="2025-04-26T07:41:24" />
+        <meta property="og:description" content="文章目录  微服务架构介绍   一、技术架构演变     1.1 单体应用 1.2 垂直应用 1.3 RPC 分布应用 1.4 SOA 流动计算架构 1.5 微服务     二、微服务简介     2" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="微服务架构介绍">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">微服务架构介绍</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li>微服务架构介绍</li> <li> <ul> <li>一、技术架构演变</li> <li> <ul> <li> <ul> <li>1.1 单体应用</li> <li>1.2 垂直应用</li> <li>1.3 RPC 分布应用</li> <li>1.4 SOA 流动计算架构</li> <li>1.5 微服务</li> </ul> </li> </ul> </li> <li>二、微服务简介</li> <li> <ul> <li> <ul> <li>2.1 优点</li> <li>2.2 缺点</li> </ul> </li> </ul> </li> <li>三、SOA vs 微服务</li> <li>四、Dubbo vs Spring Cloud</li> <li> <ul> <li> <ul> <li>总结</li> </ul> </li> </ul> </li> <li>五、微服务设计原则</li> <li> <ul> <li> <ul> <li>5.1 AKF 拆分原则</li> <li>5.2 前后端分离原则</li> <li>5.3 无状态服务</li> <li>5.4 Restful 通信风格</li> </ul> </li> </ul> </li> </ul> </li> </ul> </div> </h1> <h2>一、技术架构演变</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220823/4e82ceedc0d1e55c2cdeafa7cdc45661.jpg" alt="微服务架构介绍"></p> <h4>1.1 单体应用</h4> <p> model1模式: jsp + java</p> <p> model2模式: MVC 模式</p> <h4>1.2 垂直应用</h4> <h4>1.3 RPC 分布应用</h4> <h4>1.4 SOA 流动计算架构</h4> <p> 资源调度、负载均衡、动态服务创建…服务治理</p> <h4>1.5 微服务</h4> <p> 微小、单一职责</p> <h2>二、微服务简介</h2> <p> 微服务就是将一个单体架构的应用按业务划分为一个个独立运行的程序即服务，他们之间通过HTTP协议进行通信（也可通过消息队列，如kafaka、RabbitMq等），可以采用不同的编程语言，使用不同的存储技术，自动化部署，减少人为控制，降低出错概率。服务数量较多，管理越来越复杂，因此采用集中化管理，如Eureka、Zookeeper 等比较常见的服务集中管理框架。</p> <p> 微服务是一种架构风格，一种大型的复杂软件应用，由一个或多个微服务组成，系统的各种微服务可被单独部署，各个微服务之间松耦合，每个微服务仅关注于完成一件任务并很好的完成该任务。</p> <h4>2.1 优点</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220823/118676777b0d4ca7ce0afe31aafabaa9.jpg" alt="微服务架构介绍"></p> <ul> <li>测试容易</li> <li>可伸缩性强</li> <li>可靠性强</li> <li>跨语言</li> <li>协同开发</li> <li>方便系统迭代</li> </ul> <h4>2.2 缺点</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220823/19d49ab3ee007df33ae83ac76fa2ff4e.jpg" alt="微服务架构介绍"></p> <ul> <li>运维成本高，部署项目多</li> <li>接口兼容版本问题</li> <li>分布式系统复杂性</li> <li>分布式事务</li> </ul> <h2>三、SOA vs 微服务</h2> <blockquote> <p>微服务是 SOA 发展出来的产物，是一种比较现代化的细粒度的 SOA 实现方式</p> </blockquote> <table> <thead> <tr> <th>SOA（面向服务）</th> <th>微服务</th> </tr> </thead> <tbody> <tr> <td>应用程序服务的可重用性最大化</td> <td>专注于解耦</td> </tr> <tr> <td>系统性的改变需要整体修改</td> <td>系统性的改变是创建新服务</td> </tr> <tr> <td>DevOps和持续交付正在变得流行，不是主流</td> <td>强烈官族DevOps和持续交付</td> </tr> <tr> <td>专注一业务功能重用</td> <td>更重视 上下文 边界 的概念</td> </tr> <tr> <td>通信使用企业服务总线 ESB</td> <td>对于通信，使用较少和简单的消息系统</td> </tr> <tr> <td>支持多种消息协议</td> <td>使用轻量级协议，如HTTP、REST等</td> </tr> <tr> <td>对部署到它的所有服务使用通用平台</td> <td>应用程序服务器不是真的被使用，通常使用云平台</td> </tr> <tr> <td>容器（docker）的使用不太受欢迎</td> <td>容器在微服务方面效果很好</td> </tr> <tr> <td>SOA 服务共享数据存储</td> <td>每个微服务可以拥有单独的数据存储</td> </tr> <tr> <td>共同的治理和标准</td> <td>轻松的治理，更注重团队协作和选择自由</td> </tr> </tbody> </table> <h2>四、Dubbo vs Spring Cloud</h2> <ul> <li> <p>Spring 全家桶</p> <p>用起来很舒服，无所不能</p> </li> <li> <p>Dubbo</p> <p>很多国内企业还在用，支持RESTful 风格的 API，调用 API 像调用本地 API 一样，同时其基于接口的方式增加了服务间的耦合</p> </li> </ul> <table> <thead> <tr> <th>对比项</th> <th>Spring Cloud</th> <th>Dubbo</th> </tr> </thead> <tbody> <tr> <td>服务注册中心</td> <td>Spring Cloud Netflix Eureka</td> <td>ZooKeeper，Nacos</td> </tr> <tr> <td>服务调用方式</td> <td>REST API</td> <td>RPC</td> </tr> <tr> <td>服务网关</td> <td>Sping Cloud Netflix Zuul</td> <td>Dubbo Proxy</td> </tr> <tr> <td>断路由</td> <td>Sping Cloud Netflix Hystrix</td> <td>Sentinet</td> </tr> <tr> <td>分布式配置</td> <td>Sping Cloud Netflix Config</td> <td>Nacos</td> </tr> <tr> <td>服务跟踪</td> <td>Sping Cloud Netflix Sleuth</td> <td>无</td> </tr> <tr> <td>消息总线</td> <td>Sping Cloud Netflix Bus</td> <td>无</td> </tr> <tr> <td>数据流</td> <td>Sping Cloud Netflix Stream</td> <td>无</td> </tr> <tr> <td>批量任务</td> <td>Sping Cloud Netflix Task</td> <td>无</td> </tr> </tbody> </table> <h4>总结</h4> <ul> <li> <p>Dubbo由于是二进制传输，占用带宽更少</p> </li> <li> <p>Spring Cloud 是http 协议传输，带宽比较多，同时使用 http，一般会使用Json报文，消耗会更大</p> </li> <li> <p>Dubbo 开发难度打，Dubbo 的 jar 包依赖问题很多大型工程无法解决</p> </li> <li> <p>Spring Cloud 的接口协议比较自由且松散，需要更强有力的行政做事来限制接口无序升级</p> </li> <li> <p>Dubbo 的注册中心可以选择ZooKeeper Redis 等多种，Spring Cloud 只能用 eureka 或者自研</p> </li> <li> <p>系统结构简易程序：</p> <p> Spring Cloud 系统结构更简单：注册 + Spring MVC = Spring Cloud</p> <p> Dubbo： 各种复杂Url、protocol、register 等</p> </li> <li> <p>性能：Dubbo 网络消耗小于 Spring Cloud ，但是国内大多数公司，网络消耗不是太大问题，如果成了问题，可以通过压缩、二进制、高速缓存、分段降级等方法，很容易解决</p> </li> </ul> <h2>五、微服务设计原则</h2> <h4>5.1 AKF 拆分原则</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220823/f5626f0e8c46d93b0e569994e8b925a8.jpg" alt="微服务架构介绍"></p> <ul> <li>X轴：指的是水平复制，就是单体系统多运行几个实例，成为集群加负载均衡的模式</li> <li>Z轴：是基于类似的数据分区，例如互联网打车App 用户激增，集群扛不住，按照用户区域进行数据分区，北京、上海、广州等多建几个集群</li> <li>Y轴：微服务的拆分模式，基于不同的业务进行拆分</li> </ul> <h4>5.2 前后端分离原则</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220823/5102a13c46180f064ce7899da7fc35db.jpg" alt="微服务架构介绍"></p> <ul> <li>前后端技术分离，可以由各自专家对各自领域进行优化，提升前端用户体验</li> <li>前后端分离模式下，前后端交互页面更清晰，就剩下了接口模型，后端的接口更简洁明了，更容易维护</li> <li>前端多渠道集成场景更容易，后端服务无需变更，采用统一的数据和模型，可支持多个前端，例如：微信H5前端、PC前端、安卓前端、IOS前端</li> </ul> <h4>5.3 无状态服务</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220823/344cfe5eeab8a908bc688316668a355a.jpg" alt="微服务架构介绍"></p> <h4>5.4 Restful 通信风格</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220823/8d0ad226c257d558fda030fe1e2863ed.jpg" alt="微服务架构介绍"></p> <ul> <li>无状态协议HTTP，具有先天优势，扩展能力很强</li> <li>JSON报文序列化，轻量简单，人与机器均可读，学习成本低，搜索引擎友好</li> <li>语言无关，各大热门语言都提供成熟的Restful API 框架，比 RPC 框架生态更完善!</li> <li></li> </ul> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-104160.htm">动物疫苗需要冷藏吗多久 动物疫苗需要冷藏吗多久打一次</a></p>
+                                        <p>下一个：<a href="/news/article-105131.htm">echart整体图形大小调整</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-28-vless-github.htm" title="「3月28日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接">「3月28日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-node-share.htm" title="「4月14日」每天更新|19.2M/S，2025年Vless免费机场订阅节点链接">「4月14日」每天更新|19.2M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-102660.htm" title="长沙宠物领养中心哪家好点 长沙宠物领养中心哪家好点呢">长沙宠物领养中心哪家好点 长沙宠物领养中心哪家好点呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-today-vless-node.htm" title="「3月21日」每天更新|18.7M/S，2025年Vless免费机场订阅节点链接">「3月21日」每天更新|18.7M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-87861.htm" title="青岛周口路想念动物医院电话（青岛周口路宠物医院）">青岛周口路想念动物医院电话（青岛周口路宠物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-101143.htm" title="宠物美容师一个月能赚多少钱工资（宠物美容师工作怎么样）">宠物美容师一个月能赚多少钱工资（宠物美容师工作怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-90064.htm" title="宠物疫苗能带上火车吗现在（宠物疫苗可以托运吗）">宠物疫苗能带上火车吗现在（宠物疫苗可以托运吗）</a></li>
+                        <li class="py-2"><a href="/news/article-87153.htm" title="动物疫苗的种类和研发过程包括哪些内容和方法（动物疫苗的生产原料有哪些,如何取得）">动物疫苗的种类和研发过程包括哪些内容和方法（动物疫苗的生产原料有哪些,如何取得）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-vless-node.htm" title="「3月23日」每天更新|18.4M/S，2025年Vless免费机场订阅节点链接">「3月23日」每天更新|18.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-80061.htm" title="Java中equals和==的区别，equals和hashcode的区别">Java中equals和==的区别，equals和hashcode的区别</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
