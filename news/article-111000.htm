@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-111000.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shell基础Bash基本功能（多命令顺序执行）</title>
+        <meta name="description" content="目录  1、多命令执行符； 2、多命令执行符&amp;&amp; 3、多命令执行符|| 4、&amp;&amp;和||联合应用   Linux系统支持多条命令顺序执行，就是我可以依次输入多条命令后，统" />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-111000.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="Shell基础Bash基本功能（多命令顺序执行）" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/88a6af3290bd4d16873de1a84e743c6e.webp" />
+        <meta property="og:release_date" content="2025-05-03T10:30:42" />
+    <meta property="og:updated_time" content="2025-05-03T10:30:42" />
+        <meta property="og:description" content="目录  1、多命令执行符； 2、多命令执行符&amp;&amp; 3、多命令执行符|| 4、&amp;&amp;和||联合应用   Linux系统支持多条命令顺序执行，就是我可以依次输入多条命令后，统" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Shell基础Bash基本功能（多命令顺序执行）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">Shell基础Bash基本功能（多命令顺序执行）</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li>1、多命令执行符<code>；</code></li> <li>2、多命令执行符<code>&amp;&amp;</code></li> <li>3、多命令执行符<code>||</code></li> <li>4、<code>&amp;&amp;</code>和<code>||</code>联合应用</li> </ul> </div> <p>Linux系统支持多条命令顺序执行，就是我可以依次输入多条命令后，统一按Enter键，顺序执行。</p> <h2 id="1多命令执行符">1、多命令执行符<code>；</code></h2> <p>在多个命令之间加<code>;</code>即可多命令顺序执行。</p> <p>命令格式：<code>命令1 ; 命令2</code></p> <p>说明：</p> <ul> <li>多个命令顺序执行，命令之间可以没有任何逻辑联系。 <pre><code class="language-shell">[root@localhost ~]# ls ; date ; cd /etc/ anaconda-ks.cfg	 install.log  install.log.syslog 2020 03月 29日 星期日 05:08:28 CST [root@localhost etc]#</code></pre> </li> <li>不管前面的命令是否正确执行，后面的命令都会执行。 <pre><code class="language-shell">[root@localhost ~]# lswrqwr ; date ; cd /etc/ -bash: lswrqwr: command not found 2020 03月 29日 星期日 05:08:28 CST [root@localhost etc]#</code></pre> </li> </ul> <h2 id="2多命令执行符">2、多命令执行符<code>&amp;&amp;</code></h2> <p><code>&amp;&amp;</code>又叫逻辑与执行符。</p> <p>命令格式：<code>命令1 &amp;&amp; 命令2</code></p> <blockquote> <p>说明：</p> <ul> <li>当命令1正确执行（$？=0），则命令2才会执行。</li> <li>当命令1执行不正确（$？≠0），则命令2不会执行。</li> <li>命令1和命令2之间可以没有任何逻辑联系。</li> </ul> </blockquote> <ul> <li>练习1：命令1正确执行。 <pre><code class="language-shell">[root@localhost ~]# ls &amp;&amp; echo yes anaconda-ks.cfg	 install.log  install.log.syslog yes</code></pre> </li> <li>练习2：命令1不正确执行。 <pre><code class="language-shell">[root@localhost ~]# lsfgdf &amp;&amp; echo yes -bash: lsfgdf: command not found</code></pre> </li> </ul> <blockquote> <p>说明：<code>（$？=0）</code>这里先不说什么意思，后边预定义变量在讲。</p> </blockquote> <h2 id="3多命令执行符">3、多命令执行符<code>||</code></h2> <p><code>||</code>又叫逻辑或执行符。</p> <p>命令格式：<code>命令1 || 命令2</code></p> <blockquote> <p>说明：</p> <ul> <li>当命令1执行不正确（$？≠0），则命令2才会执行。</li> <li>当命令1正确执行（$？=0），则命令2不会执行。</li> <li>命令1和命令2之间可以没有任何逻辑联系。</li> </ul> </blockquote> <ul> <li>练习1：命令1正确执行。 <pre><code class="language-shell">[root@localhost ~]# ls &amp;&amp; echo no anaconda-ks.cfg	 install.log  install.log.syslog</code></pre> </li> <li>练习2：命令1不正确执行。 <pre><code class="language-shell">[root@localhost ~]# lsfgdfgg &amp;&amp; echo no -bash: lsfgdfgg: command not found no</code></pre> </li> </ul> <h2 id="4和联合应用">4、<code>&amp;&amp;</code>和<code>||</code>联合应用</h2> <p><code>&amp;&amp;</code>和<code>||</code>两个执行符可以联合应用，来判断命令是否正确执行。</p> <p>执行语句：</p> <pre><code class="language-shell">[root@localhost ~]# ls  &amp;&amp; echo yes || echo no</code></pre> <p>如果<code>ls</code>命令正确执行了，则<code>echo yes</code>命令就会执行，会输出一个<code>yes</code>。<code>echo no</code>命令判断前边<code>echo yes</code>命令执行了，则<code>echo no</code>命令则不会执行。</p> <p>如果<code>ls</code>命令报错了，则<code>echo yes</code>命令就不会被执行，<code>echo no</code>命令需要判断前边的命令是否执行错误，因为<code>echo yes</code>命令没有执行，被跳过了，所以是判断<code>ls</code>命令是否报错，而<code>ls</code>命令报错了，则执行<code>echo no</code>命令，输出<code>no</code>。</p> <p>换句话说，<code>ls</code>位置的命令，如果正确执行，则输出<code>yes</code>，如果错误执行，则输出<code>no</code>。<br /> （所以需要注意的是，需要判断命令执行是否出错，而不是命令是否执行。不执行的命令就被挖掉，不予判断。）</p> <p>练习：</p> <pre><code class="language-shell">[root@localhost ~]# ls &amp;&amp; echo yes || echo no anaconda-ks.cfg	 install.log  install.log.syslog yes  [root@localhost ~]# lsfgjhg &amp;&amp; echo yes || echo no -bash: lsfgjhg: command not found no</code></pre> <blockquote> <p>提出一个问题：</p> <p>我能不能把上边命令中的<code>&amp;&amp;</code>和<code>||</code>的位置互换？</p> <p>答案是不能。</p> <p>直接看例子，自己推导：</p> <pre><code class="language-shell">[root@localhost ~]# ls || echo yes &amp;&amp; echo no anaconda-ks.cfg	 install.log  install.log.syslog no  [root@localhost ~]# lsfgjhg || echo yes &amp;&amp; echo no -bash: lsfgjhg: command not found yes no</code></pre> <p>结论：这是一个固定格式。</p> </blockquote> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-110151.htm">FreeRTOS实时操作系统队列的API函数讲解_操作系统</a></p>
+                                        <p>下一个：<a href="/news/article-111001.htm">宠物店从哪进货（宠物店从哪进货好）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-95312.htm" title="宠物粮在哪里批发好（宠物粮在哪里批发好一点）">宠物粮在哪里批发好（宠物粮在哪里批发好一点）</a></li>
+                        <li class="py-2"><a href="/news/article-94115.htm" title="水煮鸡胸肉猫可以天天吃吗（猫碗里面要一直有粮吗）">水煮鸡胸肉猫可以天天吃吗（猫碗里面要一直有粮吗）</a></li>
+                        <li class="py-2"><a href="/news/article-97491.htm" title="宠物医院好评语 宠物医院好评语30字通用">宠物医院好评语 宠物医院好评语30字通用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-23-vless-node-share.htm" title="「4月23日」每天更新|21.1M/S，2025年Vless免费机场订阅节点链接">「4月23日」每天更新|21.1M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-111001.htm" title="宠物店从哪进货（宠物店从哪进货好）">宠物店从哪进货（宠物店从哪进货好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-15-free-high-speed-nodes.htm" title="「4月15日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接">「4月15日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-95311.htm" title="兽药排名前十名品牌（兽药排名前十名品牌有哪些）">兽药排名前十名品牌（兽药排名前十名品牌有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-93041.htm" title="领养宠物的软件有哪些 领养宠物的软件有哪些免费">领养宠物的软件有哪些 领养宠物的软件有哪些免费</a></li>
+                        <li class="py-2"><a href="/news/article-90815.htm" title="Java 垃圾回收超详细讲解记忆集和卡表_java">Java 垃圾回收超详细讲解记忆集和卡表_java</a></li>
+                        <li class="py-2"><a href="/news/article-106537.htm" title="Vue Tabbar 的封装">Vue Tabbar 的封装</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

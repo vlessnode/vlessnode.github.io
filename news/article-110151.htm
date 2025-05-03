@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vlessnode.github.io/news/article-110151.htm" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeRTOS实时操作系统队列的API函数讲解_操作系统</title>
+        <meta name="description" content="目录  前言 1.获取队列入队信息数目  1.1函数描述 1.2参数描述  2.获取队列的空闲数目  2.1函数描述 2.2参数描述  3.删除队列  3.1函数描述 3.2参数描述  4.复位队列 " />
+        <link rel="icon" href="/assets/website/img/vlessnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Vless Node机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vlessnode.github.io/news/article-110151.htm" />
+    <meta property="og:site_name" content="Vless Node机场订阅官网" />
+    <meta property="og:title" content="FreeRTOS实时操作系统队列的API函数讲解_操作系统" />
+    <meta property="og:image" content="https://vlessnode.github.io/uploads/20240826/4867ec00f515a2200ef3234723a06ba1.webp" />
+        <meta property="og:release_date" content="2025-05-02T09:25:05" />
+    <meta property="og:updated_time" content="2025-05-02T09:25:05" />
+        <meta property="og:description" content="目录  前言 1.获取队列入队信息数目  1.1函数描述 1.2参数描述  2.获取队列的空闲数目  2.1函数描述 2.2参数描述  3.删除队列  3.1函数描述 3.2参数描述  4.复位队列 " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="FreeRTOS实时操作系统队列的API函数讲解_操作系统">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/vlessnode/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- script ================================================== -->
+    <script src="/assets/website/js/frontend/vlessnode/modernizr.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHH6Q1EE0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JHH6Q1EE0W');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Navigation Section Starts -->
+    <section id="navigation-bar" class="navigation position-fixed">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+                <div class="col-md-3 brand-logo">
+                    <a href="/" class="d-inline-flex link-body-emphasis">
+                                        <span>Vless Node</span>
+                                        </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center flex-grow-1">
+                                                        <li class="nav-list mx-3">
+                                <a href="/" class="nav-link px-2">
+                                    <h5> 首页 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/free-nodes/" class="nav-link px-2">
+                                    <h5> 免费节点 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/paid-subscribe/" class="nav-link px-2">
+                                    <h5> 推荐机场 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/client.htm" class="nav-link px-2">
+                                    <h5> 客户端 </h5>
+                                </a>
+                            </li>
+                                                        <li class="nav-list mx-3">
+                                <a href="/news/" class="nav-link px-2">
+                                    <h5> 新闻资讯 </h5>
+                                </a>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section Starts -->
+    <section id="hero">
+        <div id="resources" class="hero container py-5 my-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="breadcrumb ">
+                        <span class="item">
+                            <a href="/">
+                                <h5> <u>首页</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+                        <span class="item">
+                            <a href="/news/">
+                                <h5> <u>新闻资讯</u> </h5>
+                            </a>
+                        </span>
+                        &nbsp;<h5>/</h5> &nbsp; 
+
+                        <span class="item">
+                            <h5>正文</h5>
+                        </span>
+                    </div>
+                    <h1 class=" lh-1 mb-3">FreeRTOS实时操作系统队列的API函数讲解_操作系统</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Section Starts -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li>前言</li> <li>1.获取队列入队信息数目</li> <ul class="second_class_ul"> <li>1.1函数描述</li> <li>1.2参数描述</li> </ul> <li>2.获取队列的空闲数目</li> <ul class="second_class_ul"> <li>2.1函数描述</li> <li>2.2参数描述</li> </ul> <li>3.删除队列</li> <ul class="second_class_ul"> <li>3.1函数描述</li> <li>3.2参数描述</li> </ul> <li>4.复位队列</li> <ul class="second_class_ul"> <li>4.1函数描述</li> <li>4.2参数描述</li> <li>4.3返回值</li> </ul> <li>5.创建队列</li> <ul class="second_class_ul"> <li>5.1函数描述</li> <li>5.2参数描述</li> <li>5.3返回值</li> <li>5.4用法举例</li> </ul> <li>6.向队列投递队列项</li> <ul class="second_class_ul"> <li>6.1 函数描述</li> <li>6.2参数描述</li> <li>6.3返回值</li> <li>6.4用法举例</li> </ul> <li>7.向队列投递队列项（带中断保护）</li> <ul class="second_class_ul"> <li>7.1函数描述</li> <li>7.2参数描述</li> <li>7.3返回值</li> <li>7.4用法举例</li> </ul> <li>8.向队列尾部投递队列项</li> <ul class="second_class_ul"> <li>8.1函数描述</li> <li>8.2参数描述</li> <li>8.3返回值</li> <li>8.4用法举例</li> </ul> <li>9.向队列尾部投递队列项（带中断保护）</li> <ul class="second_class_ul"> <li>9.1函数描述</li> <li>9.2参数描述</li> <li>9.3返回值</li> <li>9.4用法举例</li> </ul> <li>10.向队列首部投递队列项</li> <ul class="second_class_ul"> <li>10.1函数描述</li> <li>10.2参数描述</li> <li>10.3返回值</li> </ul> <li>11.向队列首部投递队列项（带中断保护）</li> <ul class="second_class_ul"> <li>11.1函数描述</li> <li>11.2参数描述</li> <li>11.3返回值</li> </ul> <li>12.读取并移除队列项</li> <ul class="second_class_ul"> <li>12.1函数描述</li> <li>12.2参数描述</li> <li>12.3返回值</li> <li>12.4用法举例</li> </ul> <li>13读取并移除队列项（带中断保护）</li> <ul class="second_class_ul"> <li>13.1函数描述</li> <li>13.2参数描述</li> <li>13.3返回值</li> <li>13.4用法举例</li> </ul> <li>14.读取但不移除队列项</li> <ul class="second_class_ul"> <li>14.1函数描述</li> <li>14.2参数描述</li> <li>14.3返回值</li> <li>14.4用法举例</li> </ul> <li>15.读取但不移除队列项（带中断保护）</li> <ul class="second_class_ul"> <li>15.1函数描述</li> <li>15.2参数描述</li> <li>15.3返回值</li> </ul> <li>16.队列注册</li> <ul class="second_class_ul"> <li>16.1函数描述</li> <li>16.2参数描述</li> <li>16.3用法举例</li> </ul> <li>17.解除注册</li> <ul class="second_class_ul"> <li>17.1函数描述</li> <li>17.2参数描述</li> </ul> <li>18.查询队列是否为空（仅用于中断服务程序）</li> <ul class="second_class_ul"> <li>18.1函数描述</li> <li>18.2参数描述</li> <li>18.3返回值</li> </ul> <li>19.查询队列是否满（仅用于中断服务程序）</li> <ul class="second_class_ul"> <li>19.1函数描述</li> <li>19.2参数描述</li> <li>19.3返回值</li> </ul> <li>20.向队列尾部覆盖式投递队列项</li> <ul class="second_class_ul"> <li>20.1函数描述</li> <li>20.2参数描述</li> <li>20.3返回值</li> <li>20.4用法举例</li> </ul> <li>21向队列尾部覆盖式投递队列项（带中断保护）</li> <ul class="second_class_ul"> <li>21.1函数描述</li> <li>21.2参数描述</li> <li>21.3返回值</li> </ul> </ul> </div> <p class="maodian"></p> <h2>前言</h2> <p>FreeRTOS为操作队列提供了非常丰富的API函数，包括队列的创建、删除，灵活的入队和出队方式、带中断保护的入队和出队等等。下面就来详细讲述这些API函数。</p> <p class="maodian"></p> <h2>1.获取队列入队信息数目</h2> <p class="maodian"></p> <h3>1.1函数描述</h3> <blockquote> <p>UBaseType_t uxQueueMessagesWaiting( QueueHandle_t xQueue );</p> </blockquote> <p>返回队列中存储的信息数目。具有中断保护的版本为uxQueueMessagesWaitingFromISR()，原型为：UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue )。</p> <p class="maodian"></p> <h3>1.2参数描述</h3> <p>xQueue：队列句柄</p> <p class="maodian"></p> <h2>2.获取队列的空闲数目</h2> <p class="maodian"></p> <h3>2.1函数描述</h3> <blockquote> <p>UBaseType_t uxQueueSpacesAvailable( QueueHandle_t xQueue );</p> </blockquote> <p>返回队列的空闲数目。</p> <p class="maodian"></p> <h3>2.2参数描述</h3> <p>xQueue：队列句柄</p> <p class="maodian"></p> <h2>3.删除队列</h2> <p class="maodian"></p> <h3>3.1函数描述</h3> <blockquote> <p>void vQueueDelete( QueueHandle_t xQueue );</p> </blockquote> <p>删除队列并释放所有分配给队列的内存。</p> <p class="maodian"></p> <h3>3.2参数描述</h3> <p>xQueue：队列句柄</p> <p class="maodian"></p> <h2>4.复位队列</h2> <p class="maodian"></p> <h3>4.1函数描述</h3> <blockquote> <p>BaseType_t xQueueReset( QueueHandle_t xQueue );</p> </blockquote> <p>将队列复位到初始状态。</p> <p class="maodian"></p> <h3>4.2参数描述</h3> <p>xQueue：队列句柄</p> <p class="maodian"></p> <h3>4.3返回值</h3> <p>FreeRTOSV7.2.0以及以后的版本总是返回pdPASS。</p> <p class="maodian"></p> <h2>5.创建队列</h2> <p class="maodian"></p> <h3>5.1函数描述</h3> <blockquote> <p>QueueHandle_t xQueueCreate (UBaseType_t uxQueueLength, UBaseType_t uxItemSize);</p> </blockquote> <p>创建新队列。为新队列分配指定的存储空间并返回队列句柄。</p> <p class="maodian"></p> <h3>5.2参数描述</h3> <p><code>usQueueLength</code>：队列项数目</p> <p><code>uxItemSize</code>：每个队列项大小，单位是字节。队列项通过拷贝入队而不是通过引用入队，因此需要队列项的大小。每个队列项的大小必须相同。</p> <p class="maodian"></p> <h3>5.3返回值</h3> <p>成功创建队列返回队列句柄，否自返回0。</p> <p class="maodian"></p> <h3>5.4用法举例</h3> <div class="ay1code"> <pre class="brush:cpp;"> struct AMessage   {       portCHAR ucMessageID;       portCHAR ucData[ 20 ];   };   void vATask( void*pvParameters )   {       xQueueHandle xQueue1, xQueue2;       // 创建一个队列，队列能包含10个unsigned long类型的值。       xQueue1 = xQueueCreate( 10, sizeof( unsigned portLONG ));       if( xQueue1 ==0 )       {           // 队列创建失败，不可以使用       }       // 创建一个队列，队列能包含10个 Amessage结构体指针类型的值。       // 这样可以通过传递指针变量来包含大量数据。       xQueue2 =xQueueCreate( 10, sizeof( struct AMessage * ) );       if( xQueue2 ==0 )       {           // 队列创建失败，不可以使用       }       // ... 任务的其它代码.   }</pre> </div> <p class="maodian"></p> <h2>6.向队列投递队列项</h2> <p class="maodian"></p> <h3>6.1 函数描述</h3> <blockquote> <p>BaseType_txQueueSend(QueueHandle_t xQueue, const void * pvItemToQueue, TickType_t xTicksToWait );</p> </blockquote> <p>其实是一个宏，真正被调用的函数是xQueueGenericSend()。定义这个宏是为了向后兼容那些不包含函数xQueueSendToFront()和xQueueSendToBack()宏的FreeRTOS版本。它与xQueueSendToBack()等同。</p> <p>这个宏向队列尾部投递一个队列项。项目以拷贝的形式入队，而不是引用形式入队。绝不可以在中断服务例程中调用这个宏，使用带有中断保护的版本xQueueSendFromISR()来完成相同的功能。</p> <p class="maodian"></p> <h3>6.2参数描述</h3> <p><code>xQueue</code>：队列句柄。</p> <p><code>pvItemToQueue</code>：指针，指向要入队的项目。要保存到队列中的项目字节数在队列创建时就已确定。因此要从指针pvItemToQueue指向的区域拷贝到队列存储区域的字节数，也已确定。</p> <p><code>xTicksToWait</code>：如果队列满，任务等待队列空闲的最大时间。如果队列满并且xTicksToWait被设置成0，函数立刻返回。时间单位为系统节拍时钟周期，因此宏portTICK_PERIOD_MS可以用来辅助计算真实延时值。如果INCLUDE_vTaskSuspend设置成1，并且指定延时为portMAX_DELAY将引起任务无限阻塞（没有超时）。</p> <p class="maodian"></p> <h3>6.3返回值</h3> <p>队列项入队成功返回pdTRUE，否则返回errQUEUE_FULL。</p> <p class="maodian"></p> <h3>6.4用法举例</h3> <div class="ay1code"> <pre class="brush:cpp;">struct AMessage   {        portCHAR ucMessageID;        portCHAR ucData[ 20 ];   }xMessage;   unsigned portLONG ulVar = 10UL;   void vATask( void *pvParameters )   {       xQueueHandle xQueue1, xQueue2;       struct AMessage *pxMessage;       /*创建一个队列，队列能包含10个unsigned long类型的值。*/       xQueue1 = xQueueCreate( 10, sizeof( unsigned portLONG ) );       /* 创建一个队列，队列能包含10个 Amessage结构体指针类型的值。         这样可以通过传递指针变量来包含大量数据。*/       xQueue2 = xQueueCreate( 10, sizeof( struct AMessage * ) );       // ...       if( xQueue1 != 0 )       {            /*1个unsigned long型数据入队.如果需要等待队列空间变的有效，           会最多等待10个系统节拍周期*/            if( xQueueSend( xQueue1, ( void * ) &amp;ulVar, ( portTickType ) 10 ) !=pdPASS )            {                 /*消息入队失败*/            }      }      if( xQueue2 != 0 )      {           /* 发送一个指向结构体Amessage的对象，如果队列满也不等待 */           pxMessage = &amp; xMessage;           xQueueSend( xQueue2, ( void * ) &amp;pxMessage, ( portTickType ) 0 );      }           //... 任务其余代码.   }</pre> </div> <p class="maodian"></p> <h2>7.向队列投递队列项（带中断保护）</h2> <p class="maodian"></p> <h3>7.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">     BaseType_t xQueueSendFromISR (QueueHandle_t xQueue,                 const void *pvItemToQueue,  BaseType_t *pxHigherPriorityTaskWoken);</pre> </div> <p>其实是一个宏，真正被调用的函数是xQueueGenericSendFromISR()。这个宏是xQueueSend()的中断保护版本，用于中断服务程序，等价于xQueueSendToBackFromISR()。</p> <p>在中断服务例程中向队列尾部投递一个队列项。</p> <p class="maodian"></p> <h3>7.2参数描述</h3> <p><code>xQueue</code>：队列句柄。</p> <p><code>pvItemToQueue</code>：指针，指向要入队的项目。要保存到队列中的项目字节数在队列创建时就已确定。因此要从指针pvItemToQueue指向的区域拷贝到队列存储区域的字节数，也已确定。</p> <p><code>pxHigherPriorityTaskWoken</code>：如果入队导致一个任务解锁，并且解锁的任务优先级高于当前运行的任务，则该函数将*pxHigherPriorityTaskWoken设置成pdTRUE。如果xQueueSendFromISR()设置这个值为pdTRUE，则中断退出前需要一次上下文切换。</p> <p>从FreeRTOS V7.3.0起，pxHigherPriorityTaskWoken称为一个可选参数，并可以设置为NULL。</p> <p class="maodian"></p> <h3>7.3返回值</h3> <p>列项入队成功返回pdTRUE，否则返回errQUEUE_FULL。</p> <p class="maodian"></p> <h3>7.4用法举例</h3> <div class="ay1code"> <pre class="brush:cpp;">void vBufferISR( void )  {      portCHARcIn;      portBASE_TYPE xHigherPriorityTaskWoken;      /* 初始化，没有唤醒任务*/      xHigherPriorityTaskWoken = pdFALSE;         /* 直到缓冲区为空 */      do      {          /* 从缓冲区获得一个字节数据 */          cIn = portINPUT_BYTE( RX_REGISTER_ADDRESS );                                                                /* 投递这个数据 */          xQueueSendFromISR( xRxQueue, &amp;cIn, &amp;xHigherPriorityTaskWoken );      }while( portINPUT_BYTE( BUFFER_COUNT ) );      /* 这里缓冲区已空，如果需要进行一个上下文切换*/      /*根据不同移植平台，这个函数也不同*/      portYIELD_FROM_ISR(xHigherPriorityTaskWoken);  }</pre> </div> <p class="maodian"></p> <h2>8.向队列尾部投递队列项</h2> <p class="maodian"></p> <h3>8.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">      BaseType_t xQueueSendToBack(QueueHandle_t xQueue,                           const void * pvItemToQueue, TickType_t xTicksToWait );</pre> </div> <p>其实是一个宏，真正被调用的函数是xQueueGenericSend()。这个宏等价于xQueueSend()。</p> <p>向队列尾投递一个队列项。绝不可以在中断中调用这个宏，可以使用带有中断保护的版本xQueueSendToBackFromISR ()来完成相同功能。</p> <p class="maodian"></p> <h3>8.2参数描述</h3> <p>同xQueueSend()。</p> <p class="maodian"></p> <h3>8.3返回值</h3> <p>同xQueueSend()。</p> <p class="maodian"></p> <h3>8.4用法举例</h3> <p>同xQueueSend()。</p> <p class="maodian"></p> <h2>9.向队列尾部投递队列项（带中断保护）</h2> <p class="maodian"></p> <h3>9.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">      BaseType_t xQueueSendToBackFromISR (QueueHandle_t xQueue,              const void *pvItemToQueue, BaseType_t *pxHigherPriorityTaskWoken );</pre> </div> <p>其实是一个宏，真正被调用的函数是xQueueGenericSendFromISR()。这个宏是xQueueSendToBack()的中断保护版本，用于中断服务程序，等价于xQueueSendFromISR()。</p> <p>在中断服务例程中向队列尾部投递一个队列项。</p> <p class="maodian"></p> <h3>9.2参数描述</h3> <p>同QueueSendFromISR()。</p> <p class="maodian"></p> <h3>9.3返回值</h3> <p>同QueueSendFromISR()。</p> <p class="maodian"></p> <h3>9.4用法举例</h3> <p>同QueueSendFromISR()。</p> <p class="maodian"></p> <h2>10.向队列首部投递队列项</h2> <p class="maodian"></p> <h3>10.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">      BaseType_t xQueueSendToFront(QueueHandle_t xQueue,                 const void * pvItemToQueue,TickType_t xTicksToWait);</pre> </div> <p>其实是一个宏，真正被调用的函数是xQueueGenericSend()。</p> <p>这个宏向队列首部投递一个队列项。绝不可以在中断服务例程中调用这个宏，可以使用带有中断保护的版本xQueueSendToFrontFromISR ()来完成相同功能。</p> <p class="maodian"></p> <h3>10.2参数描述</h3> <p><code>xQueue</code>：队列句柄。</p> <p><code>pvItemToQueue</code>：指针，指向要入队的项目。要保存到队列中的项目字节数在队列创建时就已确定。因此要从指针pvItemToQueue指向的区域拷贝到队列存储区域的字节数，也已确定。</p> <p><code>xTicksToWait</code>：如果队列满，任务等待队列空闲的最大时间。如果队列满并且xTicksToWait被设置成0，函数立刻返回。时间单位为系统节拍时钟周期，因此宏portTICK_PERIOD_MS可以用来辅助计算真实延时值。如果INCLUDE_vTaskSuspend设置成1，并且指定延时为portMAX_DELAY将引起任务无限阻塞（没有超时）。</p> <p class="maodian"></p> <h3>10.3返回值</h3> <p>队列项入队成功返回pdTRUE，否则返回errQUEUE_FULL。</p> <p class="maodian"></p> <h2>11.向队列首部投递队列项（带中断保护）</h2> <p class="maodian"></p> <h3>11.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">      BaseType_t xQueueSendToFrontFromISR (QueueHandle_t xQueue,                const void *pvItemToQueue,BaseType_t *pxHigherPriorityTaskWoken);</pre> </div> <p>其实是一个宏，真正被调用的函数是xQueueGenericSendFromISR()。这个宏是xQueueSendToFront ()的中断保护版本，用于中断服务程序。</p> <p class="maodian"></p> <h3>11.2参数描述</h3> <p><code>xQueue</code>：队列句柄。</p> <p><code>pvItemToQueue</code>：指针，指向要入队的项目。要保存到队列中的项目字节数在队列创建时就已确定。因此要从指针pvItemToQueue指向的区域拷贝到队列存储区域的字节数，也已确定。</p> <p><code>pxHigherPriorityTaskWoken</code>：如果入队导致一个任务解锁，并且解锁的任务优先级高于当前运行的任务，则该函数将*pxHigherPriorityTaskWoken设置成pdTRUE。如果xQueueSendFromISR()设置这个值为pdTRUE，则中断退出前需要一次上下文切换。从FreeRTOS V7.3.0起，pxHigherPriorityTaskWoken称为一个可选参数，并可以设置为NULL。</p> <p class="maodian"></p> <h3>11.3返回值</h3> <p>列项入队成功返回pdTRUE，否则返回errQUEUE_FULL。</p> <p class="maodian"></p> <h2>12.读取并移除队列项</h2> <p class="maodian"></p> <h3>12.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">      BaseType_t xQueueReceive(QueueHandle_t xQueue,                             void *pvBuffer,TickType_t xTicksToWait);</pre> </div> <p>其实是一个宏，真正被调用的函数是xQueueGenericReceive()。</p> <p>这个宏从队列中读取一个队列项并把该队列项从队列中删除。读取队列项是以拷贝的形式完成，而不是以引用的形式，因此必须提供足够大的缓冲区以便容纳队列项。参数pvBuffer指向这个缓冲区。</p> <p>绝不可以在中断服务例程中调用这个宏，可以使用使用带有中断保护的版本xQueueReceiveFromISR来完成相同功能。</p> <p class="maodian"></p> <h3>12.2参数描述</h3> <p><code>pxQueue</code>：队列句柄。</p> <p><code>pvBuffer</code>：指向一个缓冲区，用于拷贝接收到的列表项。</p> <p><code>xTicksToWait</code>：要接收的项目队列为空时，允许任务最大阻塞时间。如果设置该参数为0，则表示即队列为空也立即返回。阻塞时间的单位是系统节拍周期，宏portTICK_RATE_MS可辅助计算真实阻塞时间。如果INCLUDE_vTaskSuspend设置成1，并且阻塞时间设置成portMAX_DELAY，将会引起任务无限阻塞（不会有超时）。</p> <p class="maodian"></p> <h3>12.3返回值</h3> <p>成功接收到列表项返回pdTRUE，否则返回pdFALSE。</p> <p class="maodian"></p> <h3>12.4用法举例</h3> <div class="ay1code"> <pre class="brush:cpp;">struct AMessage  {      portCHAR ucMessageID;      portCHAR ucData[ 20 ];  } xMessage;  xQueueHandle xQueue;  // 创建一个队列并投递一个值  void vATask( void *pvParameters )  {       struct AMessage *pxMessage;       // 创建一个队列，队列能包含10个 Amessage结构体指针类型的值。       // 这样可以通过传递指针变量来包含大量数据。       xQueue =xQueueCreate( 10, sizeof( struct AMessage * ) );       if( xQueue == 0)       {            // 创建队列失败      }      // ...      // 向队列发送一个指向结构体对象Amessage的指针，如果队列满不等待      pxMessage = &amp; xMessage;      xQueueSend(xQueue, ( void * ) &amp;pxMessage, ( portTickType ) 0 );      // ... 其它代码  }  // 该任务从队列中接收一个队列项  voidvADifferentTask( void *pvParameters )  {      struct AMessage *pxRxedMessage;         if( xQueue != 0)      {          // 从创建的队列中接收一个消息，如果消息无效，最多阻塞10个系统节拍周期          if(xQueueReceive( xQueue, &amp;( pxRxedMessage ), ( portTickType ) 10 ) )          {              // 现在pcRxedMessage 指向由vATask任务投递进来的结构体Amessage变量          }      }     // ... 其它代码   }</pre> </div> <p class="maodian"></p> <h2>13读取并移除队列项（带中断保护）</h2> <p class="maodian"></p> <h3>13.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">      BaseType_t xQueueReceiveFromISR (QueueHandle_t xQueue,                void *pvBuffer, BaseType_t *pxHigherPriorityTaskWoken);</pre> </div> <p>从队列中读取一个队列项并把该队列项从队列中删除。功能与xQueueReceive()相同，用于中断服务函数。</p> <p class="maodian"></p> <h3>13.2参数描述</h3> <p><code>pxQueue</code>：队列句柄。</p> <p><code>pvBuffer</code>：指向一个缓冲区，用于拷贝接收到的列表项。</p> <p><code>pxHigherPriorityTaskWoken</code>：如果入队导致一个任务解锁，并且解锁的任务优先级高于当前运行的任务，则该函数将*pxHigherPriorityTaskWoken设置成pdTRUE。如果xQueueSendFromISR()设置这个值为pdTRUE，则中断退出前需要一次上下文切换。从FreeRTOS V7.3.0起，pxHigherPriorityTaskWoken称为一个可选参数，并可以设置为NULL。</p> <p class="maodian"></p> <h3>13.3返回值</h3> <p>成功接收到列表项返回pdTRUE，否则返回pdFALSE。</p> <p class="maodian"></p> <h3>13.4用法举例</h3> <div class="ay1code"> <pre class="brush:cpp;">xQueueHandle xQueue;  /* 该函数创建一个队列并投递一些值 */  voidvAFunction( void *pvParameters )  {       portCHAR cValueToPost;       const portTickType xBlockTime = (portTickType )0xff;       /*创建一个队列，可以容纳10个portCHAR型变量 */       xQueue = xQueueCreate( 10, sizeof( portCHAR ) );       if( xQueue == 0 )       {            /* 队列创建失败 */       }      /*…... */      /* 投递一些字符，在ISR中使用。如果队列满，任务将会阻塞xBlockTime 个系统节拍周期 */      cValueToPost = 'a';      xQueueSend( xQueue, ( void * ) &amp;cValueToPost, xBlockTime );      cValueToPost = 'b';      xQueueSend( xQueue, ( void * ) &amp;cValueToPost, xBlockTime );      /*... 继续投递字符 ... 当队列满时，这个任务会阻塞*/      cValueToPost = 'c';      xQueueSend( xQueue, ( void * ) &amp;cValueToPost, xBlockTime );  }  /* ISR：输出从队列接收到的所有字符 */  voidvISR_Routine( void )  {       portBASE_TYPE xTaskWokenByReceive = pdFALSE;       portCHAR cRxedChar;       while( xQueueReceiveFromISR( xQueue, ( void *) &amp;cRxedChar, &amp;xTaskWokenByReceive) )      {         /* 接收到一个字符串，输出.*/         vOutputCharacter( cRxedChar );         /* 如果从队列移除一个字符串后唤醒了向此队列投递字符的任务，那么参数xTaskWokenByReceive将会设置成pdTRUE，这个循环无论重复多少次，仅会            有一个任务被唤醒。*/      }      /*这里缓冲区已空，如果需要进行一个上下文切换根据不同移植平台，这个函数也不同 */      portYIELD_FROM_ISR(xTaskWokenByReceive);  }</pre> </div> <p class="maodian"></p> <h2>14.读取但不移除队列项</h2> <p class="maodian"></p> <h3>14.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">      BaseType_t xQueuePeek(QueueHandle_t xQueue,                void *pvBuffer, TickType_t xTicksToWait);</pre> </div> <p>其实是一个宏，真正被调用的函数是xQueueGenericReceive()。</p> <p>这个宏从队列中读取一个队列项，但不会把该队列项从队列中移除。这个宏绝不可以用在中断服务例程中，可以使用使用带有中断保护的版本xQueuePeekFromIS()来完成相同功能。</p> <p class="maodian"></p> <h3>14.2参数描述</h3> <p>同xQueueReceive()。</p> <p class="maodian"></p> <h3>14.3返回值</h3> <p>同xQueueReceive()。</p> <p class="maodian"></p> <h3>14.4用法举例</h3> <p>同xQueueReceive()。</p> <p class="maodian"></p> <h2>15.读取但不移除队列项（带中断保护）</h2> <p class="maodian"></p> <h3>15.1函数描述</h3> <blockquote> <p>BaseType_t xQueuePeekFromISR(QueueHandle_t xQueue, void *pvBuffer,);</p> </blockquote> <p>功能与xQueuePeek()相同，用于中断服务程序。</p> <p class="maodian"></p> <h3>15.2参数描述</h3> <p>pxQueue：队列句柄。pvBuffer：指向一个缓冲区，用于拷贝接收到的列表项。</p> <p class="maodian"></p> <h3>15.3返回值</h3> <p>成功接收到列表项返回pdTRUE，否则返回pdFALSE。</p> <p class="maodian"></p> <h2>16.队列注册</h2> <p class="maodian"></p> <h3>16.1函数描述</h3> <blockquote> <p>void vQueueAddToRegistry(QueueHandle_t xQueue, char *pcQueueName,);</p> </blockquote> <p>为队列分配名字并进行注册。</p> <p class="maodian"></p> <h3>16.2参数描述</h3> <p><code>xQueue</code>：队列句柄</p> <p><code>pcQueueName</code>：分配给队列的名字。这仅是一个有助于调试的字符串。队列注册仅存储指向队列名字符串的指针，因此这个字符串必须是静态的（全局变量活着存储在ROM/Flash中），不可以定义到堆栈中。</p> <p>队列注册有两个目的，这两个目的都是为了调试RTOS内核：</p> <p>它允许队列具有一个相关的文本名字，在GUI调试中可以容易的标识队列；包含调试器用于定位每一个已经注册的队列和信号量时所需的信息。</p> <p>队列注册仅用于调试器。</p> <p>宏configQUEUE_REGISTRY_SIZE定义了可以注册的队列和信号量的最大数量。仅当你想使用可视化调试内核时，才进行队列和信号量注册。</p> <p class="maodian"></p> <h3>16.3用法举例</h3> <div class="ay1code"> <pre class="brush:cpp;">void vAFunction( void )  {      xQueueHandle xQueue;     /*创建一个队列，可以容纳10个char类型数值 */     xQueue = xQueueCreate( 10, sizeof( portCHAR ) );     /* 我们想可视化调试，所以注册它*/     vQueueAddToRegistry( xQueue, "AMeaningfulName" );  }</pre> </div> <p class="maodian"></p> <h2>17.解除注册</h2> <p class="maodian"></p> <h3>17.1函数描述</h3> <blockquote> <p>void vQueueUnregisterQueue(QueueHandle_t xQueue);</p> </blockquote> <p>从队列注册表中移除指定的队列。</p> <p class="maodian"></p> <h3>17.2参数描述</h3> <p>xQueue：队列句柄</p> <p class="maodian"></p> <h2>18.查询队列是否为空（仅用于中断服务程序）</h2> <p class="maodian"></p> <h3>18.1函数描述</h3> <blockquote> <p>BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue );</p> </blockquote> <p>查询队列是否为空。这个函数仅用于ISR。</p> <p class="maodian"></p> <h3>18.2参数描述</h3> <p>xQueue：队列句柄</p> <p class="maodian"></p> <h3>18.3返回值</h3> <p>队列非空返回pdFALSE，其它值表示队列为空。</p> <p class="maodian"></p> <h2>19.查询队列是否满（仅用于中断服务程序）</h2> <p class="maodian"></p> <h3>19.1函数描述</h3> <blockquote> <p>BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue );</p> </blockquote> <p>查询队列是否满，仅用于ISR。</p> <p class="maodian"></p> <h3>19.2参数描述</h3> <p>xQueue：队列句柄</p> <p class="maodian"></p> <h3>19.3返回值</h3> <p>队列没有满返回pdFALSE，其它值表示队列满。</p> <p class="maodian"></p> <h2>20.向队列尾部覆盖式投递队列项</h2> <p class="maodian"></p> <h3>20.1函数描述</h3> <blockquote> <p>BaseType_t xQueueOverwrite(QueueHandle_t xQueue, const void * pvItemToQueue);</p> </blockquote> <p>其实是个宏，真正被调用的函数是xQueueGenericSend()。这个宏是xQueueSendToBack()的另一个版本，向队列尾投递一个队列项，如果队列已满，则覆盖之前的队列项。一般用于只有一个队列项的队列中，如果队列的队列项超过1个，使用这个宏会触发一个断言（已经正确定义configASSERT()的情况下）。这个宏绝不可以在中断服务程序中调用，可以使用使用带有中断保护的版本xQueueOverwriteFromISR()来完成相同功能。</p> <p class="maodian"></p> <h3>20.2参数描述</h3> <p>xQueue：队列句柄。</p> <p>pvItemToQueue：指针，指向要入队的项目。要保存到队列中的项目字节数在队列创建时就已确定。因此要从指针pvItemToQueue指向的区域拷贝到队列存储区域的字节数，也已确定。</p> <p class="maodian"></p> <h3>20.3返回值</h3> <p>总是返回pdPASS。</p> <p class="maodian"></p> <h3>20.4用法举例</h3> <div class="ay1code"> <pre class="brush:cpp;">void vFunction( void *pvParameters )  {      QueueHandle_t xQueue;      unsigned long ulVarToSend, ulValReceived;      /*创建队列，保存一个unsignedlong值。如果一个队列的队列项超过1个，强烈建议不要使用xQueueOverwrite()，如果使用xQueueOverwrite()会触发一个断言（已经正确定义configASSERT()的情况下）。*/      xQueue = xQueueCreate( 1, sizeof( unsigned long ) );       /*使用 xQueueOverwrite().向队列写入10*/      ulVarToSend = 10;      xQueueOverwrite( xQueue, &amp;ulVarToSend );      /*从队列读取值，但是不把这个值从队列中删除。*/      ulValReceived = 0;      xQueuePeek( xQueue, &amp;ulValReceived, 0 );      if( ulValReceived != 10 )       {            /* 处理错误*/       }       /*到这里队列仍是满的。使用xQueueOverwrite()覆写队列，写入值100 */       ulVarToSend = 100;       xQueueOverwrite( xQueue, &amp;ulVarToSend );       /* 从队列中读取值*/       xQueueReceive( xQueue, &amp;ulValReceived, 0 );       if( ulValReceived != 100 )       {            /*处理错误 */       }        /* ... */  }</pre> </div> <p class="maodian"></p> <h2>21向队列尾部覆盖式投递队列项（带中断保护）</h2> <p class="maodian"></p> <h3>21.1函数描述</h3> <div class="ay1code"> <pre class="brush:cpp;">      BaseType_t xQueueOverwriteFromISR (QueueHandle_t xQueue, const void * pvItemToQueue,                               BaseType_t *pxHigherPriorityTaskWoken);</pre> </div> <p>其实是个宏，真正被调用的函数是xQueueGenericSendFromISR()。这个宏的功能与xQueueOverwrite()相同，用在中断服务程序中。</p> <p class="maodian"></p> <h3>21.2参数描述</h3> <p><code>xQueue</code>：队列句柄。</p> <p><code>pvItemToQueue</code>：指针，指向要入队的项目。要保存到队列中的项目字节数在队列创建时就已确定。因此要从指针pvItemToQueue指向的区域拷贝到队列存储区域的字节数，也已确定。</p> <p><code>pxHigherPriorityTaskWoken</code>：如果入队导致一个任务解锁，并且解锁的任务优先级高于当前运行的任务，则该函数将*pxHigherPriorityTaskWoken设置成pdTRUE。如果xQueueSendFromISR()设置这个值为pdTRUE，则中断退出前需要一次上下文切换。从FreeRTOS V7.3.0起，pxHigherPriorityTaskWoken称为一个可选参数，并可以设置为NULL。</p> <p class="maodian"></p> <h3>21.3返回值</h3> <p>总是返回pdPASS。</p> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-110150.htm">nodejs从异步事件中获取数据方法</a></p>
+                                        <p>下一个：<a href="/news/article-111000.htm">Shell基础Bash基本功能（多命令顺序执行）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-12-vless-github.htm" title="「4月12日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接">「4月12日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-87153.htm" title="动物疫苗的种类和研发过程包括哪些内容和方法（动物疫苗的生产原料有哪些,如何取得）">动物疫苗的种类和研发过程包括哪些内容和方法（动物疫苗的生产原料有哪些,如何取得）</a></li>
+                        <li class="py-2"><a href="/news/article-87862.htm" title="猫抓图片简笔画（猫抓的图片大全大图）">猫抓图片简笔画（猫抓的图片大全大图）</a></li>
+                        <li class="py-2"><a href="/news/article-97490.htm" title="vue3中 setup注意点">vue3中 setup注意点</a></li>
+                        <li class="py-2"><a href="/news/article-100516.htm" title="Python学习笔记3.2-python内置函数大全">Python学习笔记3.2-python内置函数大全</a></li>
+                        <li class="py-2"><a href="/news/article-88606.htm" title="长春市宠物猫领养 长春市宠物猫领养中心">长春市宠物猫领养 长春市宠物猫领养中心</a></li>
+                        <li class="py-2"><a href="/news/article-108465.htm" title="宠物领养网站的设计与实现方案（宠物领养网站html模板）">宠物领养网站的设计与实现方案（宠物领养网站html模板）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-28-vless-node.htm" title="「4月28日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接">「4月28日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-101142.htm" title="动物疫苗接种方法及注意事项有哪些内容图片 动物疫苗接种方法及注意事项有哪些内容图片大全">动物疫苗接种方法及注意事项有哪些内容图片 动物疫苗接种方法及注意事项有哪些内容图片大全</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-2-free-node-subscribe-links.htm" title="「4月2日」每天更新|21.9M/S，2025年Vless免费机场订阅节点链接">「4月2日」每天更新|21.9M/S，2025年Vless免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="footer-2">
+        <footer class="container footer-2-container  d-flex align-items-center">
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <p class="footer2-paragraph">© All rights reserved.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:facebook-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:twitter-fill"></iconify-icon>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <iconify-icon class="footer-2-icon px-2" icon="ri:instagram-fill"></iconify-icon>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <p class="footer2-paragraph d-flex justify-content-center justify-content-md-end">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    Vless Node机场订阅官网 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </footer>
+    </section>
+    <!-- Scripts  Starts -->
+    <script src="/assets/website/js/frontend/vlessnode/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/plugins.js"></script>
+    <script src="/assets/website/js/frontend/vlessnode/script.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
