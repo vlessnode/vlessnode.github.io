@@ -333,47 +333,18 @@ sudo systemctl status openvpn@server
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/2025-11-8-node-share.htm">「11月8日」每天更新|20.1M/S，2025年Vless免费机场订阅节点链接</a></p>
+        <p>下一个：<a href="/free-nodes/2025-11-10-vless-node-share.htm">「11月10日」每天更新|23M/S，2025年Vless免费机场订阅节点链接</a></p>
     </div>
 <h4>FAQ</h4>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 的伪装域名配置需要注意什么？</h5></div>
-    <div class="panel-body">
-        伪装域名必须真实可访问并有有效证书，否则客户端无法建立连接。正确配置可隐藏真实流量特征，降低被封锁风险，保证节点长期稳定可用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 是否可导入节点二维码？</h5></div>
-    <div class="panel-body">
-        支持。用户可扫描节点二维码导入节点信息，也可手动输入节点参数。虽然不支持订阅自动更新，但对于轻量用户来说足够满足日常节点管理和流量分流需求。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2RayN 如何开启系统代理？</h5></div>
-    <div class="panel-body">
-        打开 V2RayN 后，点击右下角托盘图标，选择“设置系统代理”或“开启全局模式”。这样系统所有网络请求都会通过代理转发。适用于浏览器、下载器等需要全局代理的场景。<hr />    </div>
-</div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Shadowrocket 支持自动测速吗？</h5></div>
     <div class="panel-body">
         支持。Shadowrocket 可以批量测速节点延迟并标记最佳连接。用户还可设置自动切换到最低延迟节点，实现稳定高速的上网体验，尤其在网络波动较大的环境中效果明显。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的多出口节点如何优化访问速度？</h5></div>
+    <div class="panel-heading"><h5>Trojan 的伪装域名配置需要注意什么？</h5></div>
     <div class="panel-body">
-        通过为不同流量类型设置不同出口节点，WinXray 可以自动选择延迟最低的节点处理请求。结合策略组，可提高网页访问、视频播放和游戏等应用的速度与稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>ShadowsocksR 支持哪些混淆插件？</h5></div>
-    <div class="panel-body">
-        ShadowsocksR 提供多种混淆方式，如 tls1.2_ticket_auth、http_simple、random_head 等。它们通过模拟正常流量特征来规避防火墙检测，使通信更加隐蔽。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
-    <div class="panel-body">
-        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响支持代理的应用。TUN 更适合全局加速和游戏、视频等应用，保证所有流量通过节点，提高网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的多策略组设置能提高访问效率吗？</h5></div>
-    <div class="panel-body">
-        多策略组可以将节点按用途、延迟或地域分类，结合规则文件自动分流不同流量。这样可以确保游戏、视频或网页流量走最优节点，提高整体访问效率和稳定性。<hr />    </div>
+        伪装域名必须真实可访问并有有效证书，否则客户端无法建立连接。正确配置可隐藏真实流量特征，降低被封锁风险，保证节点长期稳定可用。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 的规则订阅更新机制是怎样的？</h5></div>
@@ -381,9 +352,39 @@ sudo systemctl status openvpn@server
         Sing-box 支持远程规则订阅 URL，可自动下载并更新节点和分流规则。用户可设置更新频率，如每天或每小时，确保规则和节点始终保持最新状态，提高网络管理效率。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的多出口节点如何优化访问速度？</h5></div>
+    <div class="panel-body">
+        通过为不同流量类型设置不同出口节点，WinXray 可以自动选择延迟最低的节点处理请求。结合策略组，可提高网页访问、视频播放和游戏等应用的速度与稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
+    <div class="panel-body">
+        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响支持代理的应用。TUN 更适合全局加速和游戏、视频等应用，保证所有流量通过节点，提高网络稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的路由规则如何实现国内直连？</h5></div>
     <div class="panel-body">
-        通过配置域名列表或 IP 段，将国内流量指向直连出口，而国外流量走代理节点。结合策略组和定期更新规则，可保持国内访问速度，同时优化海外访问体验。    </div>
+        通过配置域名列表或 IP 段，将国内流量指向直连出口，而国外流量走代理节点。结合策略组和定期更新规则，可保持国内访问速度，同时优化海外访问体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Potatso Lite 是否可导入节点二维码？</h5></div>
+    <div class="panel-body">
+        支持。用户可扫描节点二维码导入节点信息，也可手动输入节点参数。虽然不支持订阅自动更新，但对于轻量用户来说足够满足日常节点管理和流量分流需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的多策略组设置能提高访问效率吗？</h5></div>
+    <div class="panel-body">
+        多策略组可以将节点按用途、延迟或地域分类，结合规则文件自动分流不同流量。这样可以确保游戏、视频或网页流量走最优节点，提高整体访问效率和稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2RayN 如何开启系统代理？</h5></div>
+    <div class="panel-body">
+        打开 V2RayN 后，点击右下角托盘图标，选择“设置系统代理”或“开启全局模式”。这样系统所有网络请求都会通过代理转发。适用于浏览器、下载器等需要全局代理的场景。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>ShadowsocksR 支持哪些混淆插件？</h5></div>
+    <div class="panel-body">
+        ShadowsocksR 提供多种混淆方式，如 tls1.2_ticket_auth、http_simple、random_head 等。它们通过模拟正常流量特征来规避防火墙检测，使通信更加隐蔽。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -412,16 +413,16 @@ sudo systemctl status openvpn@server
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-10-9-free-vless-node.htm" title="「10月9日」每天更新|22.3M/S，2025年Vless免费机场订阅节点链接">「10月9日」每天更新|22.3M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-10-vless-node-share.htm" title="「10月10日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接">「10月10日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-7-vless-node-github.htm" title="「10月7日」每天更新|20.3M/S，2025年Vless免费机场订阅节点链接">「10月7日」每天更新|20.3M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-14-today-vless-node.htm" title="「10月14日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接">「10月14日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-16-vless-node-share.htm" title="「10月16日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接">「10月16日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-5-vless-github.htm" title="「10月5日」每天更新|19.6M/S，2025年Vless免费机场订阅节点链接">「10月5日」每天更新|19.6M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-11-node-share-links.htm" title="「10月11日」每天更新|21.3M/S，2025年Vless免费机场订阅节点链接">「10月11日」每天更新|21.3M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-1-free-vless-node.htm" title="「11月1日」每天更新|20.8M/S，2025年Vless免费机场订阅节点链接">「11月1日」每天更新|20.8M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-18-node-share-links.htm" title="「10月18日」每天更新|19M/S，2025年Vless免费机场订阅节点链接">「10月18日」每天更新|19M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-6-free-high-speed-nodes.htm" title="「10月6日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接">「10月6日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-14-vless-node.htm" title="「11月14日」每天更新|19.3M/S，2025年Vless免费机场订阅节点链接">「11月14日」每天更新|19.3M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-vless-node.htm" title="「11月7日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接">「11月7日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-3-free-high-speed-nodes.htm" title="「11月3日」每天更新|19.1M/S，2025年Vless免费机场订阅节点链接">「11月3日」每天更新|19.1M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-2-vless-github.htm" title="「11月2日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接">「11月2日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-15-vless-node-github.htm" title="「10月15日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接">「10月15日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-9-vless-node-share.htm" title="「11月9日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接">「11月9日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-13-free-vless-node.htm" title="「10月13日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接">「10月13日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-5-vless-github.htm" title="「10月5日」每天更新|19.6M/S，2025年Vless免费机场订阅节点链接">「10月5日」每天更新|19.6M/S，2025年Vless免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -433,7 +434,7 @@ sudo systemctl status openvpn@server
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">16</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
