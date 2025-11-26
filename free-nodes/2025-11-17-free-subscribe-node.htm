@@ -323,22 +323,18 @@ SSR提供多种加密方式，用户可以根据需求选择合适的加密方�
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/2025-11-15-node-share-links.htm">「11月15日」每天更新|21.4M/S，2025年Vless免费机场订阅节点链接</a></p>
+        <p>下一个：<a href="/free-nodes/2025-11-18-vless-node-github.htm">「11月18日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接</a></p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 QUIC 传输模式有哪些优势？</h5></div>
+    <div class="panel-heading"><h5>Hiddify Next 支持 Reality 吗？</h5></div>
     <div class="panel-body">
-        QUIC 传输减少握手次数，支持多路复用和 UDP 基础，降低延迟并提高吞吐量。在不稳定或高丢包环境下，QUIC 可保证视频、游戏或即时通讯的稳定性和流畅体验。<hr />    </div>
+        支持。Hiddify Next 基于 sing-box 内核，可加载 Vless+Reality、Trojan+TLS 等高级协议配置。用户可直接导入机场订阅，无需手动修改复杂参数。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何将 Windows 上的 V2Ray 与 WSL 环境联合调试？</h5></div>
+    <div class="panel-heading"><h5>V2RayN 订阅更新后节点重复如何清理？</h5></div>
     <div class="panel-body">
-        在 WSL 内运行需要的调试工具并通过 localhost 或将 V2Ray 监听地址绑定为 0.0.0.0，然后在 Windows 与 WSL 之间配置端口映射。注意 Windows 防火墙规则需允许 WSL 与 Windows 进程通信。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 的 TUN 模式与 SOCKS 模式有何差异？</h5></div>
-    <div class="panel-body">
-        TUN 模式通过虚拟网卡拦截所有流量，更接近系统级代理；SOCKS 模式则仅作用于指定应用。TUN 模式更适合全局代理需求，而 SOCKS 模式轻量快捷，适用于游戏或单软件加速。<hr />    </div>
+        V2RayN 在导入订阅时有时会产生重复节点，可以点击右键菜单选择“删除重复项”。若仍存在旧节点缓存，可清空配置文件夹内的 history.json 并重新导入订阅，保证节点列表整洁。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Matsuri 支持哪些传输方式？</h5></div>
@@ -351,14 +347,9 @@ SSR提供多种加密方式，用户可以根据需求选择合适的加密方�
         Shadowrocket 测量节点延迟和丢包率，将延迟低的节点优先使用。结合策略组和分流规则，可提升网页浏览、视频播放和游戏的访问速度和稳定性，优化整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2RayN 订阅更新后节点重复如何清理？</h5></div>
+    <div class="panel-heading"><h5>V2Ray 的 TLS 配置如何增强抗封锁能力？</h5></div>
     <div class="panel-body">
-        V2RayN 在导入订阅时有时会产生重复节点，可以点击右键菜单选择“删除重复项”。若仍存在旧节点缓存，可清空配置文件夹内的 history.json 并重新导入订阅，保证节点列表整洁。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 支持 Reality 吗？</h5></div>
-    <div class="panel-body">
-        支持。Hiddify Next 基于 sing-box 内核，可加载 Vless+Reality、Trojan+TLS 等高级协议配置。用户可直接导入机场订阅，无需手动修改复杂参数。<hr />    </div>
+        TLS 配置可将流量伪装成正常 HTTPS 请求，隐藏真实数据特征。结合域名伪装、WebSocket 或 QUIC 等传输方式，可有效绕过封锁，提高节点长期可用性和连接稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 是否支持多节点手动管理？</h5></div>
@@ -366,14 +357,24 @@ SSR提供多种加密方式，用户可以根据需求选择合适的加密方�
         支持。用户可以手动输入节点参数或扫描二维码导入节点，并可进行修改或删除。虽然不支持订阅自动更新，但足够满足轻量用户对节点管理和分流的基本需求。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 的 TUN 模式与 SOCKS 模式有何差异？</h5></div>
+    <div class="panel-body">
+        TUN 模式通过虚拟网卡拦截所有流量，更接近系统级代理；SOCKS 模式则仅作用于指定应用。TUN 模式更适合全局代理需求，而 SOCKS 模式轻量快捷，适用于游戏或单软件加速。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何将 Windows 上的 V2Ray 与 WSL 环境联合调试？</h5></div>
+    <div class="panel-body">
+        在 WSL 内运行需要的调试工具并通过 localhost 或将 V2Ray 监听地址绑定为 0.0.0.0，然后在 Windows 与 WSL 之间配置端口映射。注意 Windows 防火墙规则需允许 WSL 与 Windows 进程通信。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Netch 的透明代理适合哪些应用场景？</h5></div>
     <div class="panel-body">
         透明代理通过 TUN 或 WinDivert 拦截系统 IP 层流量，无需配置每个应用。适合全局科学上网、在线游戏或对局域网设备统一代理的场景。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 TLS 配置如何增强抗封锁能力？</h5></div>
+    <div class="panel-heading"><h5>V2Ray 的 QUIC 传输模式有哪些优势？</h5></div>
     <div class="panel-body">
-        TLS 配置可将流量伪装成正常 HTTPS 请求，隐藏真实数据特征。结合域名伪装、WebSocket 或 QUIC 等传输方式，可有效绕过封锁，提高节点长期可用性和连接稳定性。    </div>
+        QUIC 传输减少握手次数，支持多路复用和 UDP 基础，降低延迟并提高吞吐量。在不稳定或高丢包环境下，QUIC 可保证视频、游戏或即时通讯的稳定性和流畅体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -402,16 +403,16 @@ SSR提供多种加密方式，用户可以根据需求选择合适的加密方�
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-vless-node.htm" title="「11月7日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接">「11月7日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-31-free-high-speed-nodes.htm" title="「10月31日」每天更新|19.2M/S，2025年Vless免费机场订阅节点链接">「10月31日」每天更新|19.2M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-19-free-subscribe-node.htm" title="「10月19日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接">「10月19日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-10-vless-node-share.htm" title="「11月10日」每天更新|23M/S，2025年Vless免费机场订阅节点链接">「11月10日」每天更新|23M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-24-free-subscribe-node.htm" title="「10月24日」每天更新|21.4M/S，2025年Vless免费机场订阅节点链接">「10月24日」每天更新|21.4M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-13-vless-node.htm" title="「11月13日」每天更新|18.2M/S，2025年Vless免费机场订阅节点链接">「11月13日」每天更新|18.2M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-16-vless-node-share.htm" title="「10月16日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接">「10月16日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-3-free-node-subscribe.htm" title="「10月3日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接">「10月3日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-10-vless-node-share.htm" title="「10月10日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接">「10月10日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-27-vless-windows.htm" title="「10月27日」每天更新|18M/S，2025年Vless免费机场订阅节点链接">「10月27日」每天更新|18M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-21-vless-node-github.htm" title="「11月21日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接">「11月21日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-17-free-subscribe-node.htm" title="「10月17日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接">「10月17日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-15-node-share-links.htm" title="「11月15日」每天更新|21.4M/S，2025年Vless免费机场订阅节点链接">「11月15日」每天更新|21.4M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-25-latest-vless-node.htm" title="「10月25日」每天更新|20.7M/S，2025年Vless免费机场订阅节点链接">「10月25日」每天更新|20.7M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-12-free-high-speed-nodes.htm" title="「11月12日」每天更新|21M/S，2025年Vless免费机场订阅节点链接">「11月12日」每天更新|21M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-4-vless-github.htm" title="「10月4日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接">「10月4日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-26-vless-node-github.htm" title="「10月26日」每天更新|21.5M/S，2025年Vless免费机场订阅节点链接">「10月26日」每天更新|21.5M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-22-free-subscribe-node.htm" title="「10月22日」每天更新|22.2M/S，2025年Vless免费机场订阅节点链接">「10月22日」每天更新|22.2M/S，2025年Vless免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -423,7 +424,7 @@ SSR提供多种加密方式，用户可以根据需求选择合适的加密方�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">16</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
