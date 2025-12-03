@@ -323,19 +323,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何安装？</h5></div>
+    <div class="panel-heading"><h5>Clash 的规则模式有哪些？</h5></div>
     <div class="panel-body">
-        Sing-box 支持多平台，包括 Windows、Linux、macOS 和 Android。可从官方 GitHub 页面下载预编译版本或通过命令行安装。配置文件采用 JSON 格式，兼容多种协议配置。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 节点无法连接时应如何排查？</h5></div>
-    <div class="panel-body">
-        首先检查服务器是否在线，其次查看端口、防火墙和 TLS 配置是否正确。还可以通过日志观察 handshake 是否成功，或尝试更换传输协议如 WS、gRPC 来确认问题来源。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Vmess 的安全加密方式推荐使用哪种？</h5></div>
-    <div class="panel-body">
-        目前推荐使用 auto 或 none（结合 TLS 加密）以提升性能。旧版 AEAD 加密已被废弃，使用 TLS/XTLS 层提供的加密即可确保安全。过度加密反而增加 CPU 占用与延迟。<hr />    </div>
+        Clash 提供三种主要模式：Global（全局代理）、Rule（规则代理）和Direct（直连）。全局模式会让所有流量通过代理；规则模式根据规则文件自动分流；直连模式则完全不经过代理。用户可根据需求灵活切换。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Surfboard 与 Clash 有什么关系？</h5></div>
@@ -353,11 +343,6 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         避免将私人订阅直接在公开场合分享，若需要共享可在服务端生成只读或限速专用订阅，并定期更换 token。对外公开时移除或隐藏用户识别字段，确保他人无法通过订阅追溯出个人账户信息。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 是否兼容 Clash 或 V2Ray 配置文件？</h5></div>
-    <div class="panel-body">
-        Hiddify Next 支持部分 Clash 与 Xray 订阅格式，但建议使用其官方订阅格式以获得完整兼容。若订阅转换异常，可使用 Hiddify 提供的在线转换工具重新生成配置文件导入。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 配置文件中 inbound 和 outbound 有什么区别？</h5></div>
     <div class="panel-body">
         在 V2Ray 中，inbound 表示流量进入方式（如本地代理端口），outbound 表示流量出口方式（如 VMess、Trojan 等协议）。通过灵活组合两者，可以实现局域网共享、分流及中继等功能。<hr />    </div>
@@ -368,9 +353,24 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         Netch 的 Socks 模式允许用户将代理仅应用于指定进程，而非全局网络。此模式非常适合单个游戏或程序代理，避免影响其他应用的连接方式与速度。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的规则模式有哪些？</h5></div>
+    <div class="panel-heading"><h5>Hiddify Next 是否兼容 Clash 或 V2Ray 配置文件？</h5></div>
     <div class="panel-body">
-        Clash 提供三种主要模式：Global（全局代理）、Rule（规则代理）和Direct（直连）。全局模式会让所有流量通过代理；规则模式根据规则文件自动分流；直连模式则完全不经过代理。用户可根据需求灵活切换。    </div>
+        Hiddify Next 支持部分 Clash 与 Xray 订阅格式，但建议使用其官方订阅格式以获得完整兼容。若订阅转换异常，可使用 Hiddify 提供的在线转换工具重新生成配置文件导入。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 如何安装？</h5></div>
+    <div class="panel-body">
+        Sing-box 支持多平台，包括 Windows、Linux、macOS 和 Android。可从官方 GitHub 页面下载预编译版本或通过命令行安装。配置文件采用 JSON 格式，兼容多种协议配置。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess 节点无法连接时应如何排查？</h5></div>
+    <div class="panel-body">
+        首先检查服务器是否在线，其次查看端口、防火墙和 TLS 配置是否正确。还可以通过日志观察 handshake 是否成功，或尝试更换传输协议如 WS、gRPC 来确认问题来源。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Vmess 的安全加密方式推荐使用哪种？</h5></div>
+    <div class="panel-body">
+        目前推荐使用 auto 或 none（结合 TLS 加密）以提升性能。旧版 AEAD 加密已被废弃，使用 TLS/XTLS 层提供的加密即可确保安全。过度加密反而增加 CPU 占用与延迟。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -399,16 +399,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-12-1-node-share-links.htm" title="「12月1日」每天更新|19.7M/S，2025年Vless免费机场订阅节点链接">「12月1日」每天更新|19.7M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-5-vless-node.htm" title="「11月5日」每天更新|18.3M/S，2025年Vless免费机场订阅节点链接">「11月5日」每天更新|18.3M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-6-free-high-speed-nodes.htm" title="「10月6日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接">「10月6日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-17-free-subscribe-node.htm" title="「10月17日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接">「10月17日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-2-vless-github.htm" title="「11月2日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接">「11月2日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-15-vless-node-github.htm" title="「10月15日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接">「10月15日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-26-latest-vless-node.htm" title="「11月26日」每天更新|20.3M/S，2025年Vless免费机场订阅节点链接">「11月26日」每天更新|20.3M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-23-free-high-speed-nodes.htm" title="「10月23日」每天更新|22.4M/S，2025年Vless免费机场订阅节点链接">「10月23日」每天更新|22.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-11-node-share-links.htm" title="「10月11日」每天更新|21.3M/S，2025年Vless免费机场订阅节点链接">「10月11日」每天更新|21.3M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-5-vless-github.htm" title="「10月5日」每天更新|19.6M/S，2025年Vless免费机场订阅节点链接">「10月5日」每天更新|19.6M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-22-node-share.htm" title="「11月22日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接">「11月22日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-17-free-subscribe-node.htm" title="「11月17日」每天更新|18.2M/S，2025年Vless免费机场订阅节点链接">「11月17日」每天更新|18.2M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-7-free-vless-node.htm" title="「11月7日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接">「11月7日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-18-node-share-links.htm" title="「10月18日」每天更新|19M/S，2025年Vless免费机场订阅节点链接">「10月18日」每天更新|19M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-14-today-vless-node.htm" title="「10月14日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接">「10月14日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-12-free-high-speed-nodes.htm" title="「11月12日」每天更新|21M/S，2025年Vless免费机场订阅节点链接">「11月12日」每天更新|21M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-19-node-share.htm" title="「11月19日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接">「11月19日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-8-node-share.htm" title="「11月8日」每天更新|20.1M/S，2025年Vless免费机场订阅节点链接">「11月8日」每天更新|20.1M/S，2025年Vless免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -420,7 +420,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
