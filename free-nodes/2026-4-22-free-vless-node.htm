@@ -372,14 +372,19 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess 与 Shadowsocks 哪个更安全？</h5></div>
+    <div class="panel-body">
+        VMess 使用动态认证机制，防止重放攻击，而 Shadowsocks 依赖静态密钥。总体来说，VMess 的安全性更强，尤其在应对 DPI 检测和中间人攻击时表现更优。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 配置如何提高节点隐蔽性？</h5></div>
+    <div class="panel-body">
+        通过选择合适协议和混淆方式，将流量伪装成正常 HTTPS 或 HTTP 数据。可降低被 DPI 检测和封锁的风险，提高节点长期稳定性和科学上网体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Nekoray 节点订阅自动更新如何设置？</h5></div>
     <div class="panel-body">
         用户可添加订阅 URL，Nekoray 会定期自动下载并更新节点列表。保持节点最新可减少手动维护，提高节点可用性和网络连接稳定性，确保科学上网体验顺畅。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan TLS 伪装如何降低被封锁风险？</h5></div>
-    <div class="panel-body">
-        通过选择真实可访问的域名并安装有效证书，Trojan 流量可完全模拟 HTTPS 请求。这样可隐藏流量特征，降低被封锁和 DPI 检测的可能性，保证节点长期可用。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + XTLS 对高延迟网络有哪些优化？</h5></div>
@@ -387,9 +392,9 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
         XTLS 模式减少握手和加密开销，适合高延迟或不稳定网络环境。结合策略组和节点切换，可提高网页浏览、视频播放和游戏的稳定性和流畅度，改善用户体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 如何结合策略组实现多节点优化？</h5></div>
+    <div class="panel-heading"><h5>如何判断节点是否支持 UDP 转发以便游戏加速？</h5></div>
     <div class="panel-body">
-        Netch 可按应用和协议设置策略组，将流量分配到最优节点。结合节点延迟检测和自动切换功能，可提高网页浏览、视频播放和游戏访问速度及稳定性。<hr />    </div>
+        可通过客户端的协议与节点说明确认是否支持 UDP（例如支持 UDP Relay 或 TUN/TAP 模式）。也可实际用 UDP 测试工具或直接用目标游戏连接进行延迟/丢包测试以验证是否可用。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 的 obfs 混淆原理是什么？</h5></div>
@@ -407,19 +412,14 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
         V2Ray 的核心由 inbound、outbound、routing、policy 等模块组成。Inbound 处理入站请求，Outbound 负责出站连接，Routing 管理流量分流策略。模块化的设计让用户可以自由组合代理方式。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 与 Shadowsocks 哪个更安全？</h5></div>
+    <div class="panel-heading"><h5>Netch 如何结合策略组实现多节点优化？</h5></div>
     <div class="panel-body">
-        VMess 使用动态认证机制，防止重放攻击，而 Shadowsocks 依赖静态密钥。总体来说，VMess 的安全性更强，尤其在应对 DPI 检测和中间人攻击时表现更优。<hr />    </div>
+        Netch 可按应用和协议设置策略组，将流量分配到最优节点。结合节点延迟检测和自动切换功能，可提高网页浏览、视频播放和游戏访问速度及稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 配置如何提高节点隐蔽性？</h5></div>
+    <div class="panel-heading"><h5>Trojan TLS 伪装如何降低被封锁风险？</h5></div>
     <div class="panel-body">
-        通过选择合适协议和混淆方式，将流量伪装成正常 HTTPS 或 HTTP 数据。可降低被 DPI 检测和封锁的风险，提高节点长期稳定性和科学上网体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何判断节点是否支持 UDP 转发以便游戏加速？</h5></div>
-    <div class="panel-body">
-        可通过客户端的协议与节点说明确认是否支持 UDP（例如支持 UDP Relay 或 TUN/TAP 模式）。也可实际用 UDP 测试工具或直接用目标游戏连接进行延迟/丢包测试以验证是否可用。    </div>
+        通过选择真实可访问的域名并安装有效证书，Trojan 流量可完全模拟 HTTPS 请求。这样可隐藏流量特征，降低被封锁和 DPI 检测的可能性，保证节点长期可用。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -448,16 +448,16 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-3-8-vless-node.htm" title="「3月8日」每天更新|22.2M/S，2025年Vless免费机场订阅节点链接">「3月8日」每天更新|22.2M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-15-node-share-links.htm" title="「4月15日」每天更新|18.3M/S，2025年Vless免费机场订阅节点链接">「4月15日」每天更新|18.3M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-26-free-subscribe-node.htm" title="「3月26日」每天更新|20.2M/S，2025年Vless免费机场订阅节点链接">「3月26日」每天更新|20.2M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-30-free-subscribe-node.htm" title="「3月30日」每天更新|22.8M/S，2025年Vless免费机场订阅节点链接">「3月30日」每天更新|22.8M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-20-vless-windows.htm" title="「4月20日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接">「4月20日」每天更新|20.4M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-11-vless-node.htm" title="「3月11日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接">「3月11日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-9-free-subscribe-node.htm" title="「4月9日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接">「4月9日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-20-vless-windows.htm" title="「3月20日」每天更新|22.1M/S，2025年Vless免费机场订阅节点链接">「3月20日」每天更新|22.1M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-7-vless-node-github.htm" title="「5月7日」每天更新|22M/S，2025年Vless免费机场订阅节点链接">「5月7日」每天更新|22M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-23-free-subscribe-node.htm" title="「4月23日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接">「4月23日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-29-vless-node.htm" title="「4月29日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接">「4月29日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-25-free-node-subscribe-links.htm" title="「4月25日」每天更新|21.4M/S，2025年Vless免费机场订阅节点链接">「4月25日」每天更新|21.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-12-free-high-speed-nodes.htm" title="「4月12日」每天更新|20.2M/S，2025年Vless免费机场订阅节点链接">「4月12日」每天更新|20.2M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-18-free-node-subscribe.htm" title="「4月18日」每天更新|18.4M/S，2025年Vless免费机场订阅节点链接">「4月18日」每天更新|18.4M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-16-node-share-links.htm" title="「4月16日」每天更新|20.1M/S，2025年Vless免费机场订阅节点链接">「4月16日」每天更新|20.1M/S，2025年Vless免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-4-vless-node.htm" title="「5月4日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接">「5月4日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-21-vless-node-share.htm" title="「4月21日」每天更新|18.4M/S，2025年Vless免费机场订阅节点链接">「4月21日」每天更新|18.4M/S，2025年Vless免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-9-free-node-subscribe-links.htm" title="「3月9日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接">「3月9日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -469,10 +469,10 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
