@@ -383,34 +383,9 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 是什么软件？</h5></div>
+    <div class="panel-heading"><h5>何为 multiplex (mux)，启用后会有哪些利弊？</h5></div>
     <div class="panel-body">
-        PassWall2 是一个运行在 OpenWRT 路由器上的插件，用于代理流量分流和节点管理。它支持多种协议，包括 V2Ray、Trojan、SSR 等。通过 Web 界面，用户可以灵活设置不同设备走不同代理，适合家庭或小型局域网使用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的策略组如何提升分流效率？</h5></div>
-    <div class="panel-body">
-        策略组可以将多个节点或规则组合在一起，实现按条件自动选择最佳节点。通过策略组，用户无需手动切换节点即可根据延迟、地理位置或流量类型自动分流，提高网络效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess AEAD 加密如何保证数据安全？</h5></div>
-    <div class="panel-body">
-        AEAD 加密防止数据篡改、重放攻击和流量特征泄露。在高封锁环境下使用，可保证节点长期可用，提升数据安全和连接稳定性，同时降低被检测风险。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + XTLS 模式在高并发环境中表现如何？</h5></div>
-    <div class="panel-body">
-        XTLS 模式减少握手和加密开销，提高吞吐量和 CPU 利用率。在高并发环境下，能够保持连接稳定，适合游戏、视频和高频请求的网络场景，提高整体性能。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 的连接失败常见原因有哪些？</h5></div>
-    <div class="panel-body">
-        Trojan 连接失败可能由于伪装域名错误、TLS 证书过期、防火墙阻挡端口或服务器不可达。通过查看客户端日志可以定位具体原因，并对症下药解决问题。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 可以与 Shadowsocks 等客户端同时使用吗？</h5></div>
-    <div class="panel-body">
-        可以。Nekobox 配置独立，与 Shadowsocks、Clash 等客户端互不干扰。用户可根据需要通过策略组选择节点，实现灵活的网络管理和分流策略。<hr />    </div>
+        mux 是多路复用技术，可在单一连接上传输多路流量，从而减少握手次数与连接开销。优点是提升短连接并发效率，缺点是在丢包或单连接异常时可能影响多条会话并增加调试复杂度。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mihomo 是否比 Clash Meta 更快？</h5></div>
@@ -418,19 +393,44 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
         Mihomo 是 Clash Meta 的优化分支，采用最新 Go 语言版本编译并针对多线程性能进行了改进。整体运行效率略高，特别是在多节点切换和 DNS 分流方面表现更流畅。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何按 IP 段实现智能分流？</h5></div>
+    <div class="panel-heading"><h5>Nekobox 可以与 Shadowsocks 等客户端同时使用吗？</h5></div>
     <div class="panel-body">
-        Sing-box 支持根据 IP 段匹配流量，将国内流量直连、国外流量走代理。结合策略组和规则文件，实现精细化流量管理，保证访问速度和稳定性，同时提高节点使用效率。<hr />    </div>
+        可以。Nekobox 配置独立，与 Shadowsocks、Clash 等客户端互不干扰。用户可根据需要通过策略组选择节点，实现灵活的网络管理和分流策略。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>何为 multiplex (mux)，启用后会有哪些利弊？</h5></div>
+    <div class="panel-heading"><h5>VMess AEAD 加密如何保证数据安全？</h5></div>
     <div class="panel-body">
-        mux 是多路复用技术，可在单一连接上传输多路流量，从而减少握手次数与连接开销。优点是提升短连接并发效率，缺点是在丢包或单连接异常时可能影响多条会话并增加调试复杂度。<hr />    </div>
+        AEAD 加密防止数据篡改、重放攻击和流量特征泄露。在高封锁环境下使用，可保证节点长期可用，提升数据安全和连接稳定性，同时降低被检测风险。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 的策略组如何提升分流效率？</h5></div>
+    <div class="panel-body">
+        策略组可以将多个节点或规则组合在一起，实现按条件自动选择最佳节点。通过策略组，用户无需手动切换节点即可根据延迟、地理位置或流量类型自动分流，提高网络效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>PassWall2 是什么软件？</h5></div>
+    <div class="panel-body">
+        PassWall2 是一个运行在 OpenWRT 路由器上的插件，用于代理流量分流和节点管理。它支持多种协议，包括 V2Ray、Trojan、SSR 等。通过 Web 界面，用户可以灵活设置不同设备走不同代理，适合家庭或小型局域网使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + XTLS 模式在高并发环境中表现如何？</h5></div>
+    <div class="panel-body">
+        XTLS 模式减少握手和加密开销，提高吞吐量和 CPU 利用率。在高并发环境下，能够保持连接稳定，适合游戏、视频和高频请求的网络场景，提高整体性能。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Trojan 的证书配置需要注意哪些事项？</h5></div>
     <div class="panel-body">
-        TLS 证书必须有效且域名匹配，否则客户端无法建立连接。推荐使用受信任证书，并确保证书链完整，以保证节点安全和长期可用性，同时提升伪装效果。    </div>
+        TLS 证书必须有效且域名匹配，否则客户端无法建立连接。推荐使用受信任证书，并确保证书链完整，以保证节点安全和长期可用性，同时提升伪装效果。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan 的连接失败常见原因有哪些？</h5></div>
+    <div class="panel-body">
+        Trojan 连接失败可能由于伪装域名错误、TLS 证书过期、防火墙阻挡端口或服务器不可达。通过查看客户端日志可以定位具体原因，并对症下药解决问题。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 如何按 IP 段实现智能分流？</h5></div>
+    <div class="panel-body">
+        Sing-box 支持根据 IP 段匹配流量，将国内流量直连、国外流量走代理。结合策略组和规则文件，实现精细化流量管理，保证访问速度和稳定性，同时提高节点使用效率。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -478,16 +478,16 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-8-22-free-subscribe-node.htm" title="「8月22日」每天更新|22.8M/S，2025年Vless免费机场订阅节点链接">「8月22日」每天更新|22.8M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-30-today-vless-node.htm" title="「7月30日」每天更新|21M/S，2025年Vless免费机场订阅节点链接">「7月30日」每天更新|21M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-24-free-subscribe-node.htm" title="「8月24日」每天更新|19.1M/S，2025年Vless免费机场订阅节点链接">「8月24日」每天更新|19.1M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/latest-vless-node-2026-8-5.htm" title="「8月5日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接">「8月5日」每天更新|21.8M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-25.htm" title="「8月25日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接">「8月25日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/latest-vless-node-2026-8-19.htm" title="「8月19日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接">「8月19日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-22-free-node-subscribe.htm" title="「7月22日」每天更新|19.7M/S，2025年Vless免费机场订阅节点链接">「7月22日」每天更新|19.7M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-15.htm" title="「8月15日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接">「8月15日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-12-today-vless-node.htm" title="「8月12日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接">「8月12日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/vless-windows-2026-8-29.htm" title="「8月29日」每天更新|23M/S，2025年Vless免费机场订阅节点链接">「8月29日」每天更新|23M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-10-free-node-subscribe.htm" title="「8月10日」每天更新|22.1M/S，2025年Vless免费机场订阅节点链接">「8月10日」每天更新|22.1M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-4-vless-node.htm" title="「8月4日」每天更新|19.7M/S，2025年Vless免费机场订阅节点链接">「8月4日」每天更新|19.7M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-18-free-subscribe-node.htm" title="「8月18日」每天更新|19.6M/S，2025年Vless免费机场订阅节点链接">「8月18日」每天更新|19.6M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-26-free-subscribe-node.htm" title="「8月26日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接">「8月26日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-6-free-vless-node.htm" title="「8月6日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接">「8月6日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-15.htm" title="「8月15日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接">「8月15日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-8-vless-github.htm" title="「8月8日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接">「8月8日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-27.htm" title="「8月27日」每天更新|20.8M/S，2025年Vless免费机场订阅节点链接">「8月27日」每天更新|20.8M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-2-node-share.htm" title="「9月2日」每天更新|20M/S，2025年Vless免费机场订阅节点链接">「9月2日」每天更新|20M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -499,10 +499,10 @@ A：可以。使用 DSM 的“计划任务”功能，定时启动/关闭 Docker
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
