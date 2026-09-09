@@ -182,19 +182,14 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 的用户管理面板有哪些功能？</h5></div>
+    <div class="panel-body">
+        Hiddify Next 面板可添加或删除用户、设置带宽限制、生成订阅链接、查看流量统计和节点状态。它提供直观的图形界面，无需命令行操作即可管理服务器资源。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 多路复用对高频连接的优势？</h5></div>
     <div class="panel-body">
         多路复用可让多个短连接共享同一通道，减少握手和加密开销，提高吞吐量。适合高频短连接场景，如即时通讯和游戏，保证流量快速、稳定传输。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 无法识别某游戏流量时应如何处理？</h5></div>
-    <div class="panel-body">
-        请确认已启用 TUN 模式并在游戏路径中选择正确的执行文件。部分游戏使用反作弊系统需管理员权限运行 Netch；若仍无法识别，可尝试手动添加端口规则。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray QUIC 模式在高丢包网络中的优势？</h5></div>
-    <div class="panel-body">
-        QUIC 基于 UDP 协议，支持多路复用和零握手，可减少延迟和丢包。适合视频、游戏和即时通讯等高丢包环境，保证访问稳定性和速度，提高整体体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + XTLS 在移动网络的优势是什么？</h5></div>
@@ -202,14 +197,19 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         XTLS 模式减少握手次数和加密开销，适合高延迟或不稳定移动网络。结合策略组和节点切换，可提升网页浏览、视频播放和游戏连接的稳定性和流畅度。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray QUIC 模式在高丢包网络中的优势？</h5></div>
+    <div class="panel-body">
+        QUIC 基于 UDP 协议，支持多路复用和零握手，可减少延迟和丢包。适合视频、游戏和即时通讯等高丢包环境，保证访问稳定性和速度，提高整体体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 的规则订阅更新机制是怎样的？</h5></div>
     <div class="panel-body">
         Sing-box 支持远程规则订阅 URL，可自动下载并更新节点和分流规则。用户可设置更新频率，如每天或每小时，确保规则和节点始终保持最新状态，提高网络管理效率。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 项目是什么？</h5></div>
+    <div class="panel-heading"><h5>Netch 无法识别某游戏流量时应如何处理？</h5></div>
     <div class="panel-body">
-        Matsuri 是基于 sing-box 的跨平台 GUI 客户端，界面现代，支持多种协议和分流方式。它提供直观的节点管理和日志监控功能，适合喜欢图形化操作的用户。Matsuri 的设计目标是简洁、高效、易于上手。<hr />    </div>
+        请确认已启用 TUN 模式并在游戏路径中选择正确的执行文件。部分游戏使用反作弊系统需管理员权限运行 Netch；若仍无法识别，可尝试手动添加端口规则。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 是否还值得使用？</h5></div>
@@ -217,9 +217,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         虽然 SSR 的开发早已停止，但由于它配置简单且部分节点仍然兼容，仍有一定使用场景。不过建议用户逐步迁移到更安全的新协议如 VLESS 或 Trojan，以获得更佳性能与隐蔽性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 的用户管理面板有哪些功能？</h5></div>
+    <div class="panel-heading"><h5>VLESS + Reality 与 Trojan 在性能上差异大吗？</h5></div>
     <div class="panel-body">
-        Hiddify Next 面板可添加或删除用户、设置带宽限制、生成订阅链接、查看流量统计和节点状态。它提供直观的图形界面，无需命令行操作即可管理服务器资源。<hr />    </div>
+        两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Surfboard 如何在 iPhone 上使用？</h5></div>
@@ -227,9 +227,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         从 App Store 下载 Surfboard 后，导入 Clash 订阅链接即可使用。Surfboard 提供直观的节点切换和规则管理界面，可查看实时延迟与流量数据，非常适合希望简单上手的 iOS 用户。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + Reality 与 Trojan 在性能上差异大吗？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 项目是什么？</h5></div>
     <div class="panel-body">
-        两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。    </div>
+        Matsuri 是基于 sing-box 的跨平台 GUI 客户端，界面现代，支持多种协议和分流方式。它提供直观的节点管理和日志监控功能，适合喜欢图形化操作的用户。Matsuri 的设计目标是简洁、高效、易于上手。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -277,16 +277,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-8-12-today-vless-node.htm" title="「8月12日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接">「8月12日」每天更新|18.6M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-20-today-vless-node.htm" title="「8月20日」每天更新|22.7M/S，2025年Vless免费机场订阅节点链接">「8月20日」每天更新|22.7M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-8-vless-github.htm" title="「8月8日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接">「8月8日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/latest-vless-node-2026-8-11.htm" title="「8月11日」每天更新|21M/S，2025年Vless免费机场订阅节点链接">「8月11日」每天更新|21M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/latest-vless-node-2026-9-1.htm" title="「9月1日」每天更新|20M/S，2025年Vless免费机场订阅节点链接">「9月1日」每天更新|20M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-9.htm" title="「8月9日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接">「8月9日」每天更新|19.9M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-6-free-vless-node.htm" title="「8月6日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接">「8月6日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-26-free-subscribe-node.htm" title="「8月26日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接">「8月26日」每天更新|18.8M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-28-free-vless-node.htm" title="「8月28日」每天更新|21.7M/S，2025年Vless免费机场订阅节点链接">「8月28日」每天更新|21.7M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/vless-node-github-2026-8-23.htm" title="「8月23日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接">「8月23日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-25.htm" title="「8月25日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接">「8月25日」每天更新|22.6M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-2-node-share.htm" title="「9月2日」每天更新|20M/S，2025年Vless免费机场订阅节点链接">「9月2日」每天更新|20M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/latest-vless-node-2026-8-19.htm" title="「8月19日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接">「8月19日」每天更新|18.1M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-22-free-subscribe-node.htm" title="「8月22日」每天更新|22.8M/S，2025年Vless免费机场订阅节点链接">「8月22日」每天更新|22.8M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-8-vless-github.htm" title="「8月8日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接">「8月8日」每天更新|22.9M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-14-node-share.htm" title="「8月14日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接">「8月14日」每天更新|22.5M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-15.htm" title="「8月15日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接">「8月15日」每天更新|19.5M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-3.htm" title="「9月3日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接">「9月3日」每天更新|19.4M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-10-free-node-subscribe.htm" title="「8月10日」每天更新|22.1M/S，2025年Vless免费机场订阅节点链接">「8月10日」每天更新|22.1M/S，2025年Vless免费机场订阅节点链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -298,10 +298,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
